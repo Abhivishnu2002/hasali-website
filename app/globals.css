@@ -1,0 +1,385 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Hasali Design System — Global CSS
+   Palette: ivory base · espresso ink · sage (clinical calm) · terracotta/brass
+   Typography: Fraunces (serif display) · Switzer (grotesk body)
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Switzer — self-hosted woff2 (no render-blocking CDN request) */
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── CSS Custom Properties ── */
+:root {
+  /* Palette */
+  --color-ivory: #f7f3ec;
+  --color-ivory-dark: #ede8df;
+  --color-espresso: #231f1c;
+  --color-espresso-soft: #3a3430;
+  --color-sage: #7c8b6f;
+  --color-sage-light: #a3b095;
+  --color-sage-pale: #e8ede3;
+  --color-terracotta: #b5623b;
+  --color-brass: #b08d57;
+  --color-brass-light: #c9a96e;
+
+  /* Typography */
+  --font-serif: "Fraunces", "Georgia", serif;
+  --font-sans: "Switzer", "system-ui", sans-serif;
+
+  /* Spacing scale */
+  --section-pad-y: clamp(4rem, 8vw, 7rem);
+  --section-pad-x: clamp(1.25rem, 5vw, 5rem);
+  --container-max: 1280px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Base Reset & Defaults ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ── Typography Defaults ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
+h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+h4 { font-size: clamp(1.1rem, 1.8vw, 1.4rem); }
+
+p { max-width: 65ch; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Layout Utilities ── */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--section-pad-x);
+}
+
+.section-pad {
+  padding-block: var(--section-pad-y);
+}
+
+/* ── Custom Component Classes ── */
+
+/* Primary CTA — sage ink, terracotta hover */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--color-espresso);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-espresso);
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease-out-expo),
+              color 0.25s var(--ease-out-expo),
+              border-color 0.25s var(--ease-out-expo),
+              transform 0.2s var(--ease-out-expo);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-sage);
+  border-color: var(--color-sage);
+  transform: translateY(-1px);
+}
+
+/* Ghost / outline button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background-color: transparent;
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-espresso);
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease-out-expo),
+              color 0.25s var(--ease-out-expo),
+              transform 0.2s var(--ease-out-expo);
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-espresso);
+  color: var(--color-ivory);
+  transform: translateY(-1px);
+}
+
+/* Ivory ghost — for use on dark sections */
+.btn-ghost-ivory {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background-color: transparent;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(247, 243, 236, 0.5);
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease-out-expo),
+              border-color 0.25s var(--ease-out-expo),
+              transform 0.2s var(--ease-out-expo);
+}
+
+.btn-ghost-ivory:hover {
+  background-color: rgba(247, 243, 236, 0.1);
+  border-color: var(--color-ivory);
+  transform: translateY(-1px);
+}
+
+/* Serif eyebrow / category label */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+}
+
+/* Thin ruled-line accent (sage) */
+.rule-sage {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background-color: var(--color-sage);
+  margin-block: 1rem;
+}
+
+/* ── Scroll-reveal base state (Framer Motion controls actual animation) ── */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* ── WhatsApp FAB pulse animation ── */
+@keyframes fab-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+}
+
+.fab-pulse {
+  animation: fab-pulse 2.5s ease-in-out infinite;
+}
+
+/* ── Placeholder image block ── */
+.placeholder-img {
+  background-color: var(--color-ivory-dark);
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(124, 139, 111, 0.07) 20px,
+      rgba(124, 139, 111, 0.07) 21px
+    );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Focus-visible ring (accessibility) ── */
+:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 3px;
+}
+
+/* ── Custom scrollbar (webkit) ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-ivory); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage-light);
+  border-radius: 3px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Mobile Responsiveness Utilities
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Scroll-snap horizontal container ── */
+.snap-x-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 1rem;
+}
+.snap-x-scroll::-webkit-scrollbar { display: none; }
+.snap-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ── Scroll-snap progress dots ── */
+.snap-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+.snap-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(35, 31, 28, 0.18);
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  /* 44px tap target via padding */
+  padding: 0.875rem;
+  margin: -0.875rem;
+  cursor: pointer;
+  border: none;
+  background-clip: content-box;
+}
+.snap-dot.active {
+  background-color: var(--color-sage);
+  transform: scale(1.15);
+}
+
+/* ── Right-fade hint (scroll snap overflow reveal) ── */
+.snap-fade-right {
+  position: relative;
+}
+.snap-fade-right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 3rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── FAB page clearance — bottom padding so FAB never overlaps content ── */
+.fab-clearance {
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 640px) {
+  .fab-clearance {
+    padding-bottom: 0;
+  }
+}
+
+/* ── Minimum tap target (44×44px) ── */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Footer accordion ── */
+.footer-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  color: inherit;
+}
+.footer-accordion-body {
+  overflow: hidden;
+  transition: max-height 0.35s var(--ease-out-expo), opacity 0.3s ease;
+}
+.footer-accordion-body.closed {
+  max-height: 0;
+  opacity: 0;
+}
+.footer-accordion-body.open {
+  max-height: 400px;
+  opacity: 1;
+}

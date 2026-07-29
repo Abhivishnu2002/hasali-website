@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // content/services.ts
-// Typed service data — edit descriptions here without touching component code.
-// No prices are listed. All service CTAs point to WhatsApp booking.
+// Typed service data — updated with authentic Hasali brochure treatments & packages.
+// All service CTAs point to WhatsApp booking.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type ServiceCategory = {
@@ -17,7 +17,107 @@ export type Service = {
   id: string;
   name: string;
   description: string;
+  inclusions?: string[];
+  featuredTag?: string;
+  image?: string;
 };
+
+export type SignaturePackage = {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: "skin" | "hair";
+  duration?: string;
+  description: string;
+  inclusions: string[];
+  highlights: string[];
+  image: string;
+  whatsappMsg: string;
+};
+
+export const SIGNATURE_PACKAGES: SignaturePackage[] = [
+  {
+    id: "glass-skin-program",
+    title: "Celebrity Glass Skin Program",
+    subtitle: "30 Days of Luxury. A Lifetime of Glow.",
+    category: "skin",
+    duration: "30-Day Rejuvenation Protocol",
+    description:
+      "Our premier 30-day intensive clinical skin transformation designed for deep hydration, mirror-like clarity, and instant radiance.",
+    inclusions: [
+      "Glass Skin Facial (Instant Glow & Deep Hydration)",
+      "Medical Peel (Clear, Smooth & Even-Toned Skin)",
+      "Hydrafacial (Deep Cleanse, Detox & Rejuvenate)",
+      "Oxygen Therapy (Boosts Radiance & Skin Health)",
+      "Carbon Glow Treatment (Clear Pores & Brighten)",
+      "LED Therapy (Heal, Calm & Glow)",
+      "Skin Brightening Mask (Illuminate & Revive)",
+      "Doctor Skin Consultation (Expert Personalized Care)",
+      "Customized Home Care Plan (Daily Results Protocol)",
+    ],
+    highlights: ["Visible Results", "Advanced Technology", "Dermatologically Safe", "Customized Care"],
+    image: "/images/glass_skin_treatment.jpg",
+    whatsappMsg: "Hi Hasali, I would like to book a consultation for the Celebrity Glass Skin Program.",
+  },
+  {
+    id: "brazilian-hair-botox",
+    title: "Brazilian Botox Hair Treatment",
+    subtitle: "Stronger. Smoother. Shinier. Mirror-like Shine.",
+    category: "hair",
+    duration: "Visible Results After Just 1 Session",
+    description:
+      "A revolutionary hair repair and smoothing treatment that restores damaged hair fibers, eliminates stubborn frizz, and delivers intense shine.",
+    inclusions: [
+      "Deep Hair Fiber Nourishment & Reconstructive Care",
+      "Frizz Elimination & Mirror-Like Shine Boost",
+      "Customized for Short, Medium & Long Hair",
+      "Chemical-Balanced Safe Formula for All Hair Types",
+    ],
+    highlights: ["1 Session Transformation", "Deep Repair", "Frizz Elimination", "Long-Lasting"],
+    image: "/images/brazilian_botox_hair.jpg",
+    whatsappMsg: "Hi Hasali, I would like to enquire about the Brazilian Botox Hair Treatment.",
+  },
+  {
+    id: "complete-skin-transformation",
+    title: "Complete Skin Transformation Package",
+    subtitle: "Full-Spectrum Clinical Radiance & Renewal",
+    category: "skin",
+    duration: "Multi-Session Complete Program",
+    description:
+      "India's most comprehensive clinical skin renewal package combining advanced IV glutathione therapy, specialized peels, hydra facials, and carbon treatments.",
+    inclusions: [
+      "10 Sessions Glutathione IV Treatment",
+      "3 Sessions Glutathione Peeling",
+      "Full Skin Brightening Program",
+      "Deep Hydration & Skin Renewal",
+      "3 Sessions Hydra Facial",
+      "2 Sessions Carbon Facial",
+      "2 Sessions Pedicure & Manicure",
+      "Skin Radiance & Glow Boost",
+    ],
+    highlights: ["Glutathione Therapy", "Hydra & Carbon Facials", "Total Skin Brightening", "Hand & Foot Pampering"],
+    image: "/images/skin_transformation_package.jpg",
+    whatsappMsg: "Hi Hasali, I would like to know more about the Complete Skin Transformation Package.",
+  },
+  {
+    id: "keratresse-smoothening",
+    title: "Keratresse Advanced Hair Smoothening",
+    subtitle: "Smooth. Strong. Stunning. Frizz Control.",
+    category: "hair",
+    duration: "Long-Lasting Frizz Control",
+    description:
+      "Advanced hair smoothening system providing silky smoothness, long-lasting manageable texture, and protection against humidity and heat styling.",
+    inclusions: [
+      "Keratresse Advanced Hair Smoothening System",
+      "Smoothening & Keratin Classic Treatment",
+      "Heat & Damage Styling Shield Protection",
+      "Nourishing Silky Soft Finish",
+    ],
+    highlights: ["Silky Smoothness", "Heat Protection", "Long-Lasting Frizz Control", "Unisex Care"],
+    image: "/images/keratresse_hair_treatment.jpg",
+    whatsappMsg: "Hi Hasali, I would like to book the Keratresse Advanced Hair Smoothening treatment.",
+  },
+];
 
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
@@ -26,31 +126,33 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     name: "Skin & Cosmetology",
     label: "Skin",
     description:
-      "Medical-grade skin treatments delivered by trained cosmetology professionals. From deep cleansing facials to targeted corrective programmes, every protocol is tailored to your skin's specific needs.",
+      "Medical-grade skin treatments delivered by trained cosmetology professionals. From advanced facials and glutathione therapies to targeted clinical peels, every protocol is tailored to your skin's specific needs.",
     services: [
       {
-        id: "facials",
-        name: "Facials",
+        id: "celebrity-glass-skin",
+        name: "Celebrity Glass Skin Program (30 Days)",
+        featuredTag: "Signature Program",
         description:
-          "Customised facial treatments addressing hydration, brightness, anti-ageing, and purification — chosen to match your skin type and concern.",
+          "30-day luxury clinical transformation combining Hydrafacial, Medical Peels, Oxygen Therapy, Carbon Glow, and LED Therapy for glass-like clarity.",
       },
       {
-        id: "anti-acne",
-        name: "Anti-Acne Treatment",
+        id: "glutathione-transformation",
+        name: "Glutathione Brightening & IV Therapy",
+        featuredTag: "Clinical Special",
         description:
-          "A targeted clinical approach to active acne and post-acne marks, combining deep cleansing, corrective serums, and professional-grade actives.",
+          "Complete skin brightening program featuring Glutathione IV sessions, specialized peels, and deep hydration for luminous skin radiance.",
       },
       {
-        id: "chemical-peel",
-        name: "Chemical Peel Treatment",
+        id: "hydrafacial-carbon",
+        name: "Hydra Facial & Carbon Glow Therapy",
         description:
-          "Professionally administered acid peels for uneven skin tone, texture irregularities, and dullness — calibrated to your skin's tolerance.",
+          "Deep cleansing, pore detox, and carbon laser glow treatments that clear impurities and restore youthful skin bounce.",
       },
       {
-        id: "skin-care-programs",
-        name: "Skin Care Programs",
+        id: "anti-acne-peels",
+        name: "Medical Peels & Anti-Acne Protocol",
         description:
-          "Multi-session skin health programmes designed around long-term goals — hyperpigmentation, fine lines, pore refinement, and radiance.",
+          "Targeted clinical peels and corrective active serums addressing active acne, hyperpigmentation, and texture irregularities.",
       },
     ],
   },
@@ -60,37 +162,33 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     name: "Hair",
     label: "Hair",
     description:
-      "From everyday styling to transformative treatments, our hair services blend technical expertise with premium products to give you hair that looks and feels exceptional.",
+      "From Brazilian Botox and Keratresse hair smoothening to precision cuts, our hair services blend technical expertise with premium restorative formulas.",
     services: [
       {
-        id: "hair-styling",
-        name: "Hair Styling",
+        id: "brazilian-botox",
+        name: "Brazilian Botox Hair Treatment",
+        featuredTag: "Most Popular",
         description:
-          "Cuts, blow-outs, and finishing services for all hair types — straight, wavy, curly, and coily. Unisex.",
+          "Revolutionary fiber-repairing treatment delivering intense smoothness, mirror-like shine, and deep frizz elimination after just 1 session.",
       },
       {
-        id: "hair-care",
-        name: "Hair Care",
+        id: "keratresse-system",
+        name: "Keratresse Advanced Hair Smoothening",
+        featuredTag: "Advanced System",
         description:
-          "Deep conditioning, scalp treatments, and repair therapies to restore strength, shine, and health to damaged or stressed hair.",
+          "State-of-the-art smoothening system providing long-lasting frizz control, silky touch, and thermal damage protection.",
       },
       {
-        id: "hair-extensions",
-        name: "Hair Extensions",
+        id: "keratin-classic",
+        name: "Smoothening & Keratin Classic",
         description:
-          "Professional-grade extensions for added length and volume, applied and blended seamlessly for a natural finish.",
+          "Essential keratin restorative treatment that leaves hair sleek, manageable, soft, and glossy for months.",
       },
       {
-        id: "keratin-treatment",
-        name: "Keratin Treatment",
+        id: "hair-styling-care",
+        name: "Styling, Conditioning & Extensions",
         description:
-          "A smoothing and frizz-reduction treatment that leaves hair sleek, manageable, and glossy for months.",
-      },
-      {
-        id: "nanoplastia",
-        name: "Nanoplastia Treatment",
-        description:
-          "An advanced formaldehyde-free hair smoothing system that repairs, reconstructs, and straightens — with longer-lasting results than traditional keratin.",
+          "Precision cuts, deep conditioners, scalp detox treatments, and seamless professional hair extensions.",
       },
     ],
   },
@@ -104,9 +202,9 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     services: [
       {
         id: "bridal-makeup",
-        name: "Bridal Makeup",
+        name: "Bridal Makeup & Grooming",
         description:
-          "Full bridal looks — from traditional to contemporary — crafted to last through ceremonies, portraits, and celebrations.",
+          "Full bridal & groom packages — traditional to contemporary HD looks designed to remain radiant through long ceremonies.",
       },
       {
         id: "party-makeup",
@@ -122,19 +220,19 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     name: "Nails",
     label: "Nails",
     description:
-      "Precision nail art and professional extensions that combine technique with creativity — from understated elegance to bold statements.",
+      "Precision nail art, manicures, pedicures, and professional extensions that combine technique with creativity — from understated elegance to bold statements.",
     services: [
       {
         id: "nail-art",
-        name: "Nail Art",
+        name: "Custom Nail Art & Gel Polish",
         description:
-          "Freehand and stamped nail art in any style — minimal, floral, geometric, or intricate festival designs.",
+          "Freehand and precision nail art in any style — minimal, floral, geometric, or intricate bridal designs.",
       },
       {
         id: "acrylic-extensions",
-        name: "Acrylic & Permanent Nail Extensions",
+        name: "Acrylic Extensions & Luxury Pedicure",
         description:
-          "Long-lasting nail extensions applied and shaped for a durable, natural-looking finish that complements your lifestyle.",
+          "Long-lasting nail extensions shaped to perfection paired with relaxing, skin-softening manicures and pedicures.",
       },
     ],
   },

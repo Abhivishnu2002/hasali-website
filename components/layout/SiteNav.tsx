@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { NAV_ITEMS, WA_HREF, PHONE_DISPLAY, TEL_HREF } from "@/content/site";
 
+import Image from "next/image";
+
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -64,35 +66,20 @@ export default function SiteNav() {
           <Link
             href="/"
             aria-label="Hasali — home"
-            style={{ display: "flex", flexDirection: "column", gap: "0.1rem" }}
+            style={{ display: "flex", alignItems: "center" }}
           >
-            <span
+            <Image
+              src={isDarkHero ? "/images/logo-light.png" : "/images/logo.png"}
+              alt="Hasali Cosmetology Clinic & Salon"
+              width={180}
+              height={48}
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
-                fontSize: "1.5rem",
-                fontWeight: 400,
-                letterSpacing: "-0.02em",
-                color: isDarkHero ? "var(--color-ivory)" : "var(--color-espresso)",
-                transition: "color 0.35s ease",
-                lineHeight: 1,
+                height: "2.65rem",
+                width: "auto",
+                objectFit: "contain",
               }}
-            >
-              Hasali
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-switzer, system-ui, sans-serif)",
-                fontSize: "0.6rem",
-                fontWeight: 500,
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color: isDarkHero ? "var(--color-sage-light)" : "var(--color-sage)",
-                transition: "color 0.35s ease",
-                lineHeight: 1,
-              }}
-            >
-              Cosmetology Clinic & Salon
-            </span>
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}

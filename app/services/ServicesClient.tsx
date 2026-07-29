@@ -4,6 +4,7 @@ import { SERVICE_CATEGORIES } from "@/content/services";
 import { WA_HREF } from "@/content/site";
 import { MessageCircle } from "lucide-react";
 import SectionReveal from "@/components/ui/SectionReveal";
+import SignaturePackages from "@/components/sections/home/SignaturePackages";
 
 export default function ServicesClient() {
   return (
@@ -67,6 +68,9 @@ export default function ServicesClient() {
           </SectionReveal>
         </div>
       </section>
+
+      {/* Signature Brochure Packages */}
+      <SignaturePackages />
 
       {/* Service categories */}
       {SERVICE_CATEGORIES.map((cat, catIndex) => (

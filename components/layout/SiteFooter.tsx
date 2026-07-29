@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, MapPin, ChevronDown } from "lucide-react";
 import {
   BRAND,
@@ -93,35 +94,18 @@ export default function SiteFooter() {
         <div className="footer-grid">
           {/* Brand column — always fully visible, no accordion */}
           <div>
-            <Link href="/" aria-label="Hasali — home">
-              <span
+            <Link href="/" aria-label="Hasali — home" style={{ display: "inline-block", marginBottom: "1.25rem" }}>
+              <Image
+                src="/images/logo-light.png"
+                alt="Hasali Cosmetology Clinic & Salon"
+                width={190}
+                height={48}
                 style={{
-                  fontFamily: "var(--font-fraunces, Georgia, serif)",
-                  fontSize: "2rem",
-                  fontWeight: 400,
-                  letterSpacing: "-0.02em",
-                  color: "var(--color-ivory)",
-                  display: "block",
-                  lineHeight: 1,
-                  marginBottom: "0.35rem",
+                  height: "2.6rem",
+                  width: "auto",
+                  objectFit: "contain",
                 }}
-              >
-                Hasali
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-switzer, system-ui, sans-serif)",
-                  fontSize: "0.6rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color: "var(--color-sage-light)",
-                  display: "block",
-                  marginBottom: "1.25rem",
-                }}
-              >
-                Cosmetology Clinic &amp; Salon
-              </span>
+              />
             </Link>
             <p
               style={{

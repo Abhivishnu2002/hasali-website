@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/sections/home/HeroSection";
 import TrustStrip from "@/components/sections/home/TrustStrip";
 import ServicesOverview from "@/components/sections/home/ServicesOverview";
+import SignaturePackages from "@/components/sections/home/SignaturePackages";
 import HasaliDifference from "@/components/sections/home/HasaliDifference";
 import TestimonialsSection from "@/components/sections/home/TestimonialsSection";
 import LocationsPreview from "@/components/sections/home/LocationsPreview";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <HeroSection />
       <TrustStrip />
       <ServicesOverview />
+      <SignaturePackages />
       <HasaliDifference />
       <TestimonialsSection />
       <LocationsPreview />

@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Hasali Design System — Global CSS
-   Palette: ivory base · espresso ink · sage (clinical calm) · terracotta/brass
+   Hasali Design System — Quantam Edition
+   Palette: ivory base · espresso ink · sage green · warm terracotta/brass
    Typography: Fraunces (serif display) · Switzer (grotesk body)
+   Inspired by: Quantam Mental Health & Wellness Template
 ───────────────────────────────────────────────────────────────────────────── */
 
-/* Switzer — self-hosted woff2 (no render-blocking CDN request) */
+/* Switzer — self-hosted woff2 */
 @font-face {
   font-family: "Switzer";
   src: url("/fonts/Switzer-Light.woff2") format("woff2");
@@ -45,32 +46,37 @@
 
 /* ── CSS Custom Properties ── */
 :root {
-  /* Palette */
-  --color-ivory: #f7f3ec;
-  --color-ivory-dark: #ede8df;
-  --color-espresso: #231f1c;
-  --color-espresso-soft: #3a3430;
-  --color-sage: #7c8b6f;
-  --color-sage-light: #a3b095;
-  --color-sage-pale: #e8ede3;
+  /* Palette — Quantam-aligned */
+  --color-ivory: #fdf9f4;
+  --color-ivory-dark: #f0e9e0;
+  --color-cream: #f5ede3;
+  --color-espresso: #1a1714;
+  --color-espresso-soft: #2e2a27;
+  --color-charcoal: #2a2520;
+  --color-sage: #4a6741;
+  --color-sage-light: #7a9b70;
+  --color-sage-pale: #dce8d5;
   --color-terracotta: #b5623b;
   --color-brass: #b08d57;
   --color-brass-light: #c9a96e;
+  --color-dark-panel: #1c1a17;
+  --color-dark-panel-2: #242018;
 
   /* Typography */
   --font-serif: "Fraunces", "Georgia", serif;
   --font-sans: "Switzer", "system-ui", sans-serif;
 
-  /* Spacing scale */
-  --section-pad-y: clamp(4rem, 8vw, 7rem);
+  /* Spacing */
+  --section-pad-y: clamp(4.5rem, 9vw, 8rem);
   --section-pad-x: clamp(1.25rem, 5vw, 5rem);
   --container-max: 1280px;
 
   /* Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Base Reset & Defaults ── */
+/* ── Base Reset ── */
 *,
 *::before,
 *::after {
@@ -89,7 +95,7 @@ body {
   color: var(--color-espresso);
   font-family: var(--font-sans);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.65;
   min-height: 100dvh;
   overflow-x: hidden;
 }
@@ -98,14 +104,14 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 
-h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); }
-h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
-h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
-h4 { font-size: clamp(1.1rem, 1.8vw, 1.4rem); }
+h1 { font-size: clamp(2.75rem, 6.5vw, 6rem); }
+h2 { font-size: clamp(2.25rem, 4.5vw, 4rem); }
+h3 { font-size: clamp(1.5rem, 2.5vw, 2.25rem); }
+h4 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
 
 p { max-width: 65ch; }
 
@@ -131,27 +137,84 @@ img, video {
   padding-block: var(--section-pad-y);
 }
 
-/* ── Custom Component Classes ── */
+/* ── Quantam Section Pill Badge ── */
+/* e.g. "• Our Services" floating pill at top of section */
+.section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
+  background-color: rgba(74, 103, 65, 0.1);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-sage);
+  margin-bottom: 1.25rem;
+}
 
-/* Primary CTA — sage ink, terracotta hover */
+.section-pill-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
+  background-color: rgba(255,255,255,0.12);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 1.25rem;
+}
+
+/* ── Quantam Diamond Rule (decorative separator) ── */
+.diamond-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block: 1.25rem;
+  color: var(--color-sage-light);
+  opacity: 0.5;
+}
+
+.diamond-rule::before,
+.diamond-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: currentColor;
+}
+
+.diamond-rule span {
+  width: 5px;
+  height: 5px;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ── Buttons ── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
+  padding: 0.8rem 1.875rem;
   background-color: var(--color-espresso);
   color: var(--color-ivory);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid var(--color-espresso);
+  letter-spacing: 0.06em;
+  border: 1.5px solid var(--color-espresso);
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.25s var(--ease-out-expo),
               color 0.25s var(--ease-out-expo),
               border-color 0.25s var(--ease-out-expo),
               transform 0.2s var(--ease-out-expo);
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -160,59 +223,88 @@ img, video {
   transform: translateY(-1px);
 }
 
+.btn-sage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.875rem;
+  background-color: var(--color-sage);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  border: 1.5px solid var(--color-sage);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease-out-expo),
+              transform 0.2s var(--ease-out-expo);
+  white-space: nowrap;
+}
+
+.btn-sage:hover {
+  background-color: var(--color-espresso);
+  border-color: var(--color-espresso);
+  transform: translateY(-1px);
+}
+
 /* Ghost / outline button */
 .btn-ghost {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
+  padding: 0.8rem 1.875rem;
   background-color: transparent;
   color: var(--color-espresso);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid var(--color-espresso);
+  letter-spacing: 0.06em;
+  border: 1.5px solid rgba(35, 31, 28, 0.35);
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.25s var(--ease-out-expo),
               color 0.25s var(--ease-out-expo),
+              border-color 0.25s var(--ease-out-expo),
               transform 0.2s var(--ease-out-expo);
+  white-space: nowrap;
 }
 
 .btn-ghost:hover {
   background-color: var(--color-espresso);
   color: var(--color-ivory);
+  border-color: var(--color-espresso);
   transform: translateY(-1px);
 }
 
-/* Ivory ghost — for use on dark sections */
+/* Ivory ghost — for dark sections */
 .btn-ghost-ivory {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
+  padding: 0.8rem 1.875rem;
   background-color: transparent;
   color: var(--color-ivory);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid rgba(247, 243, 236, 0.5);
+  letter-spacing: 0.06em;
+  border: 1.5px solid rgba(253, 249, 244, 0.45);
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.25s var(--ease-out-expo),
               border-color 0.25s var(--ease-out-expo),
               transform 0.2s var(--ease-out-expo);
+  white-space: nowrap;
 }
 
 .btn-ghost-ivory:hover {
-  background-color: rgba(247, 243, 236, 0.1);
+  background-color: rgba(253, 249, 244, 0.12);
   border-color: var(--color-ivory);
   transform: translateY(-1px);
 }
 
-/* Serif eyebrow / category label */
+/* ── Eyebrow label ── */
 .eyebrow {
   font-family: var(--font-sans);
   font-size: 0.7rem;
@@ -222,22 +314,183 @@ img, video {
   color: var(--color-sage);
 }
 
-/* Thin ruled-line accent (sage) */
-.rule-sage {
-  display: block;
-  width: 2.5rem;
-  height: 1px;
-  background-color: var(--color-sage);
-  margin-block: 1rem;
+/* ── Benefit overlay card (floating glassmorphic text card on dark images) ── */
+.benefit-card {
+  position: relative;
+  padding: 1.875rem 2rem;
+  border: 1.5px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  text-align: center;
+  max-width: 480px;
 }
 
-/* ── Scroll-reveal base state (Framer Motion controls actual animation) ── */
+.benefit-card h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 0.875rem;
+  letter-spacing: -0.02em;
+}
+
+.benefit-card p {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.82);
+  max-width: 40ch;
+  margin-inline: auto;
+}
+
+/* ── Pricing card ── */
+.pricing-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(74, 103, 65, 0.12);
+}
+
+.pricing-card-dark {
+  background-color: var(--color-dark-panel);
+  color: var(--color-ivory);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Service accordion item ── */
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid rgba(35, 31, 28, 0.1);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.service-item-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1.5px solid rgba(35, 31, 28, 0.25);
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-espresso-soft);
+  flex-shrink: 0;
+}
+
+.service-item.active .service-item-number {
+  border-color: var(--color-sage);
+  color: var(--color-sage);
+  background-color: var(--color-sage-pale);
+}
+
+/* ── FAQ accordion ── */
+.faq-item {
+  border-bottom: 1px solid rgba(35, 31, 28, 0.1);
+}
+
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-block: 1.375rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.faq-trigger:hover {
+  color: var(--color-sage);
+}
+
+.faq-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1.5px solid rgba(35,31,28,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-out-expo), background-color 0.2s, border-color 0.2s;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background-color: var(--color-sage);
+  border-color: var(--color-sage);
+  color: #fff;
+}
+
+.faq-body {
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-out-expo), opacity 0.3s ease;
+}
+
+.faq-body.closed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.faq-body.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.faq-body-inner {
+  padding-bottom: 1.375rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-espresso-soft);
+}
+
+/* ── Reveal animation base states ── */
 .reveal-hidden {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
 }
 
-/* ── WhatsApp FAB pulse animation ── */
+/* ── Scroll-snap horizontal ── */
+.snap-x-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.snap-x-scroll::-webkit-scrollbar { display: none; }
+.snap-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ── WhatsApp FAB pulse ── */
 @keyframes fab-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
   50% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
@@ -247,30 +500,51 @@ img, video {
   animation: fab-pulse 2.5s ease-in-out infinite;
 }
 
-/* ── Placeholder image block ── */
-.placeholder-img {
-  background-color: var(--color-ivory-dark);
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 20px,
-      rgba(124, 139, 111, 0.07) 20px,
-      rgba(124, 139, 111, 0.07) 21px
-    );
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ── Testimonial dark card ── */
+.testimonial-dark-card {
+  background-color: var(--color-dark-panel);
+  border-radius: 12px;
+  padding: 1.75rem;
+  color: var(--color-ivory);
 }
 
-/* ── Focus-visible ring (accessibility) ── */
+/* ── Gallery image card ── */
+.gallery-card {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.gallery-card:hover img {
+  transform: scale(1.04);
+}
+
+/* ── Blog card ── */
+.blog-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: rgba(255,255,255,0.06);
+  transition: transform 0.25s var(--ease-out-expo);
+}
+
+.blog-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ── Focus visible ── */
 :focus-visible {
   outline: 2px solid var(--color-sage);
   outline-offset: 3px;
 }
 
-/* ── Custom scrollbar (webkit) ── */
+/* ── Custom scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-ivory); }
 ::-webkit-scrollbar-thumb {
@@ -278,82 +552,12 @@ img, video {
   border-radius: 3px;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   Mobile Responsiveness Utilities
-   ─────────────────────────────────────────────────────────────────────────── */
-
-/* ── Scroll-snap horizontal container ── */
-.snap-x-scroll {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  gap: 1rem;
-}
-.snap-x-scroll::-webkit-scrollbar { display: none; }
-.snap-item {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-}
-
-/* ── Scroll-snap progress dots ── */
-.snap-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.25rem;
-}
-.snap-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: rgba(35, 31, 28, 0.18);
-  transition: background-color 0.25s ease, transform 0.2s ease;
-  /* 44px tap target via padding */
-  padding: 0.875rem;
-  margin: -0.875rem;
-  cursor: pointer;
-  border: none;
-  background-clip: content-box;
-}
-.snap-dot.active {
-  background-color: var(--color-sage);
-  transform: scale(1.15);
-}
-
-/* ── Right-fade hint (scroll snap overflow reveal) ── */
-.snap-fade-right {
-  position: relative;
-}
-.snap-fade-right::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 3rem;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ── FAB page clearance — bottom padding so FAB never overlaps content ── */
+/* ── Mobile scroll clearance for WhatsApp FAB ── */
 .fab-clearance {
   padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
 }
 @media (min-width: 640px) {
-  .fab-clearance {
-    padding-bottom: 0;
-  }
-}
-
-/* ── Minimum tap target (44×44px) ── */
-.tap-target {
-  min-height: 44px;
-  min-width: 44px;
-  display: flex;
-  align-items: center;
+  .fab-clearance { padding-bottom: 0; }
 }
 
 /* ── Footer accordion ── */
@@ -383,3 +587,195 @@ img, video {
   max-height: 400px;
   opacity: 1;
 }
+
+/* ── Promo bar ── */
+.promo-bar {
+  background-color: var(--color-espresso);
+  color: var(--color-ivory);
+  padding: 0.5rem 0;
+  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 110;
+  overflow: hidden;
+}
+
+/* ── Star rating ── */
+.stars {
+  display: flex;
+  gap: 2px;
+  color: #f59e0b;
+}
+
+/* ── Avatar stack ── */
+.avatar-stack {
+  display: flex;
+}
+
+.avatar-stack img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-left: -0.5rem;
+  object-fit: cover;
+}
+
+.avatar-stack img:first-child {
+  margin-left: 0;
+}
+
+/* ── Marquee / infinite ticker ── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-outer {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-inline: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: rgba(253,249,244,0.8);
+}
+
+/* ── Bento grid cells ── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Gallery horizontal scroll ── */
+.gallery-scroll-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.gallery-scroll-track::-webkit-scrollbar { display: none; }
+.gallery-scroll-track:active { cursor: grabbing; }
+
+.gallery-scroll-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ── Alternating benefit row ── */
+.benefit-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  min-height: 520px;
+}
+
+.benefit-row.reverse {
+  direction: rtl;
+}
+.benefit-row.reverse > * {
+  direction: ltr;
+}
+
+@media (max-width: 768px) {
+  .benefit-row {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .benefit-row.reverse {
+    direction: ltr;
+  }
+}
+
+/* ── Sub-accordion (inside benefit rows) ── */
+.sub-accordion-item {
+  border-bottom: 1px solid rgba(35, 31, 28, 0.1);
+}
+
+.sub-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-block: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.sub-accordion-trigger:hover {
+  color: var(--color-sage);
+}
+
+.sub-accordion-trigger .sub-num {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-sage);
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ── Testimonial drag carousel ── */
+.testimonial-carousel-track {
+  display: flex;
+  gap: 1.25rem;
+  cursor: grab;
+  user-select: none;
+}
+
+.testimonial-carousel-track:active {
+  cursor: grabbing;
+}
+
+.testimonial-card-wide {
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+

@@ -1,168 +1,345 @@
-import Link from "next/link";
-import Image from "next/image";
-import { MapPin, Phone, Clock } from "lucide-react";
-import { LOCATIONS, TEL_HREF, PHONE_DISPLAY } from "@/content/site";
-import StarRating from "@/components/ui/StarRating";
-import SectionReveal from "@/components/ui/SectionReveal";
+"use client";
 
-const locationImages = [
-  { src: "/images/pic4.jpg", alt: "Hasali Kadavanthara — bright salon floor with arched mirrors and chandelier" },
-  { src: "/images/pic6.jpg", alt: "Hasali Kalamassery — dramatic dark-wall reception with teal desk and Hasali signage" },
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { WA_HREF } from "@/content/site";
+
+const STEPS = [
+  {
+    number: "01",
+    title: "Personal Consultation",
+    desc: "We begin every session by discussing your goals, skin or hair concerns, and any areas you'd like to address.",
+    size: "large",
+  },
+  {
+    number: "02",
+    title: "Sensory Immersion",
+    desc: "Premium certified products and calming scents create a complete sensory escape from the everyday.",
+    size: "small",
+  },
+  {
+    number: "03",
+    title: "Bespoke Therapy",
+    desc: "Your therapist applies a personalized protocol — selecting techniques, tools, and products tailored to your needs.",
+    size: "small",
+  },
+  {
+    number: "04",
+    title: "Aftercare Guidance",
+    desc: "Expert tips, product recommendations, and a maintenance plan to extend and amplify your results.",
+    size: "large",
+  },
 ];
 
+const APPROACH_IMAGE = "/images/glass_skin_treatment.jpg";
+
+/* ── Bento step card ── */
+function StepCard({
+  step,
+  style,
+}: {
+  step: (typeof STEPS)[0];
+  style?: React.CSSProperties;
+}) {
+  return (
+    <div
+      style={{
+        backgroundColor: "#fff",
+        borderRadius: "16px",
+        padding: "2rem",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        minHeight: "200px",
+        position: "relative",
+        overflow: "hidden",
+        ...style,
+      }}
+    >
+      {/* Large ghost number */}
+      <span
+        style={{
+          position: "absolute",
+          bottom: "-0.5rem",
+          right: "1rem",
+          fontFamily: "var(--font-serif)",
+          fontSize: "clamp(5rem, 8vw, 7rem)",
+          fontWeight: 400,
+          color: "var(--color-ivory-dark)",
+          lineHeight: 1,
+          letterSpacing: "-0.04em",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+        aria-hidden="true"
+      >
+        {step.number}
+      </span>
+
+      <div>
+        {/* Small number badge */}
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "2rem",
+            height: "2rem",
+            border: "1.5px solid rgba(35,31,28,0.18)",
+            borderRadius: "6px",
+            fontFamily: "var(--font-sans)",
+            fontSize: "0.75rem",
+            fontWeight: 600,
+            color: "var(--color-sage)",
+            marginBottom: "1.25rem",
+          }}
+        >
+          {step.number}
+        </div>
+        <h3
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontWeight: 400,
+            fontSize: "clamp(1.1rem, 1.8vw, 1.5rem)",
+            color: "var(--color-espresso)",
+            letterSpacing: "-0.015em",
+            marginBottom: "0.75rem",
+            lineHeight: 1.2,
+          }}
+        >
+          {step.title}
+        </h3>
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "0.875rem",
+            lineHeight: 1.65,
+            color: "var(--color-espresso-soft)",
+            margin: 0,
+            maxWidth: "28ch",
+          }}
+        >
+          {step.desc}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function LocationsPreview() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.12, 1, 1.06]);
+
   return (
     <section
-      aria-labelledby="locations-heading"
-      className="section-pad"
-      style={{ backgroundColor: "var(--color-ivory)" }}
+      ref={sectionRef}
+      aria-label="Our Approach"
+      style={{ backgroundColor: "var(--color-cream)", paddingBlock: "var(--section-pad-y)" }}
     >
       <div className="container">
-        <SectionReveal>
-          <div style={{ marginBottom: "3rem" }}>
-            <span className="eyebrow">Visit Us</span>
-            <div className="rule-sage" />
-            <h2
-              id="locations-heading"
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          style={{ marginBottom: "3.5rem", maxWidth: "600px" }}
+        >
+          <span className="section-pill" style={{ marginBottom: "1.25rem" }}>• Our Approach</span>
+          <h2
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontWeight: 400,
+              fontSize: "clamp(2rem, 4vw, 3.5rem)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.1,
+              color: "var(--color-espresso)",
+              marginBottom: "0.875rem",
+            }}
+          >
+            The Path to Your Transformation
+          </h2>
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.9375rem",
+              lineHeight: 1.65,
+              color: "var(--color-espresso-soft)",
+              margin: 0,
+            }}
+          >
+            We believe beauty is a personal journey. Our four-step approach ensures you receive a treatment plan as unique as you are.
+          </p>
+        </motion.div>
+
+        {/* ── Bento Grid ── */}
+        <div className="approach-bento">
+          {/* Step 01 — large left */}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            style={{ gridColumn: "span 2", gridRow: "span 1" }}
+          >
+            <StepCard step={STEPS[0]} style={{ minHeight: "240px" }} />
+          </motion.div>
+
+          {/* Step 02 — top right */}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <StepCard step={STEPS[1]} style={{ height: "100%", minHeight: "240px" }} />
+          </motion.div>
+
+          {/* Step 03 — bottom left */}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <StepCard step={STEPS[2]} style={{ height: "100%", minHeight: "240px" }} />
+          </motion.div>
+
+          {/* Image tile — with Scroll Scale Animation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              borderRadius: "16px",
+              overflow: "hidden",
+              position: "relative",
+              minHeight: "280px",
+              gridColumn: "span 1",
+            }}
+          >
+            <motion.div style={{ position: "absolute", inset: "-5%", width: "110%", height: "110%", scale: imageScale }}>
+              <Image
+                src={APPROACH_IMAGE}
+                alt="Hasali cosmetology treatment in progress"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ objectFit: "cover" }}
+              />
+            </motion.div>
+            {/* Overlay label */}
+            <div
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
-                fontWeight: 400,
-                fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
-                letterSpacing: "-0.02em",
-                color: "var(--color-espresso)",
-                margin: 0,
+                position: "absolute",
+                bottom: "1rem",
+                left: "1rem",
+                background: "rgba(255,255,255,0.15)",
+                backdropFilter: "blur(12px)",
+                borderRadius: "8px",
+                padding: "0.5rem 0.875rem",
+                border: "1px solid rgba(255,255,255,0.25)",
+                zIndex: 2,
               }}
             >
-              Two locations in Kochi
-            </h2>
-          </div>
-        </SectionReveal>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.72rem", fontWeight: 500, color: "#fff", margin: 0, letterSpacing: "0.06em" }}>
+                🌿 Bespoke therapy in progress
+              </p>
+            </div>
+          </motion.div>
 
-        <div className="locations-grid">
-          {LOCATIONS.map((loc, i) => (
-            <SectionReveal key={loc.id} delay={i * 0.12}>
-              <article
-                style={{
-                  border: "1px solid rgba(35,31,28,0.1)",
-                  overflow: "hidden",
-                  backgroundColor: "var(--color-ivory)",
-                }}
-              >
-                {/* Photo */}
-                <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
-                  <Image
-                    src={locationImages[i].src}
-                    alt={locationImages[i].alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    style={{ objectFit: "cover", transition: "transform 0.6s ease" }}
-                    className="loc-img"
-                  />
-                  {/* Location badge */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "1rem",
-                      left: "1rem",
-                      backgroundColor: "rgba(247,243,236,0.92)",
-                      backdropFilter: "blur(8px)",
-                      padding: "0.3rem 0.75rem",
-                      fontSize: "0.65rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color: "var(--color-sage)",
-                    }}
-                  >
-                    {i === 0 ? "Flagship" : "Branch"}
-                  </div>
+          {/* Step 04 — bottom right large */}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            style={{ gridColumn: "span 2" }}
+          >
+            <div
+              style={{
+                backgroundColor: "var(--color-dark-panel)",
+                borderRadius: "16px",
+                padding: "2rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                minHeight: "200px",
+                gap: "1.5rem",
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "2rem",
+                    height: "2rem",
+                    border: "1.5px solid rgba(255,255,255,0.2)",
+                    borderRadius: "6px",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    color: "var(--color-sage-light)",
+                    marginBottom: "1.25rem",
+                  }}
+                >
+                  {STEPS[3].number}
                 </div>
-
-                {/* Info */}
-                <div style={{ padding: "1.5rem" }}>
-                  <h3
-                    style={{
-                      fontFamily: "var(--font-fraunces, Georgia, serif)",
-                      fontSize: "1.4rem",
-                      fontWeight: 400,
-                      letterSpacing: "-0.01em",
-                      color: "var(--color-espresso)",
-                      marginBottom: "0.75rem",
-                    }}
-                  >
-                    {loc.shortName}
-                  </h3>
-
-                  <StarRating rating={loc.rating} reviewCount={loc.reviewCount} size={13} />
-
-                  <div style={{ marginTop: "1rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-                    <div style={{ display: "flex", gap: "0.625rem", alignItems: "flex-start" }}>
-                      <MapPin size={14} strokeWidth={1.5} style={{ color: "var(--color-sage)", flexShrink: 0, marginTop: "0.15rem" }} />
-                      <address style={{ fontStyle: "normal", fontSize: "0.875rem", lineHeight: 1.55, color: "var(--color-espresso-soft)" }}>
-                        {loc.address.street}<br />
-                        {loc.address.area}, {loc.address.city} {loc.address.pincode}
-                      </address>
-                    </div>
-                    <div style={{ display: "flex", gap: "0.625rem", alignItems: "center" }}>
-                      <Phone size={13} strokeWidth={1.5} style={{ color: "var(--color-sage)", flexShrink: 0 }} />
-                      <a href={TEL_HREF} style={{ fontSize: "0.875rem", color: "var(--color-espresso-soft)" }}>{PHONE_DISPLAY}</a>
-                    </div>
-                    <div style={{ display: "flex", gap: "0.625rem", alignItems: "center" }}>
-                      <Clock size={13} strokeWidth={1.5} style={{ color: "var(--color-sage)", flexShrink: 0 }} />
-                      <span style={{ fontSize: "0.875rem", color: "var(--color-espresso-soft)" }}>{loc.hours}</span>
-                    </div>
-                  </div>
-
-                  <div style={{ display: "flex", gap: "0.75rem", marginTop: "1.25rem", flexWrap: "wrap" }}>
-                    <a
-                      href={loc.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-ghost"
-                      style={{ fontSize: "0.7rem", padding: "0.55rem 1rem" }}
-                    >
-                      Get Directions
-                    </a>
-                    <Link
-                      href="/locations"
-                      style={{
-                        fontSize: "0.7rem",
-                        fontWeight: 500,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        color: "var(--color-sage)",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.3rem",
-                        alignSelf: "center",
-                      }}
-                    >
-                      View details →
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            </SectionReveal>
-          ))}
+                <h3
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontWeight: 400,
+                    fontSize: "clamp(1.1rem, 1.8vw, 1.5rem)",
+                    color: "#fff",
+                    letterSpacing: "-0.015em",
+                    marginBottom: "0.75rem",
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {STEPS[3].title}
+                </h3>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", lineHeight: 1.65, color: "rgba(255,255,255,0.65)", margin: 0 }}>
+                  {STEPS[3].desc}
+                </p>
+              </div>
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-ghost-ivory" style={{ alignSelf: "flex-start", fontSize: "0.8125rem" }}>
+                Begin Your Journey →
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
 
       <style>{`
-        /* Mobile: single column stack */
-        .locations-grid {
+        .approach-bento {
           display: grid;
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-auto-rows: auto;
+          gap: 1rem;
         }
-        /* Tablet + Desktop (≥640px): side-by-side */
-        @media (min-width: 640px) {
-          .locations-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+        @media (max-width: 768px) {
+          .approach-bento {
+            grid-template-columns: 1fr;
+          }
+          .approach-bento > div[style*="span 2"],
+          .approach-bento > div[style*="span 1"] {
+            grid-column: span 1 !important;
           }
         }
-        .loc-img { transition: transform 0.6s ease !important; }
-        article:hover .loc-img { transform: scale(1.03) !important; }
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .approach-bento {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
       `}</style>
     </section>
   );

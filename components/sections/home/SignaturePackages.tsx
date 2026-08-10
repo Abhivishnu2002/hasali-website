@@ -1,213 +1,342 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { SIGNATURE_PACKAGES } from "@/content/services";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { Plus, Minus } from "lucide-react";
 import { WA_HREF } from "@/content/site";
-import { MessageCircle, Sparkles, CheckCircle2 } from "lucide-react";
-import SectionReveal from "@/components/ui/SectionReveal";
+
+/* ── Data ── */
+const BENEFITS = [
+  {
+    id: "skin",
+    number: "01",
+    heading: "Your Journey to Radiant Skin",
+    summary:
+      "Our medical-grade protocols restore texture and radiance, healing sun damage, pigmentation, and everyday stress from your complexion.",
+    image: "/images/scrollpic.png",
+    imgAlt: "Skin rejuvenation treatment at Hasali Cosmetology Clinic Kochi",
+    items: [
+      {
+        id: "s1",
+        title: "Medical-Grade Facials",
+        body: "HydraFacials, chemical peels, and clinical-grade skin therapies tailored to your unique skin type and concerns.",
+      },
+      {
+        id: "s2",
+        title: "Pigmentation & Anti-Aging",
+        body: "Targeted protocols for dark spots, fine lines, and uneven tone using evidence-backed active ingredients.",
+      },
+      {
+        id: "s3",
+        title: "Personalized Skin Plan",
+        body: "Every treatment begins with a diagnostic skin analysis — so your plan evolves as your skin does.",
+      },
+    ],
+    reverse: false,
+  },
+  {
+    id: "hair",
+    number: "02",
+    heading: "Restore Your Hair's Vitality",
+    summary:
+      "From trichology-led scalp analysis to premium keratin rituals, we craft solutions that bring back strength, shine, and softness.",
+    image: "/images/brazilian_botox_hair.jpg",
+    imgAlt: "Professional hair therapy at Hasali Salon Kochi",
+    items: [
+      {
+        id: "h1",
+        title: "Trichology Consultation",
+        body: "A structured hair and scalp diagnostic to identify the root cause of hair loss, dryness, or damage.",
+      },
+      {
+        id: "h2",
+        title: "Keratin & Smoothing",
+        body: "Salon-exclusive keratin treatments that seal the cuticle, reduce frizz, and add mirror shine for weeks.",
+      },
+      {
+        id: "h3",
+        title: "Deep Conditioning Rituals",
+        body: "Luxurious hair spa sessions infused with Moroccan argan oil, protein masks, and scalp massage.",
+      },
+    ],
+    reverse: true,
+  },
+  {
+    id: "bridal",
+    number: "03",
+    heading: "Your Perfect Bridal Look",
+    summary:
+      "Your most important moment deserves extraordinary artistry. Our bridal team blends Kerala elegance with modern technique.",
+    image: "/images/scrollpic2.png",
+    imgAlt: "Bridal makeup and styling at Hasali Kochi",
+    items: [
+      {
+        id: "b1",
+        title: "Pre-Bridal Skin Prep",
+        body: "A multi-session skin prep timeline starting 3 months before your wedding for a radiant complexion on the big day.",
+      },
+      {
+        id: "b2",
+        title: "HD & Airbrush Makeup",
+        body: "Camera-ready bridal makeup that lasts all day — available in traditional Kerala, Bollywood, and modern minimal styles.",
+      },
+      {
+        id: "b3",
+        title: "Complete Bridal Package",
+        body: "Makeup, hair, nail art, saree draping, and trial session all bundled — one team, one vision, zero stress.",
+      },
+    ],
+    reverse: false,
+  },
+];
+
+/* ── Sub-accordion ── */
+function SubAccordion({
+  items,
+}: {
+  items: { id: string; title: string; body: string }[];
+}) {
+  const [openId, setOpenId] = useState<string>(items[0].id);
+
+  return (
+    <div style={{ marginTop: "2rem" }}>
+      {items.map((item, i) => {
+        const isOpen = openId === item.id;
+        return (
+          <div key={item.id} className="sub-accordion-item">
+            <button
+              className="sub-accordion-trigger"
+              onClick={() => setOpenId(isOpen ? "" : item.id)}
+              aria-expanded={isOpen}
+            >
+              <span style={{ display: "flex", alignItems: "center", flex: 1, gap: "0.75rem" }}>
+                <span className="sub-num">0{i + 1}</span>
+                {item.title}
+              </span>
+              {isOpen ? (
+                <Minus size={14} strokeWidth={2} style={{ flexShrink: 0, color: "var(--color-sage)" }} />
+              ) : (
+                <Plus size={14} strokeWidth={2} style={{ flexShrink: 0, color: "var(--color-espresso-soft)", opacity: 0.5 }} />
+              )}
+            </button>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ overflow: "hidden" }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "0.875rem",
+                      lineHeight: 1.7,
+                      color: "var(--color-espresso-soft)",
+                      paddingBottom: "1rem",
+                      margin: 0,
+                    }}
+                  >
+                    {item.body}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ── One alternating row with scroll animation on image ── */
+function BenefitRow({
+  benefit,
+  index,
+}: {
+  benefit: (typeof BENEFITS)[0];
+  index: number;
+}) {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  // Image scroll animations
+  const { scrollYProgress } = useScroll({
+    target: rowRef,
+    offset: ["start end", "end start"],
+  });
+
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1, 1.05]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+
+  return (
+    <motion.div
+      ref={rowRef}
+      className={`benefit-row${benefit.reverse ? " reverse" : ""}`}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {/* Image pane with Scroll Animation */}
+      <div style={{ position: "relative", overflow: "hidden", minHeight: "520px" }}>
+        <motion.div
+          style={{
+            position: "absolute",
+            inset: "-10%",
+            width: "120%",
+            height: "120%",
+            scale: imageScale,
+            y: imageY,
+          }}
+        >
+          <Image
+            src={benefit.image}
+            alt={benefit.imgAlt}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            style={{ objectFit: "cover" }}
+          />
+        </motion.div>
+        {/* Number overlay */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "1.5rem",
+            left: "1.5rem",
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(4rem, 8vw, 7rem)",
+            fontWeight: 400,
+            color: "rgba(255,255,255,0.22)",
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
+            pointerEvents: "none",
+            userSelect: "none",
+            zIndex: 2,
+          }}
+          aria-hidden="true"
+        >
+          {benefit.number}
+        </div>
+      </div>
+
+      {/* Text pane */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          padding: "clamp(2.5rem, 5vw, 5rem) clamp(2rem, 5vw, 4.5rem)",
+          backgroundColor: index % 2 === 0 ? "var(--color-ivory)" : "var(--color-cream)",
+        }}
+      >
+        <span className="section-pill" style={{ marginBottom: "1.5rem" }}>• Benefits</span>
+
+        {/* Large display number */}
+        <span
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(3rem, 5vw, 5rem)",
+            fontWeight: 400,
+            color: "var(--color-ivory-dark)",
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
+            display: "block",
+            marginBottom: "0.5rem",
+          }}
+          aria-hidden="true"
+        >
+          {benefit.number}
+        </span>
+
+        <h2
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontWeight: 400,
+            fontSize: "clamp(1.625rem, 2.8vw, 2.5rem)",
+            letterSpacing: "-0.025em",
+            lineHeight: 1.15,
+            color: "var(--color-espresso)",
+            marginBottom: "1rem",
+          }}
+        >
+          {benefit.heading}
+        </h2>
+
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "0.9375rem",
+            lineHeight: 1.65,
+            color: "var(--color-espresso-soft)",
+            margin: 0,
+          }}
+        >
+          {benefit.summary}
+        </p>
+
+        <SubAccordion items={benefit.items} />
+
+        <a
+          href={WA_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-ghost"
+          style={{ marginTop: "2rem", alignSelf: "flex-start", fontSize: "0.8125rem" }}
+        >
+          Book This Service →
+        </a>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function SignaturePackages() {
   return (
-    <section
-      aria-labelledby="signature-heading"
-      className="section-pad"
-      style={{
-        backgroundColor: "var(--color-sage-pale)",
-        borderTop: "1px solid rgba(35,31,28,0.08)",
-        borderBottom: "1px solid rgba(35,31,28,0.08)",
-      }}
-    >
-      <div className="container">
-        <SectionReveal>
-          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-            <span className="eyebrow" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-              <Sparkles size={13} style={{ color: "var(--color-terracotta)" }} />
-              Exclusive Clinic & Salon Offerings
-            </span>
-            <div className="rule-sage" style={{ margin: "0.875rem auto" }} />
-            <h2
-              id="signature-heading"
-              style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
-                fontWeight: 400,
-                fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-                letterSpacing: "-0.02em",
-                color: "var(--color-espresso)",
-                lineHeight: 1.1,
-              }}
-            >
-              Signature Programs & Treatments
-            </h2>
-            <p
-              style={{
-                fontSize: "1rem",
-                color: "var(--color-espresso-soft)",
-                maxWidth: "52ch",
-                margin: "1rem auto 0",
-                lineHeight: 1.65,
-              }}
-            >
-              Curated medical-grade cosmetology packages and restorative hair therapies — designed to deliver visible, long-lasting transformation.
-            </p>
-          </div>
-        </SectionReveal>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
-            gap: "2rem",
-          }}
+    <section aria-label="Benefits — Your Journey" style={{ backgroundColor: "var(--color-ivory)" }}>
+      {/* Section header */}
+      <div className="container" style={{ paddingBlock: "var(--section-pad-y)", paddingBottom: "0" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          style={{ maxWidth: "600px" }}
         >
-          {SIGNATURE_PACKAGES.map((pkg, idx) => {
-            const waLink = `${WA_HREF}?text=${encodeURIComponent(pkg.whatsappMsg)}`;
-            return (
-              <SectionReveal key={pkg.id} delay={idx * 0.1}>
-                <div
-                  style={{
-                    backgroundColor: "var(--color-ivory)",
-                    border: "1px solid rgba(35,31,28,0.12)",
-                    borderRadius: "4px",
-                    overflow: "hidden",
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                    boxShadow: "0 4px 20px rgba(35,31,28,0.04)",
-                  }}
-                >
-                  {/* Package Image */}
-                  <div style={{ position: "relative", width: "100%", aspectRatio: "16/10", overflow: "hidden" }}>
-                    <Image
-                      src={pkg.image}
-                      alt={pkg.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      style={{ objectFit: "cover" }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "1rem",
-                        left: "1rem",
-                        backgroundColor: "rgba(35,31,28,0.85)",
-                        backdropFilter: "blur(6px)",
-                        color: "var(--color-brass-light)",
-                        padding: "0.35rem 0.85rem",
-                        fontSize: "0.65rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.12em",
-                        textTransform: "uppercase",
-                        borderRadius: "2px",
-                      }}
-                    >
-                      {pkg.category === "skin" ? "Skin Cosmetology" : "Hair Therapy"}
-                    </div>
-                  </div>
+          <span className="section-pill" style={{ marginBottom: "1.25rem" }}>• Your Journey</span>
+          <h2
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontWeight: 400,
+              fontSize: "clamp(2rem, 4vw, 3.5rem)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.1,
+              color: "var(--color-espresso)",
+              marginBottom: "1rem",
+            }}
+          >
+            Everything Your Beauty Deserves
+          </h2>
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.9375rem",
+              lineHeight: 1.65,
+              color: "var(--color-espresso-soft)",
+              margin: 0,
+            }}
+          >
+            Three pillars of beauty and wellness — each one a complete journey, crafted just for you.
+          </p>
+        </motion.div>
+      </div>
 
-                  {/* Package Content */}
-                  <div style={{ padding: "1.75rem", display: "flex", flexDirection: "column", flexGrow: 1 }}>
-                    <span
-                      style={{
-                        fontSize: "0.7rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        color: "var(--color-terracotta)",
-                        marginBottom: "0.35rem",
-                      }}
-                    >
-                      {pkg.subtitle}
-                    </span>
-
-                    <h3
-                      style={{
-                        fontFamily: "var(--font-fraunces, Georgia, serif)",
-                        fontSize: "1.4rem",
-                        fontWeight: 400,
-                        color: "var(--color-espresso)",
-                        marginBottom: "0.75rem",
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {pkg.title}
-                    </h3>
-
-                    <p
-                      style={{
-                        fontSize: "0.875rem",
-                        lineHeight: 1.65,
-                        color: "var(--color-espresso-soft)",
-                        marginBottom: "1.25rem",
-                      }}
-                    >
-                      {pkg.description}
-                    </p>
-
-                    {/* Key Inclusions */}
-                    <div
-                      style={{
-                        backgroundColor: "var(--color-ivory-dark)",
-                        padding: "1rem 1.125rem",
-                        borderRadius: "3px",
-                        marginBottom: "1.5rem",
-                      }}
-                    >
-                      <h4
-                        style={{
-                          fontSize: "0.7rem",
-                          fontWeight: 600,
-                          letterSpacing: "0.12em",
-                          textTransform: "uppercase",
-                          color: "var(--color-sage)",
-                          marginBottom: "0.6rem",
-                        }}
-                      >
-                        Package Highlights & Inclusions:
-                      </h4>
-                      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.45rem" }}>
-                        {pkg.inclusions.slice(0, 4).map((inc, i) => (
-                          <li
-                            key={i}
-                            style={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              gap: "0.5rem",
-                              fontSize: "0.8rem",
-                              color: "var(--color-espresso-soft)",
-                              lineHeight: 1.4,
-                            }}
-                          >
-                            <CheckCircle2 size={13} style={{ color: "var(--color-sage)", flexShrink: 0, marginTop: "0.15rem" }} />
-                            <span>{inc}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Booking CTA */}
-                    <div style={{ marginTop: "auto" }}>
-                      <a
-                        href={waLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-primary"
-                        style={{
-                          width: "100%",
-                          justifyContent: "center",
-                          fontSize: "0.75rem",
-                          padding: "0.75rem 1rem",
-                        }}
-                      >
-                        <MessageCircle size={15} strokeWidth={1.5} />
-                        Enquire Package on WhatsApp
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </SectionReveal>
-            );
-          })}
-        </div>
+      {/* Alternating rows — full-bleed */}
+      <div style={{ marginTop: "4rem" }}>
+        {BENEFITS.map((benefit, i) => (
+          <BenefitRow key={benefit.id} benefit={benefit} index={i} />
+        ))}
       </div>
     </section>
   );

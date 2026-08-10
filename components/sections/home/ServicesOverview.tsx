@@ -1,305 +1,205 @@
 "use client";
 
-import { useRef, useState } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import Image from "next/image";
-import { SERVICE_CATEGORIES } from "@/content/services";
-import SectionReveal from "@/components/ui/SectionReveal";
+import { motion, AnimatePresence } from "framer-motion";
 
-const categoryImages = [
-  "/images/pic3.jpg",
-  "/images/pic4.jpg",
-  "/images/pic2.jpg",
-  "/images/pic7.jpg",
+const SERVICES = [
+  {
+    number: "1",
+    title: "Skin Treatments",
+    desc: "Experience bespoke medical-grade facials and advanced skin therapies tailored to your skin type. Our dermatology-trained cosmetologists blend the latest technology with personalized care to reveal your skin's natural radiance.",
+    image: "/images/glass_skin_treatment.jpg",
+    imgAlt: "Professional skin treatment at Hasali Kochi",
+  },
+  {
+    number: "2",
+    title: "Holistic Facial Rejuvenation",
+    desc: "Our signature facial treatments go beyond the surface — combining deep cleansing, nourishing serums, and clinical-grade tools to restore your glow and target concerns like pigmentation, fine lines, and dullness.",
+    image: "/images/scrollpic.png",
+    imgAlt: "Holistic facial rejuvenation at Hasali Cosmetology",
+  },
+  {
+    number: "3",
+    title: "Hair Therapy",
+    desc: "From trichology-based scalp analysis to premium keratin treatments and hair spa rituals, our hair therapists craft solutions that restore strength, shine, and vitality to every strand.",
+    image: "/images/brazilian_botox_hair.jpg",
+    imgAlt: "Professional hair therapy session at Hasali",
+  },
+  {
+    number: "4",
+    title: "Bridal & Makeup",
+    desc: "Your most important moments deserve extraordinary artistry. Our certified bridal makeup artists create timeless looks blending traditional Kerala elegance with modern techniques — for brides and beyond.",
+    image: "/images/scrollpic2.png",
+    imgAlt: "Bridal makeup and styling at Hasali Salon Kochi",
+  },
 ];
 
-const categoryAlts = [
-  "Hasali hair styling station with gold-framed mirrors",
-  "Hasali salon floor with arched mirrors",
-  "Hasali consultation room, sage green walls",
-  "Hasali waiting lounge — Look Good. Feel Good.",
-];
-
-/*
- * Mobile (<640px):  horizontal scroll-snap carousel, one card 85vw + peek
- * Tablet (640–1023px): 2-column grid
- * Desktop (≥1024px): 4-column magazine grid
- */
 export default function ServicesOverview() {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleScroll = () => {
-    if (!carouselRef.current) return;
-    const { scrollLeft, clientWidth } = carouselRef.current;
-    const cardWidth = clientWidth * 0.85 + 16; // 85vw + gap
-    const idx = Math.round(scrollLeft / cardWidth);
-    setActiveIndex(Math.min(idx, SERVICE_CATEGORIES.length - 1));
-  };
-
-  const scrollTo = (idx: number) => {
-    if (!carouselRef.current) return;
-    const cardWidth = carouselRef.current.clientWidth * 0.85 + 16;
-    carouselRef.current.scrollTo({ left: idx * cardWidth, behavior: "smooth" });
-  };
+  const [activeIdx, setActiveIdx] = useState(0);
 
   return (
     <section
-      aria-labelledby="services-heading"
-      className="section-pad"
-      style={{ backgroundColor: "var(--color-ivory)", overflow: "hidden" }}
+      aria-label="Our Services"
+      style={{ backgroundColor: "var(--color-ivory)", paddingBlock: "var(--section-pad-y)" }}
     >
       <div className="container">
-        {/* Header */}
-        <SectionReveal>
-          <div style={{ marginBottom: "2.5rem" }}>
-            <span className="eyebrow">What We Offer</span>
-            <div className="rule-sage" />
-            <h2
-              id="services-heading"
-              style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
-                fontWeight: 400,
-                fontSize: "clamp(2rem, 4vw, 3.25rem)",
-                letterSpacing: "-0.02em",
-                color: "var(--color-espresso)",
-                maxWidth: "22ch",
-                lineHeight: 1.1,
-              }}
-            >
-              Clinic precision.<br />Salon artistry.
-            </h2>
-          </div>
-        </SectionReveal>
-      </div>
+        {/* Section pill */}
+        <div style={{ textAlign: "center", marginBottom: "1.25rem" }}>
+          <span className="section-pill">• Our Services</span>
+        </div>
 
-      {/* ── MOBILE carousel (<640px) ── */}
-      <div className="svc-carousel-wrap">
+        {/* Heading centered like Quantum */}
         <div
-          ref={carouselRef}
-          className="snap-x-scroll"
-          onScroll={handleScroll}
           style={{
-            paddingInline: "var(--section-pad-x)",
-            paddingRight: "calc(var(--section-pad-x) + 10%)",
-            gap: "1rem",
+            textAlign: "center",
+            maxWidth: "600px",
+            marginInline: "auto",
+            marginBottom: "3.5rem",
           }}
         >
-          {SERVICE_CATEGORIES.map((cat, i) => (
-            <Link
-              key={cat.id}
-              href={`/services#${cat.slug}`}
-              className="snap-item"
-              style={{
-                display: "block",
-                position: "relative",
-                minWidth: "85vw",
-                aspectRatio: "3/4",
-                overflow: "hidden",
-                flexShrink: 0,
-                textDecoration: "none",
-                backgroundColor: "var(--color-ivory-dark)",
-              }}
-              aria-label={`Explore ${cat.name} services`}
-            >
-              <Image
-                src={categoryImages[i]}
-                alt={categoryAlts[i]}
-                fill
-                sizes="85vw"
-                style={{ objectFit: "cover" }}
-              />
+          <h2
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontWeight: 400,
+              fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.1,
+              color: "var(--color-espresso)",
+              marginBottom: "0.875rem",
+            }}
+          >
+            Therapies & Treatments
+          </h2>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", color: "var(--color-espresso-soft)", marginInline: "auto" }}>
+            Hasali offers an evolved approach to cosmetology & beauty, rooted in clinical science and personalized care to restore your skin & hair.
+          </p>
+        </div>
+
+        {/* Accordion + Image grid */}
+        <div className="services-grid">
+          {/* Left: Numbered accordion */}
+          <div>
+            {/* Diamond rule */}
+            <div className="diamond-rule"><span /></div>
+
+            {SERVICES.map((svc, i) => (
               <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "linear-gradient(to top, rgba(35,31,28,0.75) 0%, rgba(35,31,28,0.1) 50%, transparent 100%)",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  padding: "1.25rem",
-                  color: "var(--color-ivory)",
-                }}
+                key={svc.number}
+                className={`service-item${activeIdx === i ? " active" : ""}`}
+                onClick={() => setActiveIdx(i)}
+                role="button"
+                tabIndex={0}
+                aria-expanded={activeIdx === i}
+                onKeyDown={(e) => e.key === "Enter" && setActiveIdx(i)}
               >
-                <span
-                  style={{
-                    fontFamily: "var(--font-fraunces, Georgia, serif)",
-                    fontSize: "2rem",
-                    fontWeight: 300,
-                    opacity: 0.35,
-                    lineHeight: 1,
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <span
+                <span className="service-item-number">{svc.number}</span>
+
+                <div style={{ flex: 1 }}>
+                  <div
                     style={{
-                      display: "block",
-                      fontFamily: "var(--font-fraunces, Georgia, serif)",
-                      fontSize: "1.4rem",
-                      fontWeight: 400,
-                      letterSpacing: "-0.01em",
-                      lineHeight: 1.15,
-                      marginBottom: "0.4rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: "1rem",
                     }}
                   >
-                    {cat.name}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "0.7rem",
-                      fontWeight: 500,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "var(--color-sage-light)",
-                    }}
-                  >
-                    Explore →
-                  </span>
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontWeight: 400,
+                        fontSize: "clamp(1.1rem, 2vw, 1.375rem)",
+                        color: activeIdx === i ? "var(--color-espresso)" : "var(--color-espresso-soft)",
+                        letterSpacing: "-0.015em",
+                        transition: "color 0.25s ease",
+                      }}
+                    >
+                      {svc.title}
+                    </h3>
+                    <div
+                      style={{
+                        width: "8px",
+                        height: "8px",
+                        borderRadius: "50%",
+                        backgroundColor: activeIdx === i ? "var(--color-sage)" : "rgba(35,31,28,0.2)",
+                        flexShrink: 0,
+                        transition: "background-color 0.25s ease",
+                      }}
+                    />
+                  </div>
+
+                  <AnimatePresence>
+                    {activeIdx === i && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: "auto", marginTop: "0.625rem" }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        style={{
+                          fontFamily: "var(--font-sans)",
+                          fontSize: "0.875rem",
+                          lineHeight: 1.7,
+                          color: "var(--color-espresso-soft)",
+                          overflow: "hidden",
+                          margin: 0,
+                        }}
+                      >
+                        {svc.desc}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
-            </Link>
-          ))}
-        </div>
+            ))}
 
-        {/* Scroll-progress dots */}
-        <div className="snap-dots" role="tablist" aria-label="Service categories">
-          {SERVICE_CATEGORIES.map((cat, i) => (
-            <button
-              key={cat.id}
-              role="tab"
-              aria-selected={i === activeIndex}
-              aria-label={`Go to ${cat.name}`}
-              className={`snap-dot${i === activeIndex ? " active" : ""}`}
-              onClick={() => scrollTo(i)}
-            />
-          ))}
-        </div>
-      </div>
+            <div className="diamond-rule" style={{ marginTop: "1.5rem" }}><span /></div>
+          </div>
 
-      {/* ── TABLET + DESKTOP grid (≥640px) ── */}
-      <div className="container">
-        <div className="svc-desktop-grid">
-          {SERVICE_CATEGORIES.map((cat, i) => (
-            <SectionReveal key={cat.id} delay={i * 0.08}>
-              <Link
-                href={`/services#${cat.slug}`}
-                style={{
-                  display: "block",
-                  position: "relative",
-                  aspectRatio: "4/5",
-                  overflow: "hidden",
-                  textDecoration: "none",
-                  cursor: "pointer",
-                  backgroundColor: "var(--color-ivory-dark)",
-                }}
-                aria-label={`Explore ${cat.name} services`}
+          {/* Right: Large image with transition */}
+          <div
+            style={{
+              position: "relative",
+              borderRadius: "16px",
+              overflow: "hidden",
+              aspectRatio: "4/5",
+              backgroundColor: "var(--color-ivory-dark)",
+            }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIdx}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                style={{ position: "absolute", inset: 0 }}
               >
                 <Image
-                  src={categoryImages[i]}
-                  alt={categoryAlts[i]}
+                  src={SERVICES[activeIdx].image}
+                  alt={SERVICES[activeIdx].imgAlt}
                   fill
-                  sizes="(max-width: 1023px) 50vw, 25vw"
-                  style={{ objectFit: "cover", transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}
-                  className="service-card-img"
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                  style={{ objectFit: "cover" }}
                 />
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top, rgba(35,31,28,0.75) 0%, rgba(35,31,28,0.1) 50%, transparent 100%)",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    padding: "1.5rem",
-                    color: "var(--color-ivory)",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-fraunces, Georgia, serif)",
-                      fontSize: "2.5rem",
-                      fontWeight: 300,
-                      opacity: 0.35,
-                      lineHeight: 1,
-                    }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <span
-                      style={{
-                        display: "block",
-                        fontFamily: "var(--font-fraunces, Georgia, serif)",
-                        fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)",
-                        fontWeight: 400,
-                        letterSpacing: "-0.01em",
-                        lineHeight: 1.15,
-                        marginBottom: "0.5rem",
-                      }}
-                    >
-                      {cat.name}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "0.7rem",
-                        fontWeight: 500,
-                        letterSpacing: "0.12em",
-                        textTransform: "uppercase",
-                        color: "var(--color-sage-light)",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                      }}
-                    >
-                      Explore →
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </SectionReveal>
-          ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 
       <style>{`
-        /* Mobile: carousel visible, grid hidden */
-        .svc-carousel-wrap { display: block; }
-        .svc-desktop-grid  { display: none; }
-
-        /* Tablet (≥640px): grid 2-col, carousel hidden */
-        @media (min-width: 640px) {
-          .svc-carousel-wrap { display: none; }
-          .svc-desktop-grid  {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5px;
-            background-color: rgba(35,31,28,0.1);
+        .services-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        @media (min-width: 768px) {
+          .services-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
           }
         }
-
-        /* Desktop (≥1024px): 4-col magazine grid */
-        @media (min-width: 1024px) {
-          .svc-desktop-grid {
-            grid-template-columns: repeat(4, 1fr);
-          }
-        }
-
-        .service-card-img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1) !important; }
-        a:hover .service-card-img { transform: scale(1.04) !important; }
       `}</style>
     </section>
   );

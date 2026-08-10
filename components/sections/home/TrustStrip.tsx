@@ -1,194 +1,287 @@
-import { CREDENTIALS, LOCATIONS } from "@/content/site";
-import StarRating from "@/components/ui/StarRating";
+"use client";
 
-/*
- * Mobile (<640px): horizontal scroll-snap strip — badges stay full-size,
- * no wrapping, right-edge fade hints overflow.
- * Desktop (≥640px): inline horizontal row (current layout).
- */
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useState } from "react";
 
-interface BadgeItem {
-  id: string;
-  content: React.ReactNode;
+
+/* ── animated counter hook ── */
+function useCountUp(target: number, shouldStart: boolean, duration = 1.4) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!shouldStart) return;
+    let start = 0;
+    const step = Math.ceil(target / 60);
+    const interval = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(interval);
+      } else {
+        setCount(start);
+      }
+    }, (duration * 1000) / (target / step));
+    return () => clearInterval(interval);
+  }, [shouldStart, target, duration]);
+  return count;
+}
+
+const PILLARS = [
+  {
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="14" r="6" stroke="white" strokeWidth="1.5" fill="none"/>
+        <path d="M20 20C14 20 8 24 7 32h26c-1-8-7-12-13-12z" stroke="white" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+        <path d="M16 8c0-4 8-4 8 0" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      </svg>
+    ),
+    title: "Skin Science",
+    desc: "Medical-grade treatments backed by clinical technology for skin you can see and feel.",
+  },
+  {
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 6s-8 6-8 14a8 8 0 0016 0C28 12 20 6 20 6z" stroke="white" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+        <path d="M20 24v-8M17 19l3-3 3 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    title: "Holistic Beauty",
+    desc: "A comprehensive journey for your hair, skin, nails — and your overall sense of wellness.",
+  },
+  {
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="10" stroke="white" strokeWidth="1.5" fill="none"/>
+        <path d="M20 14v6l4 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="20" cy="8" r="1.5" fill="white"/>
+        <circle cx="20" cy="32" r="1.5" fill="white"/>
+        <circle cx="8" cy="20" r="1.5" fill="white"/>
+        <circle cx="32" cy="20" r="1.5" fill="white"/>
+      </svg>
+    ),
+    title: "Crafted Care",
+    desc: "Spaces designed for your comfort and transformation — every detail considered.",
+  },
+  {
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="10" y="18" width="6" height="6" rx="2" stroke="white" strokeWidth="1.5" fill="none"/>
+        <rect x="24" y="18" width="6" height="6" rx="2" stroke="white" strokeWidth="1.5" fill="none"/>
+        <path d="M16 21h8" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M20 14v4M20 26v4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="20" cy="10" r="3" stroke="white" strokeWidth="1.5" fill="none"/>
+        <circle cx="20" cy="30" r="3" stroke="white" strokeWidth="1.5" fill="none"/>
+      </svg>
+    ),
+    title: "Your Journey",
+    desc: "Personalized treatment plans as unique as you are — built around your goals.",
+  },
+];
+
+/* Animated stat */
+function StatCounter({
+  value,
+  suffix,
+  label,
+  shouldStart,
+}: {
+  value: number;
+  suffix: string;
+  label: string;
+  shouldStart: boolean;
+}) {
+  const count = useCountUp(value, shouldStart);
+  return (
+    <div style={{ textAlign: "center", padding: "0.5rem" }}>
+      <div
+        style={{
+          fontFamily: "var(--font-sans)",
+          fontSize: "clamp(2.5rem, 5vw, 4rem)",
+          fontWeight: 300,
+          letterSpacing: "-0.04em",
+          lineHeight: 1,
+          color: "var(--color-espresso)",
+        }}
+      >
+        {shouldStart ? count : 0}
+        {suffix}
+      </div>
+      <p
+        style={{
+          fontFamily: "var(--font-sans)",
+          fontSize: "0.8rem",
+          color: "var(--color-espresso-soft)",
+          marginTop: "0.5rem",
+          letterSpacing: "0.02em",
+          margin: "0.5rem 0 0",
+        }}
+      >
+        {label}
+      </p>
+    </div>
+  );
 }
 
 export default function TrustStrip() {
-  const badges: BadgeItem[] = [
-    ...CREDENTIALS.map((c) => ({
-      id: c.id,
-      content: (
-        <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
-          <span
-            style={{
-              width: "0.375rem",
-              height: "0.375rem",
-              borderRadius: "50%",
-              backgroundColor: "var(--color-brass-light)",
-              flexShrink: 0,
-            }}
-          />
-          <div>
-            <div
-              style={{
-                fontSize: "0.7rem",
-                fontWeight: 600,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--color-brass-light)",
-                lineHeight: 1.2,
-                whiteSpace: "nowrap",
-              }}
-            >
-              {c.label}
-            </div>
-            <div
-              style={{
-                fontSize: "0.65rem",
-                color: "rgba(247,243,236,0.55)",
-                letterSpacing: "0.04em",
-                lineHeight: 1.4,
-                whiteSpace: "nowrap",
-              }}
-            >
-              {c.description}
-            </div>
-          </div>
-        </div>
-      ),
-    })),
-    ...LOCATIONS.map((loc) => ({
-      id: `loc-${loc.id}`,
-      content: (
-        <div>
-          <div
-            style={{
-              fontSize: "0.65rem",
-              fontWeight: 500,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "rgba(247,243,236,0.5)",
-              marginBottom: "0.2rem",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {loc.shortName}
-          </div>
-          <StarRating rating={loc.rating} reviewCount={loc.reviewCount} size={12} />
-        </div>
-      ),
-    })),
-    {
-      id: "locations-pill",
-      content: (
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <span
-            style={{
-              width: "0.375rem",
-              height: "0.375rem",
-              borderRadius: "50%",
-              backgroundColor: "var(--color-sage-light)",
-              flexShrink: 0,
-            }}
-          />
-          <span
-            style={{
-              fontSize: "0.7rem",
-              fontWeight: 500,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "var(--color-sage-light)",
-              whiteSpace: "nowrap",
-            }}
-          >
-            2 Locations in Kochi
-          </span>
-        </div>
-      ),
-    },
-  ];
+  const statsRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(statsRef, { once: true, margin: "-80px" });
 
   return (
-    <section
-      aria-label="Trust and credentials"
-      style={{
-        backgroundColor: "var(--color-espresso)",
-        color: "var(--color-ivory)",
-        paddingBlock: "1.25rem",
-        overflow: "hidden",
-        position: "relative",
-      }}
-    >
-      {/* Mobile: scroll-snap strip */}
-      <div className="trust-mobile">
-        <div
-          className="snap-x-scroll"
-          style={{
-            paddingInline: "var(--section-pad-x)",
-            gap: "2rem",
-          }}
-        >
-          {badges.map((badge) => (
-            <div
-              key={badge.id}
-              className="snap-item"
-              style={{ paddingBlock: "0.25rem" }}
-            >
-              {badge.content}
-            </div>
-          ))}
-          {/* Spacer so last item isn't flush against the fade */}
-          <div style={{ minWidth: "1rem", flexShrink: 0 }} />
-        </div>
-        {/* Right-edge fade hint */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: "3.5rem",
-            background: "linear-gradient(to left, var(--color-espresso) 20%, transparent 100%)",
-            pointerEvents: "none",
-          }}
-        />
-      </div>
+    <section aria-label="About & Value Pillars" style={{ backgroundColor: "var(--color-ivory)", position: "relative" }}>
 
-      {/* Desktop: inline row */}
+      {/* ── Animated Stats band ── */}
       <div
-        className="trust-desktop"
+        ref={statsRef}
+        className="container"
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "0 2.5rem",
-          paddingInline: "var(--section-pad-x)",
+          paddingBlock: "clamp(2.5rem, 5vw, 4rem)",
+          borderBottom: "1px solid rgba(35,31,28,0.08)",
         }}
       >
-        {badges.map((badge, i) => (
+        <div className="trust-intro-grid">
+          {/* Col 1: Stats */}
           <div
-            key={badge.id}
             style={{
-              paddingBlock: "0.5rem",
-              borderRight:
-                i < badges.length - 1
-                  ? "1px solid rgba(247,243,236,0.12)"
-                  : "none",
-              paddingRight: i < badges.length - 1 ? "2.5rem" : 0,
+              display: "flex",
+              alignItems: "center",
+              gap: "0",
+              borderRight: "1px solid rgba(0,0,0,0.08)",
+              paddingRight: "clamp(1.5rem, 3vw, 3rem)",
             }}
           >
-            {badge.content}
+            <div style={{ display: "flex", gap: "clamp(1.5rem, 3vw, 2.5rem)", alignItems: "center" }}>
+              <StatCounter value={2000} suffix="+" label="Happy clients" shouldStart={inView} />
+              <div style={{ width: "1px", height: "3rem", backgroundColor: "rgba(0,0,0,0.08)" }} />
+              <StatCounter value={375} suffix="+" label="Google reviews" shouldStart={inView} />
+              <div style={{ width: "1px", height: "3rem", backgroundColor: "rgba(0,0,0,0.08)" }} />
+              <StatCounter value={2} suffix="" label="Locations in Kochi" shouldStart={inView} />
+            </div>
           </div>
-        ))}
+
+          {/* Col 2: Description */}
+          <div style={{ paddingInline: "clamp(1.5rem, 3vw, 3rem)", borderRight: "1px solid rgba(0,0,0,0.08)" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "clamp(0.9375rem, 1.2vw, 1.0625rem)",
+                lineHeight: 1.65,
+                color: "var(--color-espresso-soft)",
+                marginBottom: "0.875rem",
+              }}
+            >
+              At our sanctuary of serenity, we weave masterful cosmetology therapy with transformative beauty rituals, crafting an oasis of calm.
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.875rem",
+                lineHeight: 1.65,
+                color: "rgba(26,23,20,0.6)",
+                margin: 0,
+              }}
+            >
+              As Kochi's premier ISO 9001:2015 certified clinic, we invite you to unwind and renew in our soothing spaces and restorative treatments.
+            </p>
+          </div>
+
+          {/* Col 3: CTA */}
+          <div style={{ paddingLeft: "clamp(1.5rem, 3vw, 3rem)" }}>
+            <a href="/about" className="btn-ghost" style={{ fontSize: "0.8125rem", padding: "0.75rem 1.5rem" }}>
+              More About Us
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Dark pillars band ── */}
+      <div
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: "var(--color-dark-panel)",
+        }}
+      >
+        {/* Background blurred image */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 0, opacity: 0.3 }}>
+          <Image
+            src="/images/pic5.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", filter: "blur(2px)" }}
+            aria-hidden="true"
+          />
+        </div>
+
+
+        <div
+          className="container"
+          style={{
+            position: "relative",
+            zIndex: 1,
+            paddingBlock: "clamp(3.5rem, 7vw, 6rem)",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "2.5rem",
+          }}
+        >
+          {PILLARS.map((pillar, i) => (
+            <motion.div
+              key={pillar.title}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.65, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "1rem" }}
+            >
+              <div>{pillar.icon}</div>
+              <h3
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontWeight: 400,
+                  fontSize: "clamp(1.25rem, 2vw, 1.5rem)",
+                  color: "#fff",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {pillar.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.875rem",
+                  lineHeight: 1.65,
+                  color: "rgba(255,255,255,0.65)",
+                  maxWidth: "24ch",
+                  margin: 0,
+                }}
+              >
+                {pillar.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       <style>{`
-        .trust-mobile  { display: block; }
-        .trust-desktop { display: none; }
-        @media (min-width: 640px) {
-          .trust-mobile  { display: none; }
-          .trust-desktop { display: flex; }
+        .trust-intro-grid {
+          display: grid;
+          grid-template-columns: auto 1fr auto;
+          gap: 0;
+          align-items: center;
+        }
+        @media (max-width: 900px) {
+          .trust-intro-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+          .trust-intro-grid > div {
+            border-right: none !important;
+            padding-right: 0 !important;
+            padding-inline: 0 !important;
+            padding-left: 0 !important;
+          }
         }
       `}</style>
     </section>

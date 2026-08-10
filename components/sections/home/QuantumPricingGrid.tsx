@@ -6,7 +6,7 @@ import { WA_HREF } from "@/content/site";
 
 const PACKAGES = [
   {
-    category: "HAIR SPA & TRICHOLOGY",
+    category: "HAIR RECONSTRUCTION & TRICHOLOGY",
     title: "Hair Care",
     price: "₹599",
     unit: "/session",
@@ -14,7 +14,7 @@ const PACKAGES = [
       "Scalp analysis & consultation",
       "Deep conditioning therapy",
       "Anti-dandruff / keratin care",
-      "Relaxing head massage",
+      "Scalp detox & micro-nourishment",
     ],
     highlight: false,
     ctaText: "Book Hair Care",
@@ -119,10 +119,10 @@ export default function QuantumPricingGrid() {
                     gap: "0.35rem",
                     padding: "0.35rem 0.75rem",
                     borderRadius: "999px",
-                    backgroundColor: "var(--color-sage)",
+                    backgroundColor: "var(--color-gold)",
                     fontSize: "0.7rem",
                     fontWeight: 600,
-                    color: "#fff",
+                    color: "#000",
                     letterSpacing: "0.05em",
                   }}
                 >
@@ -136,7 +136,7 @@ export default function QuantumPricingGrid() {
                   fontWeight: 600,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  color: pkg.highlight ? "rgba(255,255,255,0.6)" : "var(--color-sage)",
+                  color: pkg.highlight ? "var(--color-gold-light)" : "var(--color-gold-dark)",
                   marginBottom: "0.75rem",
                 }}
               >
@@ -174,14 +174,14 @@ export default function QuantumPricingGrid() {
                         width: "1.25rem",
                         height: "1.25rem",
                         borderRadius: "50%",
-                        backgroundColor: pkg.highlight ? "rgba(255,255,255,0.15)" : "var(--color-sage-pale)",
+                        backgroundColor: pkg.highlight ? "rgba(212,175,55,0.2)" : "var(--color-gold-pale)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         flexShrink: 0,
                       }}
                     >
-                      <Check size={12} style={{ color: pkg.highlight ? "#fff" : "var(--color-sage)" }} />
+                      <Check size={12} style={{ color: pkg.highlight ? "var(--color-gold-light)" : "var(--color-gold-dark)" }} />
                     </div>
                     <span style={{ color: pkg.highlight ? "rgba(255,255,255,0.85)" : "var(--color-espresso-soft)" }}>{feat}</span>
                   </li>
@@ -192,7 +192,7 @@ export default function QuantumPricingGrid() {
                 href={WA_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={pkg.highlight ? "btn-sage" : "btn-primary"}
+                className={pkg.highlight ? "btn-gold" : "btn-primary"}
                 style={{ width: "100%", justifyContent: "center" }}
               >
                 {pkg.ctaText}

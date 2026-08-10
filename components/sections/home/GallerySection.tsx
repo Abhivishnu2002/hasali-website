@@ -18,8 +18,8 @@ const GALLERY_IMAGES = [
   },
   {
     src: "/images/pic3.jpg",
-    alt: "Hasali Treatment and Pedicure Spa Room",
-    caption: "Pedicure Lounge",
+    alt: "Hasali Cosmetology and Pedicure Suite",
+    caption: "Nail & Beauty Suite",
   },
   {
     src: "/images/pic5.jpg",

@@ -288,7 +288,7 @@ export default function FinalCTABand() {
               href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-sage"
+              className="btn-gold"
               style={{ fontSize: "0.9rem", padding: "1rem 2.25rem" }}
             >
               Book an Appointment

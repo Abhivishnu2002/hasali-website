@@ -79,7 +79,7 @@ export default function ServicesClient() {
           id={cat.slug}
           className="section-pad"
           style={{
-            backgroundColor: catIndex % 2 === 0 ? "var(--color-ivory)" : "var(--color-sage-pale)",
+            backgroundColor: catIndex % 2 === 0 ? "var(--color-ivory)" : "var(--color-gold-pale)",
             scrollMarginTop: "4.5rem",
           }}
         >
@@ -92,7 +92,7 @@ export default function ServicesClient() {
                     fontFamily: "var(--font-fraunces, Georgia, serif)",
                     fontSize: "clamp(4rem, 10vw, 8rem)",
                     fontWeight: 300,
-                    color: catIndex % 2 === 0 ? "rgba(35,31,28,0.06)" : "rgba(124,139,111,0.2)",
+                    color: catIndex % 2 === 0 ? "rgba(35,31,28,0.06)" : "rgba(197,160,89,0.25)",
                     lineHeight: 0.9,
                     marginBottom: "0.5rem",
                     userSelect: "none",
@@ -103,7 +103,7 @@ export default function ServicesClient() {
                   {String(catIndex + 1).padStart(2, "0")}
                 </div>
                 <span className="eyebrow">{cat.label}</span>
-                <div className="rule-sage" />
+                <div className="rule-gold" />
                 <h2
                   style={{
                     fontFamily: "var(--font-fraunces, Georgia, serif)",

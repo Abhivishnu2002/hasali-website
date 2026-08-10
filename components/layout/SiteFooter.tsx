@@ -262,7 +262,7 @@ export default function SiteFooter() {
               </div>
               <p style={{ fontSize: "0.75rem", color: "rgba(253,249,244,0.35)", marginBottom: "0.75rem" }}>{loc.hours}</p>
               <a href={loc.mapsUrl} target="_blank" rel="noopener noreferrer"
-                style={{ fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--color-sage-light)", borderBottom: "1px solid rgba(122,155,112,0.4)", paddingBottom: "0.1rem", transition: "color 0.2s" }}>
+                style={{ fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--color-gold-light)", borderBottom: "1px solid rgba(197,160,89,0.4)", paddingBottom: "0.1rem", transition: "color 0.2s" }}>
                 Get Directions →
               </a>
             </FooterAccordion>

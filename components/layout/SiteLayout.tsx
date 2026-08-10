@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingScreen from "./LoadingScreen";
 import SiteNav from "./SiteNav";
 import SiteFooter from "./SiteFooter";
 import WhatsAppFAB from "./WhatsAppFAB";
@@ -11,6 +12,7 @@ export default function SiteLayout({
 }) {
   return (
     <>
+      <LoadingScreen />
       <SiteNav />
       <main>{children}</main>
       <SiteFooter />
@@ -18,3 +20,4 @@ export default function SiteLayout({
     </>
   );
 }
+

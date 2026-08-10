@@ -27,10 +27,10 @@ export default function LocationsPage() {
       >
         <div className="container">
           <SectionReveal>
-            <span className="eyebrow" style={{ color: "var(--color-sage-light)" }}>
+            <span className="eyebrow" style={{ color: "var(--color-gold-light)" }}>
               Visit Us
             </span>
-            <div className="rule-sage" />
+            <div className="rule-gold" />
             <h1
               style={{
                 fontFamily: "var(--font-fraunces, Georgia, serif)",

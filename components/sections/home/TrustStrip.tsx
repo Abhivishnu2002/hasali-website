@@ -170,7 +170,7 @@ export default function TrustStrip() {
                 marginBottom: "0.875rem",
               }}
             >
-              At our sanctuary of serenity, we weave masterful cosmetology therapy with transformative beauty rituals, crafting an oasis of calm.
+              At Hasali, we combine advanced clinical skin science with precision salon artistry to deliver luminous transformations.
             </p>
             <p
               style={{
@@ -181,7 +181,7 @@ export default function TrustStrip() {
                 margin: 0,
               }}
             >
-              As Kochi's premier ISO 9001:2015 certified clinic, we invite you to unwind and renew in our soothing spaces and restorative treatments.
+              As Kochi's premier ISO 9001:2015 certified clinic & salon, we invite you to experience personalized cosmetology protocols and luxury beauty care.
             </p>
           </div>
 

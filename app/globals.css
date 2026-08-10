@@ -46,21 +46,30 @@
 
 /* ── CSS Custom Properties ── */
 :root {
-  /* Palette — Quantam-aligned */
-  --color-ivory: #fdf9f4;
-  --color-ivory-dark: #f0e9e0;
-  --color-cream: #f5ede3;
-  --color-espresso: #1a1714;
-  --color-espresso-soft: #2e2a27;
-  --color-charcoal: #2a2520;
-  --color-sage: #4a6741;
-  --color-sage-light: #7a9b70;
-  --color-sage-pale: #dce8d5;
+  /* Palette — White, Pure Black & Metallic Gold Edition */
+  --color-ivory: #ffffff;
+  --color-ivory-dark: #f4f4f4;
+  --color-cream: #efefef;
+  --color-espresso: #0a0a0a;
+  --color-espresso-soft: #1f1f1f;
+  --color-charcoal: #171717;
+  
+  /* Gold system */
+  --color-gold: #c5a059;
+  --color-gold-light: #d4af37;
+  --color-gold-pale: #f9f6f0;
+  --color-gold-dark: #9a7b38;
+  
+  /* Backwards compatibility aliases for green -> gold */
+  --color-sage: #c5a059;
+  --color-sage-light: #d4af37;
+  --color-sage-pale: #f9f6f0;
+
   --color-terracotta: #b5623b;
-  --color-brass: #b08d57;
-  --color-brass-light: #c9a96e;
-  --color-dark-panel: #1c1a17;
-  --color-dark-panel-2: #242018;
+  --color-brass: #c5a059;
+  --color-brass-light: #d4af37;
+  --color-dark-panel: #121212;
+  --color-dark-panel-2: #1a1a1a;
 
   /* Typography */
   --font-serif: "Fraunces", "Georgia", serif;
@@ -139,18 +148,21 @@ img, video {
 
 /* ── Quantam Section Pill Badge ── */
 /* e.g. "• Our Services" floating pill at top of section */
+/* ── Quantam Section Pill Badge ── */
+/* e.g. "• Our Services" floating pill at top of section */
 .section-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.375rem 0.875rem;
   border-radius: 999px;
-  background-color: rgba(74, 103, 65, 0.1);
+  background-color: rgba(197, 160, 89, 0.12);
+  border: 1px solid rgba(197, 160, 89, 0.25);
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--color-sage);
+  color: var(--color-gold-dark);
   margin-bottom: 1.25rem;
 }
 
@@ -160,13 +172,24 @@ img, video {
   gap: 0.5rem;
   padding: 0.375rem 0.875rem;
   border-radius: 999px;
-  background-color: rgba(255,255,255,0.12);
+  background-color: rgba(197, 160, 89, 0.18);
+  border: 1px solid rgba(197, 160, 89, 0.35);
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.75);
+  color: var(--color-gold-light);
   margin-bottom: 1.25rem;
+}
+
+/* ── Gold Accent Line ── */
+.rule-gold,
+.rule-sage {
+  height: 1.5px;
+  width: 42px;
+  background: linear-gradient(90deg, #c5a059, #d4af37);
+  margin-block: 0.75rem 1.25rem;
+  border-radius: 1px;
 }
 
 /* ── Quantam Diamond Rule (decorative separator) ── */
@@ -175,8 +198,8 @@ img, video {
   align-items: center;
   gap: 0.5rem;
   margin-block: 1.25rem;
-  color: var(--color-sage-light);
-  opacity: 0.5;
+  color: var(--color-gold);
+  opacity: 0.65;
 }
 
 .diamond-rule::before,
@@ -202,7 +225,7 @@ img, video {
   gap: 0.5rem;
   padding: 0.8rem 1.875rem;
   background-color: var(--color-espresso);
-  color: var(--color-ivory);
+  color: #ffffff;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   font-weight: 500;
@@ -218,34 +241,41 @@ img, video {
 }
 
 .btn-primary:hover {
-  background-color: var(--color-sage);
-  border-color: var(--color-sage);
+  background-color: var(--color-gold);
+  color: #000000;
+  border-color: var(--color-gold);
   transform: translateY(-1px);
 }
 
+.btn-gold,
 .btn-sage {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.875rem;
-  background-color: var(--color-sage);
-  color: #fff;
+  background: linear-gradient(135deg, #bf953f 0%, #d4af37 50%, #aa771c 100%);
+  color: #000000;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.06em;
-  border: 1.5px solid var(--color-sage);
+  border: 1.5px solid var(--color-gold);
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.25);
   transition: background-color 0.25s var(--ease-out-expo),
-              transform 0.2s var(--ease-out-expo);
+              transform 0.2s var(--ease-out-expo),
+              box-shadow 0.25s var(--ease-out-expo);
   white-space: nowrap;
 }
 
+.btn-gold:hover,
 .btn-sage:hover {
-  background-color: var(--color-espresso);
-  border-color: var(--color-espresso);
+  background: #0a0a0a;
+  color: var(--color-gold-light);
+  border-color: var(--color-gold);
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Ghost / outline button */
@@ -260,7 +290,7 @@ img, video {
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  border: 1.5px solid rgba(35, 31, 28, 0.35);
+  border: 1.5px solid rgba(10, 10, 10, 0.35);
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.25s var(--ease-out-expo),
@@ -289,18 +319,20 @@ img, video {
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  border: 1.5px solid rgba(253, 249, 244, 0.45);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.25s var(--ease-out-expo),
               border-color 0.25s var(--ease-out-expo),
+              color 0.25s var(--ease-out-expo),
               transform 0.2s var(--ease-out-expo);
   white-space: nowrap;
 }
 
 .btn-ghost-ivory:hover {
-  background-color: rgba(253, 249, 244, 0.12);
-  border-color: var(--color-ivory);
+  background-color: var(--color-gold);
+  color: #000000;
+  border-color: var(--color-gold);
   transform: translateY(-1px);
 }
 
@@ -308,10 +340,10 @@ img, video {
 .eyebrow {
   font-family: var(--font-sans);
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-sage);
+  color: var(--color-gold-dark);
 }
 
 /* ── Benefit overlay card (floating glassmorphic text card on dark images) ── */

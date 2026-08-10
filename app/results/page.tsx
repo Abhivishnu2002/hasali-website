@@ -25,7 +25,7 @@ const galleryItems = [
   },
   {
     src: "/images/pic2.jpg",
-    alt: "Hasali consultation room — sage green walls, warm sconce lighting",
+    alt: "Hasali consultation room — elegant gold-accented walls, warm sconce lighting",
     span: 1,
   },
   {
@@ -66,7 +66,7 @@ export default function ResultsPage() {
         <div className="container">
           <SectionReveal>
             <span className="eyebrow">Gallery</span>
-            <div className="rule-sage" />
+            <div className="rule-gold" />
             <h1
               style={{
                 fontFamily: "var(--font-fraunces, Georgia, serif)",
@@ -95,9 +95,9 @@ export default function ResultsPage() {
             <p
               style={{
                 fontSize: "0.8125rem",
-                color: "var(--color-sage)",
+                color: "var(--color-gold-dark)",
                 padding: "0.5rem 0.875rem",
-                border: "1px dashed var(--color-sage-light)",
+                border: "1px dashed var(--color-gold)",
                 display: "inline-block",
                 letterSpacing: "0.04em",
               }}

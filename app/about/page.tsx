@@ -61,10 +61,10 @@ export default function AboutPage() {
             }}
           >
             <SectionReveal>
-              <span className="eyebrow" style={{ color: "var(--color-sage-light)" }}>
+              <span className="eyebrow" style={{ color: "var(--color-gold-light)" }}>
                 Our Story
               </span>
-              <div className="rule-sage" />
+              <div className="rule-gold" />
               <h1
                 style={{
                   fontFamily: "var(--font-fraunces, Georgia, serif)",
@@ -131,7 +131,7 @@ export default function AboutPage() {
         <div className="container" style={{ maxWidth: "860px" }}>
           <SectionReveal>
             <span className="eyebrow">Founded 2023</span>
-            <div className="rule-sage" />
+            <div className="rule-gold" />
             <h2
               style={{
                 fontFamily: "var(--font-fraunces, Georgia, serif)",
@@ -217,7 +217,7 @@ export default function AboutPage() {
         <div className="container">
           <SectionReveal>
             <span className="eyebrow">What We Stand For</span>
-            <div className="rule-sage" />
+            <div className="rule-gold" />
             <h2
               style={{
                 fontFamily: "var(--font-fraunces, Georgia, serif)",

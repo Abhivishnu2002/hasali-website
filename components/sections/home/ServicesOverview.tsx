@@ -22,7 +22,7 @@ const SERVICES = [
   {
     number: "3",
     title: "Hair Therapy",
-    desc: "From trichology-based scalp analysis to premium keratin treatments and hair spa rituals, our hair therapists craft solutions that restore strength, shine, and vitality to every strand.",
+    desc: "From trichology-based scalp analysis to premium keratin treatments and clinical hair reconstructive care, our hair therapists craft solutions that restore strength, shine, and vitality to every strand.",
     image: "/images/brazilian_botox_hair.jpg",
     imgAlt: "Professional hair therapy session at Hasali",
   },

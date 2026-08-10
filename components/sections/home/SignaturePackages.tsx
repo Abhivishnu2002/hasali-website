@@ -57,7 +57,7 @@ const BENEFITS = [
       {
         id: "h3",
         title: "Deep Conditioning Rituals",
-        body: "Luxurious hair spa sessions infused with Moroccan argan oil, protein masks, and scalp massage.",
+        body: "Advanced clinical hair reconstructive therapy infused with Moroccan argan oil, protein masks, and scalp revitalization.",
       },
     ],
     reverse: true,

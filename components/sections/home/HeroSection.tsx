@@ -273,7 +273,7 @@ export default function HeroSection() {
                 href={WA_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-sage"
+                className="btn-gold"
                 style={{ fontSize: "0.875rem", padding: "0.875rem 2rem" }}
               >
                 Book an Appointment

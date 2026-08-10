@@ -91,7 +91,7 @@ function StepCard({
             fontFamily: "var(--font-sans)",
             fontSize: "0.75rem",
             fontWeight: 600,
-            color: "var(--color-sage)",
+            color: "var(--color-gold-dark)",
             marginBottom: "1.25rem",
           }}
         >
@@ -288,7 +288,7 @@ export default function LocationsPreview() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "0.75rem",
                     fontWeight: 600,
-                    color: "var(--color-sage-light)",
+                    color: "var(--color-gold-light)",
                     marginBottom: "1.25rem",
                   }}
                 >

@@ -94,10 +94,10 @@ export default function ContactPageClient() {
       >
         <div className="container">
           <SectionReveal>
-            <span className="eyebrow" style={{ color: "var(--color-sage-light)" }}>
+            <span className="eyebrow" style={{ color: "var(--color-gold-light)" }}>
               Get in Touch
             </span>
-            <div className="rule-sage" />
+            <div className="rule-gold" />
             <h1
               style={{
                 fontFamily: "var(--font-fraunces, Georgia, serif)",
@@ -154,13 +154,13 @@ export default function ContactPageClient() {
               </h2>
 
               {formState === "success" ? (
-                <div style={{ padding: "2rem", border: "1px solid var(--color-sage)", backgroundColor: "var(--color-sage-pale)", display: "flex", alignItems: "flex-start", gap: "1rem" }}>
-                  <CheckCircle size={20} strokeWidth={1.5} style={{ color: "var(--color-sage)", flexShrink: 0, marginTop: "0.1rem" }} />
+                <div style={{ padding: "2rem", border: "1px solid var(--color-gold)", backgroundColor: "var(--color-gold-pale)", display: "flex", alignItems: "flex-start", gap: "1rem" }}>
+                  <CheckCircle size={20} strokeWidth={1.5} style={{ color: "var(--color-gold-dark)", flexShrink: 0, marginTop: "0.1rem" }} />
                   <div>
                     <div style={{ fontWeight: 600, color: "var(--color-espresso)", marginBottom: "0.4rem" }}>Message received — thank you!</div>
                     <p style={{ fontSize: "0.875rem", color: "var(--color-espresso-soft)", margin: 0 }}>
                       We'll get back to you shortly. For the fastest response, reach us on{" "}
-                      <a href={WA_HREF} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-sage)", fontWeight: 500 }}>WhatsApp</a>.
+                      <a href={WA_HREF} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-gold-dark)", fontWeight: 500 }}>WhatsApp</a>.
                     </p>
                   </div>
                 </div>
@@ -184,7 +184,7 @@ export default function ContactPageClient() {
                             <option key={loc.id} value={loc.shortName}>{loc.shortName}</option>
                           ))}
                         </select>
-                        <span style={{ position: "absolute", right: "1rem", top: "50%", transform: "translateY(-50%)", pointerEvents: "none", color: "var(--color-sage)" }}>↓</span>
+                        <span style={{ position: "absolute", right: "1rem", top: "50%", transform: "translateY(-50%)", pointerEvents: "none", color: "var(--color-gold-dark)" }}>↓</span>
                       </div>
                     </div>
                     <div className="form-full">
@@ -200,7 +200,7 @@ export default function ContactPageClient() {
                             </optgroup>
                           ))}
                         </select>
-                        <span style={{ position: "absolute", right: "1rem", top: "50%", transform: "translateY(-50%)", pointerEvents: "none", color: "var(--color-sage)" }}>↓</span>
+                        <span style={{ position: "absolute", right: "1rem", top: "50%", transform: "translateY(-50%)", pointerEvents: "none", color: "var(--color-gold-dark)" }}>↓</span>
                       </div>
                     </div>
                     <div className="form-full">
@@ -234,8 +234,8 @@ export default function ContactPageClient() {
                     <address style={{ fontStyle: "normal", fontSize: "0.875rem", lineHeight: 1.7, color: "var(--color-espresso-soft)", marginBottom: "0.5rem" }}>
                       {loc.addressFormatted}
                     </address>
-                    <p style={{ fontSize: "0.875rem", color: "var(--color-sage)", margin: 0 }}>Open {loc.hours}</p>
-                    <a href={loc.mapsUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", marginTop: "0.5rem", fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--color-sage)", borderBottom: "1px solid var(--color-sage-light)", paddingBottom: "0.1rem" }}>
+                    <p style={{ fontSize: "0.875rem", color: "var(--color-gold-dark)", margin: 0 }}>Open {loc.hours}</p>
+                    <a href={loc.mapsUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", marginTop: "0.5rem", fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--color-gold-dark)", borderBottom: "1px solid var(--color-gold)", paddingBottom: "0.1rem" }}>
                       <ExternalLink size={11} strokeWidth={1.5} />
                       Get Directions
                     </a>
@@ -243,8 +243,8 @@ export default function ContactPageClient() {
                   </div>
                 ))}
 
-                <div style={{ padding: "1.5rem", backgroundColor: "var(--color-sage-pale)", border: "1px solid var(--color-sage-light)" }}>
-                  <div style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "var(--color-sage)", marginBottom: "0.5rem" }}>
+                <div style={{ padding: "1.5rem", backgroundColor: "var(--color-gold-pale)", border: "1px solid var(--color-gold)" }}>
+                  <div style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "var(--color-gold-dark)", marginBottom: "0.5rem" }}>
                     Fastest Response
                   </div>
                   <p style={{ fontSize: "0.875rem", lineHeight: 1.6, color: "var(--color-espresso-soft)", margin: "0 0 1rem" }}>
@@ -266,7 +266,7 @@ export default function ContactPageClient() {
           .form-grid { grid-template-columns: 1fr; }
           .form-full { grid-column: 1 / -1; }
           @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } }
-          input:focus, select:focus, textarea:focus { border-color: var(--color-sage) !important; }
+          input:focus, select:focus, textarea:focus { border-color: var(--color-gold) !important; }
         `}</style>
       </section>
     </>

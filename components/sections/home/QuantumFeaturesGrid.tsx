@@ -5,22 +5,22 @@ import { Sparkles, ShieldCheck, HeartHandshake, Award } from "lucide-react";
 
 const FEATURES = [
   {
-    icon: <Sparkles size={24} style={{ color: "var(--color-sage)" }} />,
+    icon: <Sparkles size={24} style={{ color: "var(--color-gold-dark)" }} />,
     title: "Clinical Skin Science",
     desc: "Advanced medical-grade facials, skin peels, and rejuvenation techniques delivered by trained cosmetologists.",
   },
   {
-    icon: <ShieldCheck size={24} style={{ color: "var(--color-sage)" }} />,
+    icon: <ShieldCheck size={24} style={{ color: "var(--color-gold-dark)" }} />,
     title: "ISO 9001:2015 Certified",
     desc: "Kochi's only ISO certified cosmetology clinic, ensuring rigorous safety, hygiene, and clinical standard compliance.",
   },
   {
-    icon: <HeartHandshake size={24} style={{ color: "var(--color-sage)" }} />,
+    icon: <HeartHandshake size={24} style={{ color: "var(--color-gold-dark)" }} />,
     title: "Bespoke Beauty Care",
     desc: "Every therapy plan is individually tailored to your unique skin type, hair texture, and aesthetic goals.",
   },
   {
-    icon: <Award size={24} style={{ color: "var(--color-sage)" }} />,
+    icon: <Award size={24} style={{ color: "var(--color-gold-dark)" }} />,
     title: "Business Excellence 2023",
     desc: "Recognized as Kochi's top unisex salon & clinic for quality service, customer trust, and bridal expertise.",
   },

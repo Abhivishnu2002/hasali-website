@@ -23,7 +23,7 @@ const FAQS = [
   {
     id: "f4",
     q: "What is the duration of a typical session?",
-    a: "Session duration varies by service. A basic facial typically takes 45–60 minutes, while a full-body massage may take 90 minutes. Bridal packages are typically scheduled over multiple sessions. We'll give you a precise time estimate when you book.",
+    a: "Session duration varies by service. A basic facial typically takes 45–60 minutes, while advanced hair or skin protocols may take 90–120 minutes. Bridal packages are typically scheduled over multiple sessions. We'll give you a precise time estimate when you book.",
   },
   {
     id: "f5",

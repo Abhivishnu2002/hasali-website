@@ -17,8 +17,8 @@ const PLANS = [
     name: "Hair Care",
     price: "from ₹599",
     priceNote: "/session",
-    tagline: "Hair Spa & Trichology",
-    features: ["Scalp analysis", "Deep conditioning", "Keratin therapy", "Hair spa rituals"],
+    tagline: "Hair Reconstruction & Trichology",
+    features: ["Scalp analysis", "Deep conditioning", "Keratin therapy", "Hair botox & smoothing"],
     dark: false,
   },
   {
@@ -52,7 +52,7 @@ const PLANS = [
     tagline: "Complete Bridal Glow",
     features: ["Bridal makeup", "Hair styling", "Pre-bridal facials", "Nail art"],
     dark: true,
-    image: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=800&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&h=800&fit=crop&auto=format&q=80",
   },
 ];
 

@@ -144,7 +144,7 @@ export default function SiteFooter() {
                   padding: "0.75rem 1.25rem",
                   color: "#fff",
                   outline: "none",
-                  minWidth: "220px",
+                  minWidth: "min(220px, 100%)",
                   transition: "border-color 0.2s",
                 }}
                 onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(122,155,112,0.6)")}

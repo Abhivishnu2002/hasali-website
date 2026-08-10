@@ -150,7 +150,7 @@ export default function HeroSection() {
           initial="hidden"
           animate="show"
           custom={0.1}
-          style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem", flexWrap: "wrap" }}
+          style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem", flexWrap: "wrap" }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
             <div className="avatar-stack">
@@ -175,7 +175,7 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
-          <div style={{ width: "1px", height: "2rem", backgroundColor: "rgba(255,255,255,0.25)" }} />
+          <div className="hero-social-divider" style={{ width: "1px", height: "2rem", backgroundColor: "rgba(255,255,255,0.25)" }} />
           <p
             style={{
               fontFamily: "var(--font-sans)",
@@ -255,12 +255,14 @@ export default function HeroSection() {
               style={{
                 fontFamily: "var(--font-serif)",
                 fontWeight: 400,
-                fontSize: "clamp(2.75rem, 6.5vw, 6.5rem)",
+                fontSize: "clamp(2.15rem, 6.5vw, 6.5rem)",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.0,
                 color: "#fff",
                 marginBottom: "1.25rem",
                 maxWidth: "14ch",
+                overflowWrap: "break-word",
+                wordBreak: "break-word",
               }}
             >
               Your Weekly Ritual of Beauty & Glow
@@ -325,7 +327,8 @@ export default function HeroSection() {
                 border: "1px solid rgba(255, 255, 255, 0.2)",
                 borderRadius: "20px",
                 padding: "1.5rem",
-                width: "min(300px, 100%)",
+                width: "100%",
+                maxWidth: "320px",
                 boxShadow: "0 24px 48px rgba(0, 0, 0, 0.3)",
               }}
             >
@@ -415,6 +418,9 @@ export default function HeroSection() {
           display: flex;
           flex-direction: column;
           gap: 2rem;
+        }
+        @media (max-width: 480px) {
+          .hero-social-divider { display: none; }
         }
         @media (min-width: 768px) {
           .hero-content-grid {

@@ -1,8 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import SiteLayout from "@/components/layout/SiteLayout";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 import { BRAND, LOCATIONS, SITE_URL } from "@/content/site";
 
 /* ── Fraunces — display serif for headlines ── */

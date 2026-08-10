@@ -47,7 +47,7 @@ function StepCard({
       style={{
         backgroundColor: "#fff",
         borderRadius: "16px",
-        padding: "2rem",
+        padding: "clamp(1.25rem, 4vw, 2rem)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",

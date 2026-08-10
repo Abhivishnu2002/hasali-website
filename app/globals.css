@@ -76,8 +76,8 @@
   --font-sans: "Switzer", "system-ui", sans-serif;
 
   /* Spacing */
-  --section-pad-y: clamp(4.5rem, 9vw, 8rem);
-  --section-pad-x: clamp(1.25rem, 5vw, 5rem);
+  --section-pad-y: clamp(3.5rem, 8vw, 8rem);
+  --section-pad-x: clamp(1rem, 4vw, 5rem);
   --container-max: 1280px;
 
   /* Transitions */
@@ -97,6 +97,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -106,7 +109,10 @@ body {
   font-weight: 400;
   line-height: 1.65;
   min-height: 100dvh;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* ── Typography Defaults ── */
@@ -115,14 +121,19 @@ h1, h2, h3, h4 {
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.025em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-h1 { font-size: clamp(2.75rem, 6.5vw, 6rem); }
-h2 { font-size: clamp(2.25rem, 4.5vw, 4rem); }
-h3 { font-size: clamp(1.5rem, 2.5vw, 2.25rem); }
-h4 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
+h1 { font-size: clamp(2rem, 6.5vw, 6rem); }
+h2 { font-size: clamp(1.75rem, 4.5vw, 4rem); }
+h3 { font-size: clamp(1.35rem, 2.5vw, 2.25rem); }
+h4 { font-size: clamp(1.05rem, 1.8vw, 1.5rem); }
 
-p { max-width: 65ch; }
+p {
+  max-width: 65ch;
+  overflow-wrap: break-word;
+}
 
 a {
   color: inherit;

@@ -97,7 +97,7 @@ function StatCounter({
       <div
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "clamp(2.5rem, 5vw, 4rem)",
+          fontSize: "clamp(1.6rem, 5vw, 4rem)",
           fontWeight: 300,
           letterSpacing: "-0.04em",
           lineHeight: 1,
@@ -147,14 +147,15 @@ export default function TrustStrip() {
               alignItems: "center",
               gap: "0",
               borderRight: "1px solid rgba(0,0,0,0.08)",
-              paddingRight: "clamp(1.5rem, 3vw, 3rem)",
+              paddingRight: "clamp(1rem, 3vw, 3rem)",
+              width: "100%",
             }}
           >
-            <div style={{ display: "flex", gap: "clamp(1.5rem, 3vw, 2.5rem)", alignItems: "center" }}>
+            <div className="stats-row-grid">
               <StatCounter value={2000} suffix="+" label="Happy clients" shouldStart={inView} />
-              <div style={{ width: "1px", height: "3rem", backgroundColor: "rgba(0,0,0,0.08)" }} />
+              <div className="stat-divider" />
               <StatCounter value={375} suffix="+" label="Google reviews" shouldStart={inView} />
-              <div style={{ width: "1px", height: "3rem", backgroundColor: "rgba(0,0,0,0.08)" }} />
+              <div className="stat-divider" />
               <StatCounter value={2} suffix="" label="Locations in Kochi" shouldStart={inView} />
             </div>
           </div>
@@ -270,6 +271,27 @@ export default function TrustStrip() {
           grid-template-columns: auto 1fr auto;
           gap: 0;
           align-items: center;
+        }
+        .stats-row-grid {
+          display: grid;
+          grid-template-columns: 1fr auto 1fr auto 1fr;
+          align-items: center;
+          gap: clamp(0.5rem, 2vw, 1.5rem);
+          width: 100%;
+        }
+        .stat-divider {
+          width: 1px;
+          height: 3rem;
+          background-color: rgba(0,0,0,0.08);
+        }
+        @media (max-width: 640px) {
+          .stats-row-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25rem;
+          }
+          .stat-divider {
+            display: none;
+          }
         }
         @media (max-width: 900px) {
           .trust-intro-grid {

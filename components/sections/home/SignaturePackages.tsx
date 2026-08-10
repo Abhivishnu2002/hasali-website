@@ -180,7 +180,7 @@ function BenefitRow({
       transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Image pane with Scroll Animation */}
-      <div style={{ position: "relative", overflow: "hidden", minHeight: "520px" }}>
+      <div className="benefit-row-img-pane" style={{ position: "relative", overflow: "hidden" }}>
         <motion.div
           style={{
             position: "absolute",
@@ -227,7 +227,7 @@ function BenefitRow({
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "clamp(2.5rem, 5vw, 5rem) clamp(2rem, 5vw, 4.5rem)",
+          padding: "clamp(2rem, 5vw, 5rem) clamp(1.25rem, 5vw, 4.5rem)",
           backgroundColor: index % 2 === 0 ? "var(--color-ivory)" : "var(--color-cream)",
         }}
       >
@@ -338,6 +338,13 @@ export default function SignaturePackages() {
           <BenefitRow key={benefit.id} benefit={benefit} index={i} />
         ))}
       </div>
+
+      <style>{`
+        .benefit-row-img-pane { min-height: 520px; }
+        @media (max-width: 768px) {
+          .benefit-row-img-pane { min-height: 300px; }
+        }
+      `}</style>
     </section>
   );
 }

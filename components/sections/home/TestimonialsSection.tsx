@@ -73,10 +73,16 @@ export default function TestimonialsSection() {
 
   const total = TESTIMONIALS.length;
 
+  const getStep = () => {
+    const child = trackRef.current?.firstElementChild as HTMLElement | null;
+    return child ? child.offsetWidth + CARD_GAP : CARD_WIDTH + CARD_GAP;
+  };
+
   const scrollTo = useCallback((index: number) => {
     const el = trackRef.current;
     if (!el) return;
-    el.scrollTo({ left: index * (CARD_WIDTH + CARD_GAP), behavior: "smooth" });
+    const step = getStep();
+    el.scrollTo({ left: index * step, behavior: "smooth" });
     setActiveIndex(index);
   }, []);
 
@@ -89,7 +95,8 @@ export default function TestimonialsSection() {
     autoRef.current = setInterval(() => {
       setActiveIndex((idx) => {
         const next = idx >= total - 1 ? 0 : idx + 1;
-        trackRef.current?.scrollTo({ left: next * (CARD_WIDTH + CARD_GAP), behavior: "smooth" });
+        const step = getStep();
+        trackRef.current?.scrollTo({ left: next * step, behavior: "smooth" });
         return next;
       });
     }, 4500);
@@ -99,7 +106,8 @@ export default function TestimonialsSection() {
   // Sync scroll position → activeIndex
   const onScroll = () => {
     if (!trackRef.current) return;
-    const idx = Math.round(trackRef.current.scrollLeft / (CARD_WIDTH + CARD_GAP));
+    const step = getStep();
+    const idx = Math.round(trackRef.current.scrollLeft / step);
     setActiveIndex(idx);
   };
 
@@ -120,7 +128,8 @@ export default function TestimonialsSection() {
     // Snap to nearest
     const track = trackRef.current;
     if (!track) return;
-    const idx = Math.round(track.scrollLeft / (CARD_WIDTH + CARD_GAP));
+    const step = getStep();
+    const idx = Math.round(track.scrollLeft / step);
     scrollTo(Math.max(0, Math.min(total - 1, idx)));
   };
 
@@ -268,7 +277,7 @@ export default function TestimonialsSection() {
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 flexShrink: 0,
-                width: `${CARD_WIDTH}px`,
+                width: "min(380px, calc(100vw - 2.5rem))",
                 scrollSnapAlign: "start",
                 borderRadius: "20px",
                 overflow: "hidden",

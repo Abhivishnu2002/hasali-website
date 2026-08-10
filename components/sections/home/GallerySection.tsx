@@ -63,15 +63,22 @@ export default function GallerySection() {
 
   const scrollXParallax = useTransform(scrollYProgress, [0, 1], [-20, 20]);
 
+  const getStep = () => {
+    const child = trackRef.current?.firstElementChild as HTMLElement | null;
+    return child ? child.offsetWidth + CARD_GAP : CARD_WIDTH + CARD_GAP;
+  };
+
   const scrollToIndex = (idx: number) => {
     const clamped = Math.max(0, Math.min(total - 1, idx));
-    trackRef.current?.scrollTo({ left: clamped * (CARD_WIDTH + CARD_GAP), behavior: "smooth" });
+    const step = getStep();
+    trackRef.current?.scrollTo({ left: clamped * step, behavior: "smooth" });
     setActiveIndex(clamped);
   };
 
   const onScroll = () => {
     if (!trackRef.current) return;
-    const idx = Math.round(trackRef.current.scrollLeft / (CARD_WIDTH + CARD_GAP));
+    const step = getStep();
+    const idx = Math.round(trackRef.current.scrollLeft / step);
     setActiveIndex(idx);
   };
 
@@ -89,7 +96,8 @@ export default function GallerySection() {
     if (!isDragging) return;
     setIsDragging(false);
     onScroll();
-    const snap = Math.round((trackRef.current?.scrollLeft ?? 0) / (CARD_WIDTH + CARD_GAP));
+    const step = getStep();
+    const snap = Math.round((trackRef.current?.scrollLeft ?? 0) / step);
     scrollToIndex(snap);
   };
 
@@ -206,7 +214,7 @@ export default function GallerySection() {
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="gallery-card gallery-scroll-item"
               style={{
-                width: `${CARD_WIDTH}px`,
+                width: "min(320px, calc(100vw - 2.5rem))",
                 height: "420px",
                 scrollSnapAlign: "start",
                 borderRadius: "16px",

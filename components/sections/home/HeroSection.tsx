@@ -23,7 +23,17 @@ const AVATARS = [
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [activeService, setActiveService] = useState(0);
+
+  // Set video start time to 5 seconds
+  useEffect(() => {
+    if (videoRef.current && videoRef.current.readyState >= 1) {
+      if (videoRef.current.currentTime < 5) {
+        videoRef.current.currentTime = 5;
+      }
+    }
+  }, []);
 
   // Auto-rotate service label
   useEffect(() => {
@@ -75,11 +85,22 @@ export default function HeroSection() {
         }}
       >
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           poster="/images/scrollpic.png"
+          onLoadedMetadata={(e) => {
+            if (e.currentTarget.currentTime < 5) {
+              e.currentTarget.currentTime = 5;
+            }
+          }}
+          onTimeUpdate={(e) => {
+            if (e.currentTarget.currentTime < 5) {
+              e.currentTarget.currentTime = 5;
+            }
+          }}
           style={{
             width: "100%",
             height: "100%",
@@ -87,7 +108,7 @@ export default function HeroSection() {
             objectPosition: "center 35%",
           }}
         >
-          <source src="/images/ad_01_web.mp4" type="video/mp4" />
+          <source src="/images/ad_01_web.mp4#t=5" type="video/mp4" />
         </video>
       </motion.div>
 

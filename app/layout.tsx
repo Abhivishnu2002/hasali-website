@@ -115,6 +115,15 @@ export const metadata: Metadata = {
     description: "Where clinical skin science meets artisan beauty.",
     images: ["/opengraph-image"],
   },
+  icons: {
+    icon: [
+      { url: "/images/logo.png", type: "image/png" },
+    ],
+    shortcut: ["/images/logo.png"],
+    apple: [
+      { url: "/images/logo.png", type: "image/png" },
+    ],
+  },
   robots: {
     index: true,
     follow: true,

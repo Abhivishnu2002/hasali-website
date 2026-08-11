@@ -100,7 +100,7 @@ export default function AboutPage() {
           <div style={{ position: "relative", overflow: "hidden", minHeight: "50vw" }} className="about-hero-img">
             <Image
               src="/images/pic6.jpg"
-              alt="Hasali cosmetology clinic reception"
+              alt="Hasali cosmetology clinic interior — reception and styling area"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               style={{ objectFit: "cover", objectPosition: "center" }}

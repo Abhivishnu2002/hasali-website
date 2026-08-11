@@ -101,7 +101,8 @@ export default function InstagramTeaser() {
                 src={item.src}
                 alt={item.alt}
                 fill
-                sizes="(max-width: 640px) 100vw, 33vw"
+                sizes="(max-width: 640px) 50vw, 33vw"
+                loading="lazy"
                 style={{ objectFit: "cover" }}
               />
             </motion.div>

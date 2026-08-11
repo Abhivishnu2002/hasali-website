@@ -832,3 +832,47 @@ img, video {
   position: relative;
 }
 
+/* ── Accessibility: Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* ── Performance: Content Visibility for off-screen sections ── */
+.section-pad,
+section[aria-label] {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* ── Performance: will-change hints on animated containers ── */
+.marquee-track {
+  will-change: transform;
+}
+
+/* ── Responsive: ensure images never overflow ── */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Mobile: tap highlight removal ── */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Font display optimization ── */
+@font-face {
+  font-display: swap;
+}
+

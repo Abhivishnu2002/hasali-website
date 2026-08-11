@@ -7,7 +7,8 @@ import SiteLayout from "@/components/layout/SiteLayout";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
+  themeColor: "#d4af37",
 };
 import { BRAND, LOCATIONS, SITE_URL } from "@/content/site";
 
@@ -76,11 +77,11 @@ const jsonLd = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Hasali Cosmetology Clinic & Salon — Kochi",
-    template: "%s — Hasali",
+    default: "Hasali Cosmetology Clinic & Salon — Kochi, Kerala",
+    template: "%s | Hasali Cosmetology Clinic & Salon",
   },
   description:
-    "Premium unisex cosmetology clinic and beauty salon in Kochi, Kerala. Medical-grade skin treatments, hair, bridal makeup, and nails. Two locations: Kadavanthara & Kalamassery.",
+    "Premium unisex cosmetology clinic and beauty salon in Kochi, Kerala. ISO 9001:2015 certified. Medical-grade skin treatments, hair therapy, bridal makeup & nail care. Locations: Kadavanthara & Kalamassery.",
   keywords: [
     "cosmetology clinic kochi",
     "beauty salon kochi",
@@ -90,30 +91,33 @@ export const metadata: Metadata = {
     "unisex salon kochi",
     "kadavanthara salon",
     "kalamassery beauty clinic",
-    "hasali",
+    "hasali cosmetology",
+    "medical grade facial kochi",
+    "iso certified beauty salon kerala",
+    "hair therapy kochi",
   ],
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: SITE_URL,
     siteName: BRAND.fullName,
-    title: "Hasali Cosmetology Clinic & Salon — Kochi",
+    title: "Hasali Cosmetology Clinic & Salon — Kochi, Kerala",
     description:
-      "Where clinical skin science meets artisan beauty. Two locations in Kochi, Kerala.",
+      "Where clinical skin science meets artisan beauty. ISO 9001:2015 certified. Two locations in Kochi, Kerala — Kadavanthara & Kalamassery.",
     images: [
       {
-        url: "/opengraph-image",
+        url: `${SITE_URL}/images/pic1.jpg`,
         width: 1200,
         height: 630,
-        alt: "Hasali Cosmetology Clinic & Salon",
+        alt: "Hasali Cosmetology Clinic & Salon — Reception, Kochi",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Hasali Cosmetology Clinic & Salon — Kochi",
-    description: "Where clinical skin science meets artisan beauty.",
-    images: ["/opengraph-image"],
+    description: "Where clinical skin science meets artisan beauty. ISO 9001:2015 certified.",
+    images: [`${SITE_URL}/images/pic1.jpg`],
   },
   icons: {
     icon: [
@@ -124,10 +128,19 @@ export const metadata: Metadata = {
       { url: "/images/logo.png", type: "image/png" },
     ],
   },
+  alternates: {
+    canonical: SITE_URL,
+  },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

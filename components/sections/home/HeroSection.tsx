@@ -59,6 +59,17 @@ export default function HeroSection() {
     }),
   };
 
+  // Signal to LoadingScreen that the hero video is ready to play
+  const handleVideoCanPlay = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    if (video.currentTime < 5) {
+      video.currentTime = 5;
+    }
+    // Set global flag and dispatch custom event for LoadingScreen
+    (window as unknown as Record<string, unknown>).__hasaliVideoReady = true;
+    window.dispatchEvent(new CustomEvent("hasali:video-ready"));
+  };
+
   return (
     <section
       ref={containerRef}
@@ -83,7 +94,7 @@ export default function HeroSection() {
           y: bgFarY,
           scale: bgScale,
           zIndex: 0,
-          opacity: 0.85,
+          opacity: 0.95,
         }}
       >
         <video
@@ -92,7 +103,9 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          poster="/images/scrollpic.png"
+          preload="auto"
+          poster="/images/cosmetology_treatment.jpg"
+          onCanPlay={handleVideoCanPlay}
           onLoadedMetadata={(e) => {
             if (e.currentTarget.currentTime < 5) {
               e.currentTarget.currentTime = 5;
@@ -150,7 +163,7 @@ export default function HeroSection() {
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
             <div className="avatar-stack">
               {AVATARS.map((src, i) => (
-                <img key={i} src={src} alt="" aria-hidden="true" />
+                <img key={i} src={src} alt="" aria-hidden="true" width={32} height={32} />
               ))}
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.1rem" }}>

@@ -227,7 +227,8 @@ export default function GallerySection() {
                 src={img.src}
                 alt={img.alt}
                 fill
-                sizes="320px"
+                sizes="(max-width: 640px) calc(100vw - 2.5rem), 320px"
+                loading="lazy"
                 style={{
                   objectFit: "cover",
                   transition: "transform 0.6s var(--ease-out-expo)",

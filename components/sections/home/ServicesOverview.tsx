@@ -16,8 +16,8 @@ const SERVICES = [
     number: "2",
     title: "Holistic Facial Rejuvenation",
     desc: "Our signature facial treatments go beyond the surface — combining deep cleansing, nourishing serums, and clinical-grade tools to restore your glow and target concerns like pigmentation, fine lines, and dullness.",
-    image: "/images/scrollpic.png",
-    imgAlt: "Holistic facial rejuvenation at Hasali Cosmetology",
+    image: "/images/cosmetology_treatment.jpg",
+    imgAlt: "Holistic facial rejuvenation treatment at Hasali Cosmetology Clinic Kochi",
   },
   {
     number: "3",

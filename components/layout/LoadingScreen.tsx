@@ -1,39 +1,81 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function LoadingScreen() {
   const [progress, setProgress] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const minTimeElapsed = useRef(false);
+  const videoReady = useRef(false);
+  const dismissed = useRef(false);
+
+  const tryDismiss = () => {
+    if (dismissed.current) return;
+    if (minTimeElapsed.current && videoReady.current) {
+      dismissed.current = true;
+      setTimeout(() => {
+        setIsFinished(true);
+        document.body.style.overflow = "";
+      }, 350);
+    }
+  };
 
   useEffect(() => {
     // Lock scroll during loading
     document.body.style.overflow = "hidden";
 
-    // Progress counter animation
+    // Progress bar animation — purely visual feedback
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => {
-            setIsFinished(true);
-            document.body.style.overflow = "";
-          }, 300);
           return 100;
         }
-        // Smooth logarithmic step increments
         const diff = 100 - prev;
-        const inc = Math.max(1, Math.floor(diff * 0.15 + Math.random() * 8));
+        const inc = Math.max(1, Math.floor(diff * 0.12 + Math.random() * 6));
         return Math.min(100, prev + inc);
       });
-    }, 45);
+    }, 50);
+
+    // Minimum display time: 1.2 s
+    const minTimer = setTimeout(() => {
+      minTimeElapsed.current = true;
+      tryDismiss();
+    }, 1200);
+
+    // Hard fallback: if video never fires (e.g. non-home pages, slow network), dismiss after 8 s
+    const fallbackTimer = setTimeout(() => {
+      if (!dismissed.current) {
+        videoReady.current = true;
+        minTimeElapsed.current = true;
+        tryDismiss();
+      }
+    }, 8000);
+
+    // Listen for the video-ready event dispatched by HeroSection
+    const handleVideoReady = () => {
+      videoReady.current = true;
+      tryDismiss();
+    };
+    window.addEventListener("hasali:video-ready", handleVideoReady);
+
+    // Also check if the video already fired before we mounted (race condition guard)
+    if ((window as unknown as Record<string, unknown>).__hasaliVideoReady) {
+      videoReady.current = true;
+    }
 
     return () => {
       clearInterval(interval);
-      document.body.style.overflow = "";
+      clearTimeout(minTimer);
+      clearTimeout(fallbackTimer);
+      window.removeEventListener("hasali:video-ready", handleVideoReady);
+      if (!dismissed.current) {
+        document.body.style.overflow = "";
+      }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

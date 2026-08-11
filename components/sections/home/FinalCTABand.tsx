@@ -11,7 +11,7 @@ const ARTICLES = [
     category: "Skin Care",
     title: "5 Signs You Need a Professional Skin Analysis",
     desc: "Learn the telltale signs that your skin needs expert attention — from persistent breakouts to uneven texture.",
-    image: "/images/scrollpic.png",
+    image: "/images/cosmetology_treatment.jpg",
   },
   {
     id: "a2",

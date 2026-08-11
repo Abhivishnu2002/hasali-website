@@ -14,8 +14,8 @@ const BENEFITS = [
     heading: "Your Journey to Radiant Skin",
     summary:
       "Our medical-grade protocols restore texture and radiance, healing sun damage, pigmentation, and everyday stress from your complexion.",
-    image: "/images/scrollpic.png",
-    imgAlt: "Skin rejuvenation treatment at Hasali Cosmetology Clinic Kochi",
+    image: "/images/cosmetology_treatment.jpg",
+    imgAlt: "Skin rejuvenation facial treatment at Hasali Cosmetology Clinic Kochi",
     items: [
       {
         id: "s1",

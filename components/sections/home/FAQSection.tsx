@@ -13,23 +13,19 @@ const FAQS = [
   {
     id: "f2",
     q: "Is Hasali suitable for both men and women?",
-    a: "Absolutely! Hasali is Kochi's premier unisex cosmetology clinic. We welcome all genders and offer services tailored for every skin type, hair type, and beauty goal — from grooming and skincare to bridal packages and nail art.",
+    a: "Absolutely! Hasali is Kochi's premier unisex cosmetology clinic. We welcome all genders and offer services tailored for every skin type, hair type, and beauty goal — from grooming and skincare to hair treatments and nail art.",
   },
   {
     id: "f3",
     q: "How do I book an appointment?",
-    a: "The easiest way to book is via WhatsApp — just click any 'Book an Appointment' button on our site. You can also call us directly at +91 99953 66858. We recommend booking 2–3 days in advance for popular services and bridal packages.",
+    a: "The easiest way to book is via WhatsApp — just click any 'Book an Appointment' button on our site. You can also call us directly at +91 99953 66858. We recommend booking 2–3 days in advance for popular services.",
   },
   {
     id: "f4",
     q: "What is the duration of a typical session?",
-    a: "Session duration varies by service. A basic facial typically takes 45–60 minutes, while advanced hair or skin protocols may take 90–120 minutes. Bridal packages are typically scheduled over multiple sessions. We'll give you a precise time estimate when you book.",
+    a: "Session duration varies by service. A basic facial typically takes 45–60 minutes, while advanced hair or skin protocols may take 90–120 minutes. We'll give you a precise time estimate when you book.",
   },
-  {
-    id: "f5",
-    q: "Do you offer bridal packages? What's included?",
-    a: "Yes! Our bridal packages are fully customizable and typically include pre-bridal skin prep sessions, hair treatments, the wedding-day bridal makeup and hair styling, mehendi preparation, and nail art. Packages are available for brides, grooms, and bridal parties.",
-  },
+
   {
     id: "f6",
     q: "What is the ISO 9001:2015 certification you mention?",

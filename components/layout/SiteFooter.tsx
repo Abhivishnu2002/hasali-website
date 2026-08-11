@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, MapPin, ChevronDown } from "lucide-react";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 function InstagramIcon({ size = 15, strokeWidth = 1.5, ...props }: React.SVGProps<SVGSVGElement> & { size?: number; strokeWidth?: number }) {
   return (
@@ -70,6 +71,7 @@ function FooterAccordion({ title, children }: { title: string; children: React.R
 }
 
 export default function SiteFooter() {
+  const { openBookingModal } = useBookingModal();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -310,9 +312,14 @@ export default function SiteFooter() {
               </ul>
             </nav>
             <div style={{ marginTop: "1.5rem" }}>
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ fontSize: "0.72rem", padding: "0.6rem 1.125rem" }}>
+              <button
+                type="button"
+                onClick={() => openBookingModal()}
+                className="btn-gold"
+                style={{ fontSize: "0.72rem", padding: "0.6rem 1.125rem", cursor: "pointer" }}
+              >
                 Book an Appointment
-              </a>
+              </button>
             </div>
           </FooterAccordion>
         </div>

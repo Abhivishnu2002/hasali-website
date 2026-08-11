@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // content/services.ts
-// Typed service data — updated with authentic Hasali brochure treatments & packages.
+// Typed service data — updated with client revision round (Aug 2026).
 // All service CTAs point to WhatsApp booking.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -18,6 +18,8 @@ export type Service = {
   name: string;
   description: string;
   inclusions?: string[];
+  subPoints?: string[]; // bullet sub-items shown beneath the description
+  medicalGradeSpecial?: boolean; // flags "Medical Grade Special" badge on card
   featuredTag?: string;
   image?: string;
 };
@@ -120,6 +122,201 @@ export const SIGNATURE_PACKAGES: SignaturePackage[] = [
 ];
 
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
+  // ── 1. Dermatology & Cosmetology Consultation ────────────────────────────
+  {
+    id: "dermatology-consultation",
+    slug: "dermatology-cosmetology-consultation",
+    name: "Dermatology & Cosmetology Consultation",
+    label: "Dermatology",
+    description:
+      "Begin your skin journey with a medically-led consultation. Our trained dermatologists assess your skin condition, history, and goals to build a personalised clinical roadmap — from diagnosis to long-term care.",
+    services: [
+      {
+        id: "medical-grade-consultation",
+        name: "Medical Grade Dermatology & Cosmetology Consultation",
+        featuredTag: "Start Here",
+        description:
+          "A comprehensive in-clinic evaluation by our dermatology-trained specialists covering skin type analysis, condition diagnosis, and treatment mapping.",
+        subPoints: [
+          "Full skin history & lifestyle assessment",
+          "Advanced skin analysis & diagnosis",
+          "Treatment pathway recommendation",
+          "Medical-grade product guidance",
+        ],
+      },
+      {
+        id: "personalised-skin-plan",
+        name: "Personalized Skin Plan",
+        description:
+          "A structured, evolving skin protocol created post-consultation — combining in-clinic treatments, home-care prescriptions, and follow-up milestones tailored specifically to your skin's needs.",
+        subPoints: [
+          "Customised in-clinic treatment schedule",
+          "Prescribed home-care routine",
+          "Progress tracking & plan adjustments",
+        ],
+      },
+    ],
+  },
+
+  // ── 2. Hair & Trichology ─────────────────────────────────────────────────
+  {
+    id: "hair-trichology",
+    slug: "hair-trichology",
+    name: "Hair & Trichology",
+    label: "Hair & Trichology",
+    description:
+      "Clinically driven hair care — from trichologist-led scalp diagnostics and targeted medical treatments to advanced keratin rituals. Every protocol is designed to restore your hair's strength, density, and vitality.",
+    services: [
+      {
+        id: "trichologist-consultation",
+        name: "Trichologist Consultation",
+        featuredTag: "Clinical Diagnosis",
+        description:
+          "A structured scalp and hair diagnostic session with our in-house trichologist to identify the root cause of your hair concerns and prescribe a targeted treatment plan.",
+        subPoints: [
+          "Hair Fall — cause identification & correction plan",
+          "Hair Thinning — density analysis & restoration protocol",
+          "Hair Breakage — structural damage assessment & repair roadmap",
+        ],
+      },
+      {
+        id: "keratin-nanoplasty",
+        name: "Keratin Nanoplasty",
+        featuredTag: "Advanced Treatment",
+        description:
+          "A next-generation hair smoothening and reconstruction treatment using nano-sized keratin molecules that penetrate deep into the hair shaft — delivering superior results compared to traditional smoothening. Chemical-free formula safe for all hair types.",
+      },
+      {
+        id: "keratin-botox-hair",
+        name: "Keratin Botox",
+        featuredTag: "Advanced Treatment",
+        description:
+          "An intensive hair rejuvenation treatment that fills in gaps in the hair fiber with proteins, amino acids, and vitamins — restoring elasticity, reducing frizz, and imparting deep gloss. Distinct from regular keratin smoothening; no harsh chemicals.",
+      },
+      {
+        id: "medical-grade-hair-treatment",
+        name: "Medical Grade Hair Treatment",
+        description:
+          "A comprehensive clinical hair restoration protocol combining trichology-guided therapy, medical-grade actives, and scalp revitalisation techniques to address advanced hair health concerns.",
+        subPoints: [
+          "Scalp microbiome restoration",
+          "Clinical-grade hair fibre strengthening",
+          "Dermatologist-supervised treatment plan",
+        ],
+      },
+    ],
+  },
+
+  // ── 3. IV & Wellness Therapy ─────────────────────────────────────────────
+  {
+    id: "iv-wellness",
+    slug: "iv-wellness-therapy",
+    name: "IV & Wellness Therapy",
+    label: "IV & Wellness",
+    description:
+      "Systemic wellness treatments administered intravenously for deep cellular-level results — from brightening and detoxification to holistic skin restoration. Experience the gold standard of inside-out beauty.",
+    services: [
+      {
+        id: "glutathione-iv-therapy",
+        name: "Glutathione & IV Therapy",
+        featuredTag: "Clinical Special",
+        description:
+          "Medical-grade intravenous glutathione infusions that work at the cellular level to brighten skin, reduce oxidative stress, and deliver a luminous, even-toned complexion from the inside out.",
+        subPoints: [
+          "High-dose antioxidant infusion",
+          "Visible brightening from Session 1",
+          "Detoxification & immune support",
+          "Personalised dosage protocol",
+        ],
+      },
+      {
+        id: "complete-skin-restoration",
+        name: "Complete Skin Restoration Program",
+        description:
+          "A curated multi-modal program combining IV therapy, medical peels, hydra facials, and clinical skin boosters for a full-spectrum skin renewal experience — ideal for dull, damaged, or stressed skin.",
+        subPoints: [
+          "IV Glutathione & vitamin infusion",
+          "Medical peels & hydrafacial sessions",
+          "Carbon glow & LED therapy",
+          "Customised home-care protocol",
+        ],
+      },
+    ],
+  },
+
+  // ── 4. Advanced Skin Treatments ──────────────────────────────────────────
+  {
+    id: "advanced-skin",
+    slug: "advanced-skin-treatments",
+    name: "Advanced Skin Treatments",
+    label: "Advanced Skin",
+    description:
+      "Cutting-edge clinical procedures for targeted skin transformation — addressing everything from regenerative therapy and pigmentation to scarring, pore refinement, and skin-smoothing injectables.",
+    services: [
+      {
+        id: "prp-gfc-exosome",
+        name: "PRP, GFC & Exosome Therapy",
+        featuredTag: "Regenerative",
+        description:
+          "Harnessing the power of your body's own growth factors alongside exosome technology to stimulate collagen, accelerate healing, and achieve deep skin rejuvenation — for face, scalp, and body.",
+        subPoints: [
+          "PRP (Platelet-Rich Plasma) — collagen stimulation & glow",
+          "GFC (Growth Factor Concentrate) — advanced tissue repair",
+          "Exosome Therapy — cellular regeneration & anti-aging",
+        ],
+      },
+      {
+        id: "medical-peels-anti-acne",
+        name: "Medical Peels & Anti-Acne Protocol",
+        description:
+          "Targeted clinical peels and corrective active serums addressing active acne, hyperpigmentation, and texture irregularities — customised to your skin type and concern severity.",
+        subPoints: [
+          "Superficial to deep chemical peels",
+          "Anti-acne actives & sebum control",
+          "Post-peel recovery & home care",
+        ],
+      },
+      {
+        id: "scarring-melasma-pores",
+        name: "Scarring, Melasma & Open Pores Treatment",
+        description:
+          "A clinically-designed corrective program targeting three of the most common — and most stubborn — skin concerns. Protocols are tailored per diagnosis and skin type.",
+        subPoints: [
+          "Scarring — post-acne, surgical & trauma scar revision",
+          "Melasma — hormonal pigmentation management protocol",
+          "Open Pores — pore-tightening & texture refinement",
+        ],
+      },
+      {
+        id: "brazilian-botox-skin",
+        name: "Brazilian Botox",
+        description:
+          "A premium skin-smoothing treatment that uses a botox-infused blend to reduce fine lines, tighten pores, and deliver a glass-like skin finish — with zero downtime and long-lasting results.",
+        subPoints: [
+          "Fine line & wrinkle softening",
+          "Pore minimisation & skin tightening",
+          "Luminous, glass-skin finish",
+          "No downtime — immediate results",
+        ],
+      },
+      {
+        id: "oxygeneo",
+        name: "Oxygeneo",
+        medicalGradeSpecial: true,
+        description:
+          "A Medical Grade Special facial that uses OxyGeneo technology to simultaneously exfoliate, oxygenate, and infuse the skin with active nutrients — delivering an instant glow with zero irritation.",
+      },
+      {
+        id: "carbon-peel",
+        name: "Carbon Peel",
+        medicalGradeSpecial: true,
+        description:
+          "A Medical Grade Special laser facial that uses a carbon lotion and Q-switched laser to deeply cleanse pores, reduce oiliness, even skin tone, and deliver a radiant, porcelain-smooth finish.",
+      },
+    ],
+  },
+
+  // ── 5. Skin & Cosmetology (existing — updated) ──────────────────────────
   {
     id: "skin",
     slug: "skin-cosmetology",
@@ -149,20 +346,22 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           "Deep cleansing, pore detox, and carbon laser glow treatments that clear impurities and restore youthful skin bounce.",
       },
       {
-        id: "anti-acne-peels",
+        id: "anti-acne-peels-skin",
         name: "Medical Peels & Anti-Acne Protocol",
         description:
           "Targeted clinical peels and corrective active serums addressing active acne, hyperpigmentation, and texture irregularities.",
       },
     ],
   },
+
+  // ── 6. Hair (existing — updated) ─────────────────────────────────────────
   {
     id: "hair",
     slug: "hair",
     name: "Hair",
     label: "Hair",
     description:
-      "From Brazilian Botox and Keratresse hair smoothening to precision cuts, our hair services blend technical expertise with premium restorative formulas.",
+      "From trichology-led scalp consultations and medical-grade hair treatments to Keratin Nanoplasty, Keratin Botox, and premium smoothening rituals — our hair services restore strength, shine, and vitality.",
     services: [
       {
         id: "brazilian-botox",
@@ -192,28 +391,8 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       },
     ],
   },
-  {
-    id: "bridal",
-    slug: "bridal-makeup",
-    name: "Bridal & Makeup",
-    label: "Bridal",
-    description:
-      "Flawless, photograph-ready looks for your most important moments. Our bridal and occasion makeup artists work with your features to create a look that's entirely yours.",
-    services: [
-      {
-        id: "bridal-makeup",
-        name: "Bridal Makeup & Grooming",
-        description:
-          "Full bridal & groom packages — traditional to contemporary HD looks designed to remain radiant through long ceremonies.",
-      },
-      {
-        id: "party-makeup",
-        name: "Party & Event Makeup",
-        description:
-          "Polished, camera-ready makeup for receptions, sangeets, corporate events, and special occasions.",
-      },
-    ],
-  },
+
+  // ── 7. Nails (existing — unchanged) ──────────────────────────────────────
   {
     id: "nails",
     slug: "nails",
@@ -226,7 +405,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         id: "nail-art",
         name: "Custom Nail Art & Gel Polish",
         description:
-          "Freehand and precision nail art in any style — minimal, floral, geometric, or intricate bridal designs.",
+          "Freehand and precision nail art in any style — minimal, floral, geometric, or intricate occasion designs.",
       },
       {
         id: "acrylic-extensions",

@@ -6,7 +6,8 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
-import { NAV_ITEMS, WA_HREF, PHONE_DISPLAY, TEL_HREF, BRAND } from "@/content/site";
+import { NAV_ITEMS, PHONE_DISPLAY, TEL_HREF, BRAND } from "@/content/site";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 /* ── Marquee ticker content ── */
 const TICKER_ITEMS = [
@@ -14,7 +15,6 @@ const TICKER_ITEMS = [
   "✦ Free consultation with every first visit",
   "✦ Award-winning cosmetology clinic in Kochi",
   "✦ 2,000+ happy clients across 2 locations",
-  "✦ Bridal packages from ₹4,999",
   "✦ Open 7 days · 10 AM – 8 PM",
 ];
 
@@ -44,6 +44,7 @@ function MarqueeTicker() {
 
 
 export default function SiteNav() {
+  const { openBookingModal } = useBookingModal();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -150,15 +151,14 @@ export default function SiteNav() {
               </Link>
             ))}
 
-            <a
-              href={WA_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openBookingModal()}
               className="btn-gold"
-              style={{ padding: "0.55rem 1.25rem", fontSize: "0.78rem" }}
+              style={{ padding: "0.55rem 1.25rem", fontSize: "0.78rem", cursor: "pointer" }}
             >
               Book an Appointment
-            </a>
+            </button>
           </nav>
 
           {/* Mobile: call + hamburger */}
@@ -242,9 +242,17 @@ export default function SiteNav() {
                 transition={{ delay: 0.45, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "0.875rem" }}
               >
-                <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    openBookingModal();
+                  }}
+                  className="btn-primary"
+                  style={{ cursor: "pointer" }}
+                >
                   Book an Appointment
-                </a>
+                </button>
                 <a href={TEL_HREF} className="btn-ghost">
                   <Phone size={15} strokeWidth={1.5} />
                   {PHONE_DISPLAY}

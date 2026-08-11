@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { WA_HREF } from "@/content/site";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 const ARTICLES = [
   {
@@ -24,14 +24,15 @@ const ARTICLES = [
   {
     id: "a3",
     date: "Jun 2025",
-    category: "Bridal",
-    title: "Your Complete Pre-Bridal Beauty Timeline",
-    desc: "From 6 months out to the morning of your wedding — a step-by-step guide to looking radiant on your big day.",
-    image: "/images/scrollpic2.png",
+    category: "IV & Wellness",
+    title: "What Is Glutathione IV Therapy — And Is It Right for You?",
+    desc: "Everything you need to know about medical-grade IV glutathione infusions, who benefits most, and what results to expect.",
+    image: "/images/skin_transformation_package.jpg",
   },
 ];
 
 export default function FinalCTABand() {
+  const { openBookingModal } = useBookingModal();
   return (
     <>
       {/* ── Blog Section ── */}
@@ -277,15 +278,14 @@ export default function FinalCTABand() {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center" }}
           >
-            <a
-              href={WA_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openBookingModal()}
               className="btn-gold"
-              style={{ fontSize: "0.9rem", padding: "1rem 2.25rem" }}
+              style={{ fontSize: "0.9rem", padding: "1rem 2.25rem", cursor: "pointer" }}
             >
               Book an Appointment
-            </a>
+            </button>
             <a
               href="/services"
               className="btn-ghost"

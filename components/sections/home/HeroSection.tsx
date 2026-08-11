@@ -4,13 +4,13 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Star } from "lucide-react";
-import { WA_HREF } from "@/content/site";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 const SERVICES = [
   { title: "Skin Treatments", tag: "Medical-Grade" },
-  { title: "Hair Therapy", tag: "Trichology-Led" },
-  { title: "Bridal Makeup", tag: "Premium Artistry" },
-  { title: "Nail Extensions", tag: "Salon Exclusive" },
+  { title: "Hair & Trichology", tag: "Trichology-Led" },
+  { title: "IV & Wellness Therapy", tag: "Clinical Special" },
+  { title: "Nail Care", tag: "Salon Exclusive" },
 ];
 
 const AVATARS = [
@@ -22,6 +22,7 @@ const AVATARS = [
 ];
 
 export default function HeroSection() {
+  const { openBookingModal } = useBookingModal();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [activeService, setActiveService] = useState(0);
@@ -321,15 +322,14 @@ export default function HeroSection() {
               custom={0.5}
               style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem" }}
             >
-              <a
-                href={WA_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => openBookingModal()}
                 className="btn-gold"
-                style={{ fontSize: "0.875rem", padding: "0.875rem 2rem" }}
+                style={{ fontSize: "0.875rem", padding: "0.875rem 2rem", cursor: "pointer" }}
               >
                 Book an Appointment
-              </a>
+              </button>
               <a
                 href="/services"
                 className="btn-ghost"

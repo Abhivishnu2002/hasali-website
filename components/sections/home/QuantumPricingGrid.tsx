@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
-import { WA_HREF } from "@/content/site";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 const PACKAGES = [
   {
@@ -34,23 +34,24 @@ const PACKAGES = [
     ctaText: "Book Skin Care",
   },
   {
-    category: "COMPLETE BRIDAL GLOW",
-    title: "Bridal Package",
-    price: "₹4,999",
-    unit: "/package",
+    category: "REGENERATIVE & ADVANCED SKIN",
+    title: "Advanced Skin",
+    price: "₹2,999",
+    unit: "/session",
     features: [
-      "Pre-bridal skin prep sessions",
-      "HD / Airbrush bridal makeup",
-      "Hair styling & saree draping",
-      "Nail extensions & art",
-      "Trial session included",
+      "PRP / GFC / Exosome therapy",
+      "Medical peels & anti-acne protocol",
+      "Scarring, melasma & pore treatment",
+      "Oxygeneo & carbon peel",
+      "Brazilian Botox",
     ],
     highlight: true,
-    ctaText: "Book Bridal Package",
+    ctaText: "Book Advanced Skin",
   },
 ];
 
 export default function QuantumPricingGrid() {
+  const { openBookingModal } = useBookingModal();
   return (
     <section style={{ backgroundColor: "var(--color-ivory)", paddingBlock: "var(--section-pad-y)", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
       <div className="container">
@@ -75,7 +76,7 @@ export default function QuantumPricingGrid() {
             Best Service, Best Pricing
           </h2>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.9375rem", color: "var(--color-espresso-soft)", margin: 0 }}>
-            We offer specialized services for hair, skin, and bridal care — designed to nurture your inner and outer beauty.
+            We offer specialized services for hair, skin, and advanced clinical care — designed to nurture your inner and outer beauty.
           </p>
         </div>
 
@@ -189,15 +190,14 @@ export default function QuantumPricingGrid() {
                 ))}
               </ul>
 
-              <a
-                href={WA_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => openBookingModal(pkg.title)}
                 className="btn-gold"
-                style={{ width: "100%", justifyContent: "center" }}
+                style={{ width: "100%", justifyContent: "center", cursor: "pointer" }}
               >
                 {pkg.ctaText}
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>

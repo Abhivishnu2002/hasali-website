@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { WA_HREF } from "@/content/site";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 const STEPS = [
   {
@@ -129,6 +129,7 @@ function StepCard({
 
 export default function LocationsPreview() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { openBookingModal } = useBookingModal();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -313,9 +314,14 @@ export default function LocationsPreview() {
                   {STEPS[3].desc}
                 </p>
               </div>
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ alignSelf: "flex-start", fontSize: "0.8125rem" }}>
+              <button
+                type="button"
+                onClick={() => openBookingModal()}
+                className="btn-gold"
+                style={{ alignSelf: "flex-start", fontSize: "0.8125rem", cursor: "pointer" }}
+              >
                 Begin Your Journey →
-              </a>
+              </button>
             </div>
           </motion.div>
         </div>

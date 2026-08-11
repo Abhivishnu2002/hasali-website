@@ -14,7 +14,7 @@ import FinalCTABand from "@/components/sections/home/FinalCTABand";
 export const metadata: Metadata = {
   title: "Hasali Cosmetology Clinic & Salon — Kochi",
   description:
-    "Premium unisex cosmetology clinic and beauty salon in Kochi, Kerala. ISO 9001:2015 certified. Medical-grade skin treatments, hair, bridal makeup & nails across 2 locations: Kadavanthara & Kalamassery.",
+    "Premium unisex cosmetology clinic and beauty salon in Kochi, Kerala. ISO 9001:2015 certified. Medical-grade skin treatments, hair & trichology, IV wellness therapy across 2 locations: Kadavanthara & Kalamassery.",
   alternates: { canonical: "/" },
 };
 

@@ -28,10 +28,10 @@ const SERVICES = [
   },
   {
     number: "4",
-    title: "Bridal & Makeup",
-    desc: "Your most important moments deserve extraordinary artistry. Our certified bridal makeup artists create timeless looks blending traditional Kerala elegance with modern techniques — for brides and beyond.",
-    image: "/images/scrollpic2.png",
-    imgAlt: "Bridal makeup and styling at Hasali Salon Kochi",
+    title: "IV & Wellness Therapy",
+    desc: "Experience systemic skin transformation from the inside out. Our medical-grade IV glutathione infusions, complete skin restoration programs, and wellness therapies deliver deep cellular-level results — radiance, clarity, and vitality that no topical treatment can match.",
+    image: "/images/skin_transformation_package.jpg",
+    imgAlt: "IV wellness therapy at Hasali Cosmetology Clinic Kochi",
   },
 ];
 

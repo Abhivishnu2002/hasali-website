@@ -17,9 +17,9 @@ const TESTIMONIALS = [
   {
     id: "t2",
     name: "Rahul Nair",
-    role: "Bridal Grooming Client",
+    role: "Hair Treatment Client",
     rating: 5,
-    text: "The staff is professional, attentive, and incredibly skilled. Every treatment felt personalized. I left feeling refreshed, balanced, and completely rejuvenated for my big day.",
+    text: "The staff is professional, attentive, and incredibly skilled. The trichology consultation was thorough and the hair treatment plan was exactly what I needed. I left feeling completely rejuvenated.",
     image: "/images/scrollpic1.png",
   },
   {
@@ -33,9 +33,9 @@ const TESTIMONIALS = [
   {
     id: "t4",
     name: "Deepthi S.",
-    role: "Bridal Package",
+    role: "Skin Treatment Client, Kalamassery",
     rating: 5,
-    text: "Hasali made my wedding look absolutely perfect. The bridal package covered everything — skin prep, hair, makeup, nails. Worth every rupee!",
+    text: "The glutathione IV therapy completely transformed my skin. I could see the glow after just the first session. The team is knowledgeable, hygienic, and genuinely committed to results.",
     image: "/images/scrollpic.png",
   },
   {

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { WA_HREF } from "@/content/site";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 const PLANS = [
   {
@@ -38,21 +38,21 @@ const PLANS = [
     dark: false,
   },
   {
-    id: "bridal",
+    id: "iv-wellness",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="24" cy="16" r="7" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
-        <path d="M14 38s2-10 10-10 10 10 10 10" stroke="#d4af37" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
-        <path d="M24 9l2 3h3l-2.5 2 1 3L24 15l-3.5 2 1-3L19 12h3z" stroke="#d4af37" strokeWidth="1.2" fill="#d4af37" fillOpacity="0.4"/>
+        <path d="M24 8v32M16 20h16" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round"/>
+        <ellipse cx="24" cy="24" rx="12" ry="16" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
+        <circle cx="24" cy="24" r="3" fill="#d4af37" fillOpacity="0.4"/>
       </svg>
     ),
-    name: "Bridal Package",
-    price: "from ₹4,999",
-    priceNote: "/package",
-    tagline: "Complete Bridal Glow",
-    features: ["Bridal makeup", "Hair styling", "Pre-bridal facials", "Nail art"],
+    name: "IV & Wellness",
+    price: "from ₹3,499",
+    priceNote: "/session",
+    tagline: "Glutathione & Skin Restoration",
+    features: ["IV glutathione infusion", "Skin brightening protocol", "Antioxidant therapy", "Complete restoration plan"],
     dark: true,
-    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&h=800&fit=crop&auto=format&q=80",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=800&fit=crop&auto=format&q=80",
   },
 ];
 
@@ -66,6 +66,7 @@ const fadeUp = {
 };
 
 export default function HasaliDifference() {
+  const { openBookingModal } = useBookingModal();
   return (
     <section
       aria-label="Therapy Pricing"
@@ -97,7 +98,7 @@ export default function HasaliDifference() {
               lineHeight: 1.65,
             }}
           >
-            We offer specialized services for hair, skin, and bridal care — designed to nurture your inner and outer beauty.
+            We offer specialized services for hair, skin, and advanced clinical wellness — designed to nurture your inner and outer beauty.
           </p>
 
           <div className="diamond-rule" style={{ maxWidth: "120px", margin: "1.5rem auto 0" }}><span /></div>
@@ -149,9 +150,14 @@ export default function HasaliDifference() {
                   </li>
                 ))}
               </ul>
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ fontSize: "0.78rem" }}>
+              <button
+                type="button"
+                onClick={() => openBookingModal(plan.name)}
+                className="btn-gold"
+                style={{ fontSize: "0.78rem", cursor: "pointer" }}
+              >
                 Book Now
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>

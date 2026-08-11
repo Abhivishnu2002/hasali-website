@@ -22,7 +22,7 @@ const FEATURES = [
   {
     icon: <Award size={24} style={{ color: "var(--color-gold-dark)" }} />,
     title: "Business Excellence 2023",
-    desc: "Recognized as Kochi's top unisex salon & clinic for quality service, customer trust, and bridal expertise.",
+    desc: "Recognized as Kochi's top unisex cosmetology clinic for quality service, customer trust, and clinical excellence.",
   },
 ];
 

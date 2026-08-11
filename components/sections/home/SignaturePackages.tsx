@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
-import { WA_HREF } from "@/content/site";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 /* ── Data ── */
 const BENEFITS = [
@@ -61,33 +61,6 @@ const BENEFITS = [
       },
     ],
     reverse: true,
-  },
-  {
-    id: "bridal",
-    number: "03",
-    heading: "Your Perfect Bridal Look",
-    summary:
-      "Your most important moment deserves extraordinary artistry. Our bridal team blends Kerala elegance with modern technique.",
-    image: "/images/scrollpic2.png",
-    imgAlt: "Bridal makeup and styling at Hasali Kochi",
-    items: [
-      {
-        id: "b1",
-        title: "Pre-Bridal Skin Prep",
-        body: "A multi-session skin prep timeline starting 3 months before your wedding for a radiant complexion on the big day.",
-      },
-      {
-        id: "b2",
-        title: "HD & Airbrush Makeup",
-        body: "Camera-ready bridal makeup that lasts all day — available in traditional Kerala, Bollywood, and modern minimal styles.",
-      },
-      {
-        id: "b3",
-        title: "Complete Bridal Package",
-        body: "Makeup, hair, nail art, saree draping, and trial session all bundled — one team, one vision, zero stress.",
-      },
-    ],
-    reverse: false,
   },
 ];
 
@@ -159,6 +132,7 @@ function BenefitRow({
   benefit: (typeof BENEFITS)[0];
   index: number;
 }) {
+  const { openBookingModal } = useBookingModal();
   const rowRef = useRef<HTMLDivElement>(null);
 
   // Image scroll animations
@@ -278,15 +252,14 @@ function BenefitRow({
 
         <SubAccordion items={benefit.items} />
 
-        <a
-          href={WA_HREF}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={() => openBookingModal(benefit.heading)}
           className="btn-ghost"
-          style={{ marginTop: "2rem", alignSelf: "flex-start", fontSize: "0.8125rem" }}
+          style={{ marginTop: "2rem", alignSelf: "flex-start", fontSize: "0.8125rem", cursor: "pointer" }}
         >
           Book This Service →
-        </a>
+        </button>
       </div>
     </motion.div>
   );
@@ -327,7 +300,7 @@ export default function SignaturePackages() {
               margin: 0,
             }}
           >
-            Three pillars of beauty and wellness — each one a complete journey, crafted just for you.
+            Two pillars of clinical beauty and wellness — each one a complete journey, crafted just for you.
           </p>
         </motion.div>
       </div>

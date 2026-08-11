@@ -81,12 +81,12 @@ export const metadata: Metadata = {
     template: "%s | Hasali Cosmetology Clinic & Salon",
   },
   description:
-    "Premium unisex cosmetology clinic and beauty salon in Kochi, Kerala. ISO 9001:2015 certified. Medical-grade skin treatments, hair therapy, bridal makeup & nail care. Locations: Kadavanthara & Kalamassery.",
+    "Premium unisex cosmetology clinic and beauty salon in Kochi, Kerala. ISO 9001:2015 certified. Medical-grade skin treatments, hair therapy, IV wellness & nail care. Locations: Kadavanthara & Kalamassery.",
   keywords: [
     "cosmetology clinic kochi",
     "beauty salon kochi",
     "skin treatment kochi",
-    "bridal makeup kochi",
+    "iv therapy kochi",
     "hair salon kochi",
     "unisex salon kochi",
     "kadavanthara salon",

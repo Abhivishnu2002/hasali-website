@@ -1,12 +1,13 @@
 "use client";
 
 import { SERVICE_CATEGORIES } from "@/content/services";
-import { WA_HREF } from "@/content/site";
 import { MessageCircle } from "lucide-react";
 import SectionReveal from "@/components/ui/SectionReveal";
 import SignaturePackages from "@/components/sections/home/SignaturePackages";
+import { useBookingModal } from "@/components/ui/BookingModalContext";
 
 export default function ServicesClient() {
+  const { openBookingModal } = useBookingModal();
   return (
     <>
       {/* Page header */}
@@ -45,7 +46,7 @@ export default function ServicesClient() {
                 maxWidth: "50ch",
               }}
             >
-              Medical-grade skin treatments alongside premium hair, bridal, and nail services — all under one roof, in both our Kochi locations. Book a consultation for personalised pricing.
+              Medical-grade skin treatments, advanced trichology care, IV wellness therapy, and regenerative skin procedures — all under one roof, in both our Kochi locations. Book a consultation for personalised pricing.
             </p>
           </SectionReveal>
 
@@ -139,10 +140,33 @@ export default function ServicesClient() {
                       backgroundColor: catIndex % 2 === 0 ? "var(--color-ivory)" : "var(--color-sage-pale)",
                       padding: "1.75rem 2rem",
                       height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
                     }}
                     className="svc-card"
                     data-even={catIndex % 2 === 0 ? "true" : "false"}
                   >
+                    {/* Featured / Medical Grade Special tag */}
+                    {(svc.featuredTag || svc.medicalGradeSpecial) && (
+                      <span
+                        style={{
+                          display: "inline-block",
+                          fontSize: "0.6rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.12em",
+                          textTransform: "uppercase",
+                          color: svc.medicalGradeSpecial ? "#6b5012" : "var(--color-gold-dark)",
+                          backgroundColor: svc.medicalGradeSpecial ? "rgba(197,160,89,0.18)" : "rgba(197,160,89,0.1)",
+                          border: `1px solid ${svc.medicalGradeSpecial ? "rgba(197,160,89,0.5)" : "rgba(197,160,89,0.25)"}`,
+                          padding: "0.2rem 0.6rem",
+                          borderRadius: "2px",
+                          marginBottom: "0.75rem",
+                          alignSelf: "flex-start",
+                        }}
+                      >
+                        {svc.medicalGradeSpecial ? "✦ Medical Grade Special" : svc.featuredTag}
+                      </span>
+                    )}
                     <h3
                       style={{
                         fontFamily: "var(--font-fraunces, Georgia, serif)",
@@ -159,31 +183,75 @@ export default function ServicesClient() {
                         fontSize: "0.875rem",
                         lineHeight: 1.7,
                         color: "var(--color-espresso-soft)",
-                        margin: "0 0 1rem",
+                        margin: "0 0 0.75rem",
                       }}
                     >
                       {svc.description}
                     </p>
-                    <a
-                      href={WA_HREF}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        fontSize: "0.7rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        color: "var(--color-gold-dark)",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "0.4rem",
-                        borderBottom: "1.5px solid var(--color-gold-light)",
-                        paddingBottom: "0.1rem",
-                        minHeight: "44px",
-                      }}
-                    >
-                      Book a consultation →
-                    </a>
+                    {/* Sub-points bullet list */}
+                    {svc.subPoints && svc.subPoints.length > 0 && (
+                      <ul
+                        style={{
+                          margin: "0 0 1rem",
+                          padding: 0,
+                          listStyle: "none",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "0.35rem",
+                        }}
+                      >
+                        {svc.subPoints.map((point, pi) => (
+                          <li
+                            key={pi}
+                            style={{
+                              display: "flex",
+                              alignItems: "flex-start",
+                              gap: "0.5rem",
+                              fontSize: "0.8125rem",
+                              lineHeight: 1.55,
+                              color: "var(--color-espresso-soft)",
+                            }}
+                          >
+                            <span
+                              style={{
+                                color: "var(--color-gold-dark)",
+                                flexShrink: 0,
+                                marginTop: "0.2em",
+                                fontSize: "0.6rem",
+                              }}
+                              aria-hidden="true"
+                            >
+                              ◆
+                            </span>
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <div style={{ marginTop: "auto" }}>
+                      <button
+                        type="button"
+                        onClick={() => openBookingModal(svc.name)}
+                        style={{
+                          fontSize: "0.7rem",
+                          fontWeight: 600,
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          color: "var(--color-gold-dark)",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "0.4rem",
+                          border: "none",
+                          background: "none",
+                          borderBottom: "1.5px solid var(--color-gold-light)",
+                          paddingBottom: "0.1rem",
+                          minHeight: "44px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Book a consultation →
+                      </button>
+                    </div>
                   </div>
                 </SectionReveal>
               ))}
@@ -192,16 +260,15 @@ export default function ServicesClient() {
             {/* Category CTA */}
             <SectionReveal delay={0.3}>
               <div style={{ marginTop: "2rem", display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
-                <a
-                  href={WA_HREF}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => openBookingModal(cat.name)}
                   className="btn-gold"
                   style={{ fontSize: "0.75rem" }}
                 >
                   <MessageCircle size={14} strokeWidth={1.5} />
-                  Book {cat.label} on WhatsApp
-                </a>
+                  Book {cat.label} Appointment
+                </button>
                 <span style={{ fontSize: "0.8rem", color: "var(--color-gold-dark)", fontStyle: "italic", fontWeight: 500 }}>
                   Consultation required · No price commitment
                 </span>

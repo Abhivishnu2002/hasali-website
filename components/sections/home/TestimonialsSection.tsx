@@ -136,11 +136,11 @@ export default function TestimonialsSection() {
   return (
     <section
       aria-label="Client Testimonials"
-      style={{ backgroundColor: "#16241B", color: "#fff", paddingBlock: "var(--section-pad-y)", position: "relative", overflow: "hidden" }}
+      style={{ backgroundColor: "#faf7f2", color: "var(--color-espresso)", paddingBlock: "var(--section-pad-y)", position: "relative", overflow: "hidden", borderTop: "1px solid rgba(197,160,89,0.2)" }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Subtle background glow */}
+      {/* Subtle gold background glow */}
       <div
         style={{
           position: "absolute",
@@ -148,7 +148,7 @@ export default function TestimonialsSection() {
           right: "-10%",
           width: "50vw",
           height: "80%",
-          background: "radial-gradient(ellipse, rgba(74,103,65,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(212,175,55,0.14) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
         aria-hidden="true"
@@ -164,7 +164,7 @@ export default function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="section-pill-dark" style={{ marginBottom: "1.25rem" }}>• Testimonials</span>
+            <span className="section-pill" style={{ marginBottom: "1.25rem" }}>• Testimonials</span>
             <h2
               style={{
                 fontFamily: "var(--font-serif)",
@@ -172,7 +172,7 @@ export default function TestimonialsSection() {
                 fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)",
                 letterSpacing: "-0.025em",
                 lineHeight: 1.1,
-                color: "#fff",
+                color: "var(--color-espresso)",
                 marginBottom: "1rem",
               }}
             >
@@ -183,7 +183,7 @@ export default function TestimonialsSection() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "0.9375rem",
                 lineHeight: 1.65,
-                color: "rgba(255,255,255,0.65)",
+                color: "var(--color-espresso-soft)",
                 maxWidth: "30ch",
                 marginBottom: "2rem",
               }}
@@ -192,7 +192,7 @@ export default function TestimonialsSection() {
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
               <StarRating count={5} />
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.8125rem", color: "rgba(255,255,255,0.7)", margin: 0 }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.8125rem", color: "var(--color-gold-dark)", fontWeight: 600, margin: 0 }}>
                 4.8/5 · 375+ Google Reviews
               </p>
             </div>
@@ -214,13 +214,14 @@ export default function TestimonialsSection() {
                 width: "2.75rem",
                 height: "2.75rem",
                 borderRadius: "50%",
-                border: "1.5px solid rgba(255,255,255,0.2)",
-                background: "rgba(255,255,255,0.07)",
+                border: "1.5px solid rgba(197,160,89,0.35)",
+                background: activeIndex === 0 ? "transparent" : "#ffffff",
                 cursor: activeIndex === 0 ? "not-allowed" : "pointer",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: activeIndex === 0 ? "rgba(255,255,255,0.25)" : "#fff",
+                color: activeIndex === 0 ? "rgba(197,160,89,0.3)" : "var(--color-gold-dark)",
+                boxShadow: activeIndex === 0 ? "none" : "0 4px 12px rgba(197,160,89,0.15)",
                 transition: "all 0.2s",
               }}
             >
@@ -234,13 +235,14 @@ export default function TestimonialsSection() {
                 width: "2.75rem",
                 height: "2.75rem",
                 borderRadius: "50%",
-                border: "1.5px solid rgba(255,255,255,0.2)",
-                background: "rgba(255,255,255,0.07)",
+                border: "1.5px solid rgba(197,160,89,0.35)",
+                background: activeIndex === total - 1 ? "transparent" : "#ffffff",
                 cursor: activeIndex === total - 1 ? "not-allowed" : "pointer",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: activeIndex === total - 1 ? "rgba(255,255,255,0.25)" : "#fff",
+                color: activeIndex === total - 1 ? "rgba(197,160,89,0.3)" : "var(--color-gold-dark)",
+                boxShadow: activeIndex === total - 1 ? "none" : "0 4px 12px rgba(197,160,89,0.15)",
                 transition: "all 0.2s",
               }}
             >
@@ -283,6 +285,8 @@ export default function TestimonialsSection() {
                 overflow: "hidden",
                 position: "relative",
                 minHeight: "460px",
+                border: "1.5px solid rgba(197, 160, 89, 0.3)",
+                boxShadow: "0 12px 32px rgba(197, 160, 89, 0.12)",
               }}
             >
               {/* Background portrait */}
@@ -300,7 +304,7 @@ export default function TestimonialsSection() {
                 style={{
                   position: "absolute",
                   inset: 0,
-                  background: "linear-gradient(to top, rgba(10,8,6,0.94) 45%, rgba(10,8,6,0.25) 100%)",
+                  background: "linear-gradient(to top, rgba(26,23,20,0.92) 50%, rgba(26,23,20,0.3) 100%)",
                 }}
               />
               {/* Content */}
@@ -323,11 +327,11 @@ export default function TestimonialsSection() {
                   viewBox="0 0 32 24"
                   fill="none"
                   aria-hidden="true"
-                  style={{ marginBottom: "0.75rem", opacity: 0.5 }}
+                  style={{ marginBottom: "0.75rem", opacity: 0.8 }}
                 >
                   <path
                     d="M0 24V14.4C0 6.4 5.2 1.6 15.6 0L17.2 2.8C11.2 4 8.4 7.2 8 12H14.4V24H0ZM18 24V14.4C18 6.4 23.2 1.6 33.6 0L35.2 2.8C29.2 4 26.4 7.2 26 12H32.4V24H18Z"
-                    fill="white"
+                    fill="#d4af37"
                   />
                 </svg>
                 <p
@@ -335,7 +339,7 @@ export default function TestimonialsSection() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "0.9375rem",
                     lineHeight: 1.65,
-                    color: "rgba(255,255,255,0.9)",
+                    color: "rgba(255,255,255,0.95)",
                     margin: "0 0 1.25rem 0",
                   }}
                 >
@@ -346,7 +350,7 @@ export default function TestimonialsSection() {
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 600, color: "#fff", margin: 0 }}>
                     {t.name}
                   </p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "rgba(255,255,255,0.5)", margin: 0 }}>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "var(--color-gold-bright)", margin: 0, fontWeight: 500 }}>
                     {t.role}
                   </p>
                 </div>
@@ -366,7 +370,7 @@ export default function TestimonialsSection() {
                 width: activeIndex === i ? "1.5rem" : "0.4rem",
                 height: "0.4rem",
                 borderRadius: "999px",
-                backgroundColor: activeIndex === i ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.25)",
+                backgroundColor: activeIndex === i ? "var(--color-gold-dark)" : "rgba(197,160,89,0.3)",
                 border: "none",
                 cursor: "pointer",
                 padding: 0,

@@ -46,30 +46,38 @@
 
 /* ── CSS Custom Properties ── */
 :root {
-  /* Palette — White, Pure Black & Metallic Gold Edition */
+  /* ── White, Soft Ivory & Metallic Golden Yellow Luxury Palette ── */
   --color-ivory: #ffffff;
-  --color-ivory-dark: #f4f4f4;
-  --color-cream: #efefef;
-  --color-espresso: #0a0a0a;
-  --color-espresso-soft: #1f1f1f;
-  --color-charcoal: #171717;
-  
-  /* Gold system */
+  --color-ivory-warm: #fdfbf7;
+  --color-ivory-soft: #faf7f2;
+  --color-ivory-dark: #f4efe6;
+  --color-cream: #f7f3eb;
+
+  /* Metallic Gold & Golden Yellow System */
   --color-gold: #c5a059;
   --color-gold-light: #d4af37;
-  --color-gold-pale: #f9f6f0;
+  --color-gold-bright: #e5c158;
+  --color-gold-vibrant: #ffd700;
   --color-gold-dark: #9a7b38;
+  --color-gold-bronze: #8e6e2f;
+  --color-gold-pale: #fcf9f2;
+  --color-gold-glow: rgba(212, 175, 55, 0.18);
+  --color-gold-border: rgba(197, 160, 89, 0.35);
+
+  /* Deep Charcoal Espresso for High Contrast Typography */
+  --color-espresso: #1a1714;
+  --color-espresso-soft: #2c2723;
+  --color-charcoal: #1c1917;
   
-  /* Backwards compatibility aliases for green -> gold */
+  /* Backwards compatibility aliases */
   --color-sage: #c5a059;
   --color-sage-light: #d4af37;
-  --color-sage-pale: #f9f6f0;
-
-  --color-terracotta: #b5623b;
+  --color-sage-pale: #fcf9f2;
   --color-brass: #c5a059;
   --color-brass-light: #d4af37;
-  --color-dark-panel: #121212;
-  --color-dark-panel-2: #1a1a1a;
+  --color-terracotta: #b8860b;
+  --color-dark-panel: #fcf9f2;
+  --color-dark-panel-2: #f7f2e6;
 
   /* Typography */
   --font-serif: "Fraunces", "Georgia", serif;
@@ -103,7 +111,7 @@ html {
 }
 
 body {
-  background-color: var(--color-ivory);
+  background-color: var(--color-ivory-warm);
   color: var(--color-espresso);
   font-family: var(--font-sans);
   font-weight: 400;
@@ -145,6 +153,13 @@ img, video {
   max-width: 100%;
 }
 
+/* ── Metallic Gold Text Utility ── */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #b8860b 0%, #d4af37 40%, #e5c158 75%, #aa771c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* ── Layout Utilities ── */
 .container {
   width: 100%;
@@ -157,22 +172,20 @@ img, video {
   padding-block: var(--section-pad-y);
 }
 
-/* ── Quantam Section Pill Badge ── */
-/* e.g. "• Our Services" floating pill at top of section */
-/* ── Quantam Section Pill Badge ── */
-/* e.g. "• Our Services" floating pill at top of section */
+/* ── White & Gold Section Pill Badges ── */
 .section-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.375rem 0.875rem;
+  padding: 0.4rem 1rem;
   border-radius: 999px;
-  background-color: rgba(197, 160, 89, 0.12);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  background-color: var(--color-ivory);
+  border: 1px solid var(--color-gold-border);
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.12);
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--color-gold-dark);
   margin-bottom: 1.25rem;
 }
@@ -181,36 +194,37 @@ img, video {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.375rem 0.875rem;
+  padding: 0.4rem 1rem;
   border-radius: 999px;
-  background-color: rgba(197, 160, 89, 0.18);
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  background-color: #fdfaf2;
+  border: 1.5px solid #d4af37;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: var(--color-gold-light);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #9a7b38;
   margin-bottom: 1.25rem;
 }
 
 /* ── Gold Accent Line ── */
 .rule-gold,
 .rule-sage {
-  height: 1.5px;
-  width: 42px;
-  background: linear-gradient(90deg, #c5a059, #d4af37);
+  height: 2px;
+  width: 48px;
+  background: linear-gradient(90deg, #bf953f, #d4af37, #aa771c);
   margin-block: 0.75rem 1.25rem;
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
-/* ── Quantam Diamond Rule (decorative separator) ── */
+/* ── Quantam Diamond Rule (flyer decorative separator) ── */
 .diamond-rule {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-block: 1.25rem;
-  color: var(--color-gold);
-  opacity: 0.65;
+  color: var(--color-gold-light);
+  opacity: 0.85;
 }
 
 .diamond-rule::before,
@@ -218,13 +232,13 @@ img, video {
   content: "";
   flex: 1;
   height: 1px;
-  background-color: currentColor;
+  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.4), transparent);
 }
 
 .diamond-rule span {
-  width: 5px;
-  height: 5px;
-  border: 1px solid currentColor;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-gold-light);
   transform: rotate(45deg);
   flex-shrink: 0;
 }
@@ -234,28 +248,27 @@ img, video {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.8rem 1.875rem;
-  background-color: var(--color-espresso);
-  color: #ffffff;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #bf953f 0%, #d4af37 50%, #aa771c 100%);
+  color: #000000;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.06em;
-  border: 1.5px solid var(--color-espresso);
-  border-radius: 4px;
+  border: 1.5px solid var(--color-gold-light);
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.25s var(--ease-out-expo),
-              color 0.25s var(--ease-out-expo),
-              border-color 0.25s var(--ease-out-expo),
-              transform 0.2s var(--ease-out-expo);
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.3);
+  transition: all 0.25s var(--ease-out-expo);
   white-space: nowrap;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-gold);
-  color: #000000;
-  border-color: var(--color-gold);
+  background: #1a1714;
+  color: var(--color-gold-light);
+  border-color: var(--color-gold-light);
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26, 23, 20, 0.25);
 }
 
 .btn-gold,
@@ -263,30 +276,28 @@ img, video {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.8rem 1.875rem;
+  padding: 0.85rem 2rem;
   background: linear-gradient(135deg, #bf953f 0%, #d4af37 50%, #aa771c 100%);
   color: #000000;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.06em;
-  border: 1.5px solid var(--color-gold);
-  border-radius: 4px;
+  border: 1.5px solid var(--color-gold-light);
+  border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.25);
-  transition: background-color 0.25s var(--ease-out-expo),
-              transform 0.2s var(--ease-out-expo),
-              box-shadow 0.25s var(--ease-out-expo);
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.35);
+  transition: all 0.25s var(--ease-out-expo);
   white-space: nowrap;
 }
 
 .btn-gold:hover,
 .btn-sage:hover {
-  background: #0a0a0a;
+  background: #1a1714;
   color: var(--color-gold-light);
-  border-color: var(--color-gold);
+  border-color: var(--color-gold-light);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.3);
 }
 
 /* Ghost / outline button */
@@ -294,57 +305,55 @@ img, video {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.8rem 1.875rem;
-  background-color: transparent;
-  color: var(--color-espresso);
+  padding: 0.85rem 2rem;
+  background-color: var(--color-ivory);
+  color: var(--color-gold-dark);
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.06em;
-  border: 1.5px solid rgba(10, 10, 10, 0.35);
-  border-radius: 4px;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.25s var(--ease-out-expo),
-              color 0.25s var(--ease-out-expo),
-              border-color 0.25s var(--ease-out-expo),
-              transform 0.2s var(--ease-out-expo);
+  box-shadow: 0 2px 10px rgba(197, 160, 89, 0.1);
+  transition: all 0.25s var(--ease-out-expo);
   white-space: nowrap;
 }
 
 .btn-ghost:hover {
-  background-color: var(--color-espresso);
-  color: var(--color-ivory);
-  border-color: var(--color-espresso);
+  background-color: var(--color-gold-light);
+  color: #000000;
+  border-color: var(--color-gold-light);
   transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.3);
 }
 
-/* Ivory ghost — for dark sections */
+/* Ivory ghost button */
 .btn-ghost-ivory {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.8rem 1.875rem;
-  background-color: transparent;
-  color: var(--color-ivory);
+  padding: 0.85rem 2rem;
+  background-color: var(--color-ivory);
+  color: var(--color-gold-dark);
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.06em;
-  border: 1.5px solid rgba(212, 175, 55, 0.45);
-  border-radius: 4px;
+  border: 1.5px solid var(--color-gold-light);
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.25s var(--ease-out-expo),
-              border-color 0.25s var(--ease-out-expo),
-              color 0.25s var(--ease-out-expo),
-              transform 0.2s var(--ease-out-expo);
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.15);
+  transition: all 0.25s var(--ease-out-expo);
   white-space: nowrap;
 }
 
 .btn-ghost-ivory:hover {
-  background-color: var(--color-gold);
+  background-color: var(--color-gold-light);
   color: #000000;
-  border-color: var(--color-gold);
+  border-color: var(--color-gold-light);
   transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.35);
 }
 
 /* ── Eyebrow label ── */
@@ -633,19 +642,20 @@ img, video {
 
 /* ── Promo bar ── */
 .promo-bar {
-  background-color: var(--color-espresso);
-  color: var(--color-ivory);
+  background: linear-gradient(90deg, #bf953f, #d4af37, #aa771c);
+  color: #000000;
   padding: 0.5rem 0;
   font-size: 0.78rem;
   font-family: var(--font-sans);
-  font-weight: 400;
-  letter-spacing: 0.03em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 110;
   overflow: hidden;
+  box-shadow: 0 2px 10px rgba(197, 160, 89, 0.25);
 }
 
 /* ── Star rating ── */
@@ -702,10 +712,10 @@ img, video {
   padding-inline: 2rem;
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   white-space: nowrap;
-  color: rgba(253,249,244,0.8);
+  color: #000000;
 }
 
 /* ── Bento grid cells ── */

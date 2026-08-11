@@ -86,15 +86,13 @@ export default function SiteNav() {
           transition:
             "background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease",
           backgroundColor: isTransparent
-            ? "transparent"
-            : "rgba(253, 249, 244, 0.97)",
-          backdropFilter: isTransparent ? "none" : "blur(16px)",
-          WebkitBackdropFilter: isTransparent ? "none" : "blur(16px)",
-          borderBottom: isTransparent
-            ? "1px solid rgba(255,255,255,0.12)"
-            : "1px solid rgba(35,31,28,0.07)",
+            ? "rgba(253, 251, 247, 0.85)"
+            : "rgba(255, 255, 255, 0.96)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          borderBottom: "1px solid rgba(197, 160, 89, 0.2)",
           boxShadow:
-            scrolled && !menuOpen ? "0 2px 20px rgba(35,31,28,0.06)" : "none",
+            scrolled && !menuOpen ? "0 4px 24px rgba(197, 160, 89, 0.12)" : "none",
         }}
       >
         <div
@@ -109,7 +107,7 @@ export default function SiteNav() {
           {/* Logo */}
           <Link href="/" aria-label="Hasali — home" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <Image
-              src={isTransparent ? "/images/logo-light.png" : "/images/logo.png"}
+              src="/images/logo.png"
               alt="Hasali Cosmetology Clinic & Salon"
               width={160}
               height={44}
@@ -127,27 +125,23 @@ export default function SiteNav() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "0.8125rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.01em",
-                  color: isTransparent
-                    ? "rgba(255,255,255,0.88)"
-                    : pathname === item.href
-                    ? "var(--color-sage)"
+                  fontWeight: 600,
+                  letterSpacing: "0.02em",
+                  color: pathname === item.href
+                    ? "var(--color-gold-dark)"
                     : "var(--color-espresso)",
                   transition: "color 0.2s ease",
                   paddingBottom: "0.125rem",
                   borderBottom:
-                    !isTransparent && pathname === item.href
-                      ? "1px solid var(--color-sage)"
-                      : "1px solid transparent",
+                    pathname === item.href
+                      ? "2px solid var(--color-gold-light)"
+                      : "2px solid transparent",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = isTransparent ? "#fff" : "var(--color-sage)";
+                  (e.currentTarget as HTMLElement).style.color = "var(--color-gold-dark)";
                 }}
                 onMouseLeave={(e) => {
-                  if (isTransparent) {
-                    (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.88)";
-                  } else if (pathname !== item.href) {
+                  if (pathname !== item.href) {
                     (e.currentTarget as HTMLElement).style.color = "var(--color-espresso)";
                   }
                 }}
@@ -160,7 +154,7 @@ export default function SiteNav() {
               href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              className={isTransparent ? "btn-ghost-ivory" : "btn-ghost"}
+              className="btn-gold"
               style={{ padding: "0.55rem 1.25rem", fontSize: "0.78rem" }}
             >
               Book an Appointment
@@ -172,7 +166,7 @@ export default function SiteNav() {
             <a
               href={TEL_HREF}
               aria-label={`Call ${PHONE_DISPLAY}`}
-              style={{ color: isTransparent ? "rgba(255,255,255,0.9)" : "var(--color-espresso)", display: "flex" }}
+              style={{ color: "var(--color-gold-dark)", display: "flex" }}
             >
               <Phone size={18} strokeWidth={1.5} />
             </a>
@@ -184,7 +178,7 @@ export default function SiteNav() {
                 background: "none",
                 border: "none",
                 cursor: "pointer",
-                color: isTransparent ? "rgba(255,255,255,0.9)" : "var(--color-espresso)",
+                color: "var(--color-espresso)",
                 display: "flex",
               }}
             >

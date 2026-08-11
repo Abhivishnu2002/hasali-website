@@ -83,12 +83,13 @@ export default function SiteFooter() {
   };
 
   return (
-    <footer style={{ backgroundColor: "var(--color-espresso)", color: "var(--color-ivory)" }}>
+    <footer style={{ backgroundColor: "#fdfbf7", color: "var(--color-espresso)", borderTop: "2px solid rgba(197, 160, 89, 0.3)" }}>
       {/* ── Newsletter top band ── */}
       <div
         style={{
-          borderBottom: "1px solid rgba(253,249,244,0.08)",
+          borderBottom: "1px solid rgba(197, 160, 89, 0.2)",
           paddingBlock: "2.5rem",
+          backgroundColor: "#faf5ea",
         }}
       >
         <div
@@ -107,20 +108,20 @@ export default function SiteFooter() {
                 fontFamily: "var(--font-serif)",
                 fontWeight: 400,
                 fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
-                color: "#fff",
+                color: "var(--color-espresso)",
                 letterSpacing: "-0.02em",
                 marginBottom: "0.375rem",
               }}
             >
-              Stay Beautiful
+              Stay Luminous & Glowing
             </h3>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "rgba(253,249,244,0.5)", margin: 0 }}>
-              Beauty tips, seasonal offers, and clinic updates — delivered gently.
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "var(--color-espresso-soft)", margin: 0 }}>
+              Beauty insights, clinical updates, and bespoke care offers.
             </p>
           </div>
 
           {subscribed ? (
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "var(--color-sage-light)", margin: 0 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", color: "var(--color-gold-dark)", fontWeight: 600, margin: 0 }}>
               ✓ Thank you — you're subscribed!
             </p>
           ) : (
@@ -138,21 +139,21 @@ export default function SiteFooter() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "0.875rem",
-                  backgroundColor: "rgba(253,249,244,0.07)",
-                  border: "1px solid rgba(253,249,244,0.15)",
-                  borderRadius: "4px",
+                  backgroundColor: "#ffffff",
+                  border: "1.5px solid rgba(197, 160, 89, 0.4)",
+                  borderRadius: "6px",
                   padding: "0.75rem 1.25rem",
-                  color: "#fff",
+                  color: "var(--color-espresso)",
                   outline: "none",
                   minWidth: "min(220px, 100%)",
                   transition: "border-color 0.2s",
                 }}
-                onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(122,155,112,0.6)")}
-                onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(253,249,244,0.15)")}
+                onFocus={(e) => (e.currentTarget.style.borderColor = "#d4af37")}
+                onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(197, 160, 89, 0.4)")}
               />
               <button
                 type="submit"
-                className="btn-sage"
+                className="btn-gold"
                 style={{ padding: "0.75rem 1.5rem", fontSize: "0.8rem" }}
               >
                 Subscribe
@@ -167,16 +168,19 @@ export default function SiteFooter() {
         <div className="footer-grid">
           {/* Brand column */}
           <div>
-            <Link href="/" aria-label="Hasali — home" style={{ display: "inline-block", marginBottom: "1.25rem" }}>
+            <Link href="/" aria-label="Hasali — home" style={{ display: "inline-block", marginBottom: "1rem" }}>
               <Image
-                src="/images/logo-light.png"
+                src="/images/logo.png"
                 alt="Hasali Cosmetology Clinic & Salon"
                 width={160}
                 height={44}
                 style={{ height: "2.4rem", width: "auto", objectFit: "contain" }}
               />
             </Link>
-            <p style={{ fontSize: "0.875rem", lineHeight: 1.7, color: "rgba(253,249,244,0.5)", maxWidth: "22ch", marginBottom: "1.5rem" }}>
+            <div style={{ fontFamily: "var(--font-sans)", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-gold-dark)", marginBottom: "1.25rem" }}>
+              Cosmetology Clinic & Salon
+            </div>
+            <p style={{ fontSize: "0.875rem", lineHeight: 1.7, color: "var(--color-espresso-soft)", maxWidth: "24ch", marginBottom: "1.5rem" }}>
               {BRAND.tagline}. Kochi's premier unisex cosmetology clinic.
             </p>
 
@@ -191,20 +195,23 @@ export default function SiteFooter() {
                   width: "2.25rem",
                   height: "2.25rem",
                   borderRadius: "50%",
-                  border: "1px solid rgba(253,249,244,0.2)",
+                  border: "1.5px solid rgba(197, 160, 89, 0.4)",
+                  backgroundColor: "#ffffff",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "rgba(253,249,244,0.6)",
+                  color: "var(--color-gold-dark)",
                   transition: "all 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(253,249,244,0.6)";
-                  (e.currentTarget as HTMLElement).style.color = "#fff";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#d4af37";
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "#d4af37";
+                  (e.currentTarget as HTMLElement).style.color = "#000";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(253,249,244,0.2)";
-                  (e.currentTarget as HTMLElement).style.color = "rgba(253,249,244,0.6)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(197, 160, 89, 0.4)";
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "#ffffff";
+                  (e.currentTarget as HTMLElement).style.color = "var(--color-gold-dark)";
                 }}
               >
                 <InstagramIcon size={15} strokeWidth={1.5} />
@@ -218,20 +225,23 @@ export default function SiteFooter() {
                   width: "2.25rem",
                   height: "2.25rem",
                   borderRadius: "50%",
-                  border: "1px solid rgba(253,249,244,0.2)",
+                  border: "1.5px solid rgba(197, 160, 89, 0.4)",
+                  backgroundColor: "#ffffff",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "rgba(253,249,244,0.6)",
+                  color: "var(--color-gold-dark)",
                   transition: "all 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(253,249,244,0.6)";
-                  (e.currentTarget as HTMLElement).style.color = "#fff";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#d4af37";
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "#d4af37";
+                  (e.currentTarget as HTMLElement).style.color = "#000";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(253,249,244,0.2)";
-                  (e.currentTarget as HTMLElement).style.color = "rgba(253,249,244,0.6)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(197, 160, 89, 0.4)";
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "#ffffff";
+                  (e.currentTarget as HTMLElement).style.color = "var(--color-gold-dark)";
                 }}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -245,24 +255,24 @@ export default function SiteFooter() {
           {LOCATIONS.map((loc) => (
             <FooterAccordion key={loc.id} title={loc.shortName}>
               <div style={{ display: "flex", gap: "0.625rem", marginBottom: "0.75rem" }}>
-                <MapPin size={13} strokeWidth={1.5} style={{ color: "var(--color-sage-light)", flexShrink: 0, marginTop: "0.15rem" }} />
-                <address style={{ fontStyle: "normal", fontSize: "0.8125rem", lineHeight: 1.6, color: "rgba(253,249,244,0.6)" }}>
+                <MapPin size={15} strokeWidth={1.75} style={{ color: "var(--color-gold-dark)", flexShrink: 0, marginTop: "0.15rem" }} />
+                <address style={{ fontStyle: "normal", fontSize: "0.8125rem", lineHeight: 1.6, color: "var(--color-espresso-soft)", fontWeight: 500 }}>
                   {loc.address.street}<br />
                   {loc.address.area}, {loc.address.city}<br />
                   {loc.address.state} {loc.address.pincode}
                 </address>
               </div>
-              <div style={{ display: "flex", gap: "0.625rem", alignItems: "center", marginBottom: "0.375rem" }}>
-                <Phone size={12} strokeWidth={1.5} style={{ color: "var(--color-sage-light)", flexShrink: 0 }} />
-                <a href={TEL_HREF} style={{ fontSize: "0.8125rem", color: "rgba(253,249,244,0.6)", transition: "color 0.2s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(253,249,244,0.6)")}>
+              <div style={{ display: "flex", gap: "0.625rem", alignItems: "center", marginBottom: "0.5rem" }}>
+                <Phone size={14} strokeWidth={1.75} style={{ color: "var(--color-gold-dark)", flexShrink: 0 }} />
+                <a href={TEL_HREF} style={{ fontSize: "0.8125rem", color: "var(--color-gold-dark)", fontWeight: 600, transition: "color 0.2s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#000")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-gold-dark)")}>
                   {PHONE_DISPLAY}
                 </a>
               </div>
-              <p style={{ fontSize: "0.75rem", color: "rgba(253,249,244,0.35)", marginBottom: "0.75rem" }}>{loc.hours}</p>
+              <p style={{ fontSize: "0.75rem", color: "rgba(26,23,20,0.5)", marginBottom: "0.75rem" }}>{loc.hours}</p>
               <a href={loc.mapsUrl} target="_blank" rel="noopener noreferrer"
-                style={{ fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--color-gold-light)", borderBottom: "1px solid rgba(197,160,89,0.4)", paddingBottom: "0.1rem", transition: "color 0.2s" }}>
+                style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--color-gold-dark)", borderBottom: "1.5px solid var(--color-gold-light)", paddingBottom: "0.1rem", transition: "color 0.2s" }}>
                 Get Directions →
               </a>
             </FooterAccordion>
@@ -275,9 +285,9 @@ export default function SiteFooter() {
                 {NAV_ITEMS.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href}
-                      style={{ fontSize: "0.8125rem", color: "rgba(253,249,244,0.55)", transition: "color 0.2s" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(253,249,244,0.55)")}>
+                      style={{ fontSize: "0.8125rem", color: "var(--color-espresso-soft)", fontWeight: 500, transition: "color 0.2s" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-gold-dark)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-espresso-soft)")}>
                       {item.label}
                     </Link>
                   </li>
@@ -285,7 +295,7 @@ export default function SiteFooter() {
               </ul>
             </nav>
             <div style={{ marginTop: "1.5rem" }}>
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-ghost-ivory" style={{ fontSize: "0.72rem", padding: "0.6rem 1.125rem" }}>
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ fontSize: "0.72rem", padding: "0.6rem 1.125rem" }}>
                 Book an Appointment
               </a>
             </div>
@@ -301,14 +311,14 @@ export default function SiteFooter() {
             alignItems: "center",
             gap: "0.75rem",
             paddingTop: "1.5rem",
-            borderTop: "1px solid rgba(253,249,244,0.08)",
+            borderTop: "1px solid rgba(197, 160, 89, 0.2)",
             marginTop: "3rem",
           }}
         >
-          <p style={{ fontSize: "0.75rem", color: "rgba(253,249,244,0.28)", margin: 0 }}>
+          <p style={{ fontSize: "0.75rem", color: "var(--color-espresso-soft)", opacity: 0.7, margin: 0 }}>
             © {new Date().getFullYear()} {BRAND.fullName}. Est. {BRAND.established}.
           </p>
-          <p style={{ fontSize: "0.75rem", color: "rgba(253,249,244,0.2)", margin: 0 }}>
+          <p style={{ fontSize: "0.75rem", color: "var(--color-gold-dark)", fontWeight: 500, margin: 0 }}>
             ISO 9001:2015 Certified · Business Excellence Award 2023
           </p>
         </div>
@@ -322,7 +332,7 @@ export default function SiteFooter() {
         }
         @media (max-width: 639px) {
           .footer-grid { grid-template-columns: 1fr; gap: 0; }
-          .footer-accordion { border-bottom: 1px solid rgba(253,249,244,0.07); padding-block: 0.25rem; }
+          .footer-accordion { border-bottom: 1px solid rgba(197, 160, 89, 0.15); padding-block: 0.25rem; }
           .footer-accordion-mobile  { display: block !important; }
           .footer-accordion-desktop { display: none !important; }
           .footer-chevron { display: block; }

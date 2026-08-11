@@ -59,17 +59,17 @@ export default function ResultsPage() {
           paddingTop: "calc(4.5rem + clamp(3rem, 6vw, 5rem))",
           paddingBottom: "clamp(3rem, 6vw, 5rem)",
           paddingInline: "var(--section-pad-x)",
-          backgroundColor: "var(--color-ivory)",
-          borderBottom: "1px solid rgba(35,31,28,0.08)",
+          backgroundColor: "#faf7f2",
+          borderBottom: "1px solid rgba(197, 160, 89, 0.25)",
         }}
       >
         <div className="container">
           <SectionReveal>
-            <span className="eyebrow">Gallery</span>
+            <span className="eyebrow" style={{ color: "var(--color-gold-dark)" }}>Gallery</span>
             <div className="rule-gold" />
             <h1
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
+                fontFamily: "var(--font-serif)",
                 fontWeight: 400,
                 fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 letterSpacing: "-0.03em",
@@ -88,6 +88,7 @@ export default function ResultsPage() {
                 color: "var(--color-espresso-soft)",
                 maxWidth: "50ch",
                 marginBottom: "0.75rem",
+                fontWeight: 500,
               }}
             >
               A look inside Hasali — our interiors, styling stations, and consultation spaces across both Kochi locations.
@@ -96,10 +97,13 @@ export default function ResultsPage() {
               style={{
                 fontSize: "0.8125rem",
                 color: "var(--color-gold-dark)",
-                padding: "0.5rem 0.875rem",
-                border: "1px dashed var(--color-gold)",
+                padding: "0.6rem 1rem",
+                backgroundColor: "#fdfaf2",
+                border: "1px solid #d4af37",
+                borderRadius: "8px",
                 display: "inline-block",
                 letterSpacing: "0.04em",
+                fontWeight: 600,
               }}
             >
               ✦ Client treatment photos and before/after results coming soon — check our Instagram for the latest work.
@@ -111,14 +115,14 @@ export default function ResultsPage() {
       {/* Gallery grid */}
       <section
         className="section-pad"
-        style={{ backgroundColor: "var(--color-ivory)" }}
+        style={{ backgroundColor: "#fdfbf7" }}
       >
         <div className="container">
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "4px",
+              gap: "6px",
             }}
             className="gallery-grid"
           >
@@ -134,6 +138,8 @@ export default function ResultsPage() {
                     position: "relative",
                     aspectRatio: item.span === 2 ? "16/9" : "4/5",
                     overflow: "hidden",
+                    borderRadius: "12px",
+                    border: "1px solid rgba(197, 160, 89, 0.2)",
                   }}
                 >
                   <Image
@@ -189,20 +195,21 @@ export default function ResultsPage() {
       {/* CTA */}
       <section
         style={{
-          backgroundColor: "var(--color-espresso)",
+          backgroundColor: "#faf5ea",
           paddingBlock: "3.5rem",
           textAlign: "center",
+          borderTop: "1px solid rgba(197, 160, 89, 0.25)",
         }}
       >
         <div className="container">
           <SectionReveal>
             <h2
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
+                fontFamily: "var(--font-serif)",
                 fontWeight: 400,
                 fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
                 letterSpacing: "-0.02em",
-                color: "var(--color-ivory)",
+                color: "var(--color-espresso)",
                 marginBottom: "1.5rem",
               }}
             >
@@ -212,7 +219,7 @@ export default function ResultsPage() {
               href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-ghost-ivory"
+              className="btn-gold"
             >
               <MessageCircle size={15} strokeWidth={1.5} />
               Book on WhatsApp

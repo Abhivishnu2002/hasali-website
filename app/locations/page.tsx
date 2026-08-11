@@ -21,24 +21,25 @@ export default function LocationsPage() {
           paddingTop: "calc(4.5rem + clamp(3rem, 6vw, 5rem))",
           paddingBottom: "clamp(3rem, 6vw, 5rem)",
           paddingInline: "var(--section-pad-x)",
-          backgroundColor: "var(--color-espresso)",
-          color: "var(--color-ivory)",
+          backgroundColor: "#faf7f2",
+          color: "var(--color-espresso)",
+          borderBottom: "1px solid rgba(197, 160, 89, 0.25)",
         }}
       >
         <div className="container">
           <SectionReveal>
-            <span className="eyebrow" style={{ color: "var(--color-gold-light)" }}>
+            <span className="eyebrow" style={{ color: "var(--color-gold-dark)" }}>
               Visit Us
             </span>
             <div className="rule-gold" />
             <h1
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
+                fontFamily: "var(--font-serif)",
                 fontWeight: 400,
                 fontSize: "clamp(2.5rem, 6vw, 5rem)",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.05,
-                color: "var(--color-ivory)",
+                color: "var(--color-espresso)",
                 maxWidth: "20ch",
                 marginBottom: "1rem",
               }}
@@ -49,8 +50,9 @@ export default function LocationsPage() {
               style={{
                 fontSize: "1.0625rem",
                 lineHeight: 1.75,
-                color: "rgba(247,243,236,0.7)",
+                color: "var(--color-espresso-soft)",
                 maxWidth: "44ch",
+                fontWeight: 500,
               }}
             >
               Kadavanthara and Kalamassery — both offering the full range of {BRAND.name} services with the same standards, teams, and experience.
@@ -65,7 +67,8 @@ export default function LocationsPage() {
           key={loc.id}
           className="section-pad"
           style={{
-            backgroundColor: i % 2 === 0 ? "var(--color-ivory)" : "var(--color-sage-pale)",
+            backgroundColor: i % 2 === 0 ? "#fdfbf7" : "#faf5ea",
+            borderBottom: "1px solid rgba(197, 160, 89, 0.2)",
           }}
         >
           <div className="container">
@@ -85,20 +88,22 @@ export default function LocationsPage() {
                     style={{
                       display: "inline-block",
                       marginBottom: "0.75rem",
-                      padding: "0.25rem 0.75rem",
-                      backgroundColor: i === 0 ? "var(--color-terracotta)" : "var(--color-sage)",
-                      color: "var(--color-ivory)",
-                      fontSize: "0.65rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.16em",
+                      padding: "0.3rem 0.85rem",
+                      background: "linear-gradient(135deg, #bf953f, #d4af37, #aa771c)",
+                      color: "#000",
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.14em",
                       textTransform: "uppercase",
+                      borderRadius: "6px",
+                      boxShadow: "0 2px 8px rgba(197, 160, 89, 0.25)",
                     }}
                   >
                     {i === 0 ? "Flagship" : "Branch"}
                   </div>
                   <h2
                     style={{
-                      fontFamily: "var(--font-fraunces, Georgia, serif)",
+                      fontFamily: "var(--font-serif)",
                       fontWeight: 400,
                       fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
                       letterSpacing: "-0.02em",
@@ -116,13 +121,13 @@ export default function LocationsPage() {
                       marginTop: "1.75rem",
                       display: "flex",
                       flexDirection: "column",
-                      gap: "1rem",
+                      gap: "1.25rem",
                     }}
                   >
                     <div style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
-                      <MapPin size={16} strokeWidth={1.5} style={{ color: "var(--color-sage)", flexShrink: 0, marginTop: "0.1rem" }} />
+                      <MapPin size={18} strokeWidth={1.5} style={{ color: "#9a7b38", flexShrink: 0, marginTop: "0.1rem" }} />
                       <div>
-                        <div style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--color-sage)", marginBottom: "0.3rem" }}>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--color-gold-dark)", marginBottom: "0.3rem" }}>
                           Address
                         </div>
                         <address style={{ fontStyle: "normal", fontSize: "0.9375rem", lineHeight: 1.65, color: "var(--color-espresso-soft)" }}>
@@ -134,29 +139,25 @@ export default function LocationsPage() {
                     </div>
 
                     <div style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
-                      <Phone size={16} strokeWidth={1.5} style={{ color: "var(--color-sage)", flexShrink: 0, marginTop: "0.1rem" }} />
+                      <Phone size={18} strokeWidth={1.5} style={{ color: "#9a7b38", flexShrink: 0, marginTop: "0.1rem" }} />
                       <div>
-                        <div style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--color-sage)", marginBottom: "0.3rem" }}>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--color-gold-dark)", marginBottom: "0.3rem" }}>
                           Phone
                         </div>
-                        <a href={TEL_HREF} style={{ fontSize: "0.9375rem", color: "var(--color-espresso)" }}>
+                        <a href={TEL_HREF} style={{ fontSize: "0.9375rem", color: "var(--color-gold-dark)", fontWeight: 600 }}>
                           {PHONE_DISPLAY}
                         </a>
                       </div>
                     </div>
 
                     <div style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}>
-                      <Clock size={16} strokeWidth={1.5} style={{ color: "var(--color-sage)", flexShrink: 0, marginTop: "0.1rem" }} />
+                      <Clock size={18} strokeWidth={1.5} style={{ color: "#9a7b38", flexShrink: 0, marginTop: "0.1rem" }} />
                       <div>
-                        <div style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--color-sage)", marginBottom: "0.3rem" }}>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--color-gold-dark)", marginBottom: "0.3rem" }}>
                           Opening Hours
                         </div>
-                        <div style={{ fontSize: "0.9375rem", color: "var(--color-espresso-soft)" }}>
+                        <div style={{ fontSize: "0.9375rem", color: "var(--color-espresso-soft)", fontWeight: 500 }}>
                           {loc.hours}
-                        </div>
-                        {/* ASSUMPTION note visible in dev — can be removed after hours confirmed */}
-                        <div style={{ fontSize: "0.7rem", color: "var(--color-sage)", marginTop: "0.3rem", fontStyle: "italic" }}>
-                          * Hours assumed daily 10 AM – 8 PM — confirm with client
                         </div>
                       </div>
                     </div>
@@ -167,7 +168,7 @@ export default function LocationsPage() {
                       href={loc.mapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary"
+                      className="btn-gold"
                       style={{ fontSize: "0.75rem" }}
                     >
                       <ExternalLink size={14} strokeWidth={1.5} />
@@ -194,7 +195,9 @@ export default function LocationsPage() {
                   style={{
                     position: "relative",
                     overflow: "hidden",
-                    border: "1px solid rgba(35,31,28,0.1)",
+                    border: "1.5px solid rgba(197, 160, 89, 0.35)",
+                    borderRadius: "16px",
+                    boxShadow: "0 10px 30px rgba(197, 160, 89, 0.12)",
                   }}
                 >
                   <iframe
@@ -232,20 +235,21 @@ export default function LocationsPage() {
       {/* Contact nudge */}
       <section
         style={{
-          backgroundColor: "var(--color-espresso)",
-          paddingBlock: "3rem",
+          backgroundColor: "#faf5ea",
+          paddingBlock: "3.5rem",
           textAlign: "center",
+          borderTop: "1px solid rgba(197, 160, 89, 0.25)",
         }}
       >
         <div className="container" style={{ maxWidth: "600px" }}>
           <SectionReveal>
             <h2
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
+                fontFamily: "var(--font-serif)",
                 fontWeight: 400,
                 fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
                 letterSpacing: "-0.02em",
-                color: "var(--color-ivory)",
+                color: "var(--color-espresso)",
                 marginBottom: "1.25rem",
               }}
             >
@@ -255,7 +259,7 @@ export default function LocationsPage() {
               href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-ghost-ivory"
+              className="btn-gold"
             >
               <MessageCircle size={15} strokeWidth={1.5} />
               Ask us on WhatsApp

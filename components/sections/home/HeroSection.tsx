@@ -71,9 +71,10 @@ export default function HeroSection() {
         display: "flex",
         flexDirection: "column",
         paddingTop: "6.375rem",
+        backgroundColor: "#faf7f2",
       }}
     >
-      {/* ── Scroll Parallax Background Video (ad_01_web.mp4) ── */}
+      {/* ── Scroll Parallax Ambient Video / Image Background ── */}
       <motion.div
         style={{
           position: "absolute",
@@ -82,6 +83,7 @@ export default function HeroSection() {
           y: bgFarY,
           scale: bgScale,
           zIndex: 0,
+          opacity: 0.85,
         }}
       >
         <video
@@ -106,28 +108,21 @@ export default function HeroSection() {
             height: "100%",
             objectFit: "cover",
             objectPosition: "center 35%",
+            filter: "brightness(0.95) contrast(1.05)",
           }}
         >
           <source src="/images/ad_01_web.mp4#t=5" type="video/mp4" />
         </video>
       </motion.div>
 
-      {/* ── Gradient overlays for contrast and readability ── */}
+      {/* ── Transparent warm gold & soft ivory vignette overlay ── */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          zIndex: 2,
+          zIndex: 1,
           background:
-            "linear-gradient(to top, rgba(10,8,6,0.85) 0%, rgba(10,8,6,0.48) 50%, rgba(10,8,6,0.25) 100%)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 2,
-          background: "linear-gradient(to right, rgba(10,8,6,0.5) 0%, transparent 60%)",
+            "linear-gradient(to right, rgba(253, 251, 247, 0.72) 0%, rgba(253, 251, 247, 0.35) 50%, rgba(253, 251, 247, 0.65) 100%), radial-gradient(ellipse at top left, rgba(212, 175, 55, 0.25) 0%, transparent 60%)",
         }}
       />
 
@@ -140,8 +135,8 @@ export default function HeroSection() {
           flex: 1,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-end",
-          paddingBottom: "clamp(3rem, 6vw, 5rem)",
+          justifyContent: "center",
+          paddingBlock: "clamp(2rem, 5vw, 4rem)",
         }}
       >
         {/* Social proof row */}
@@ -150,7 +145,7 @@ export default function HeroSection() {
           initial="hidden"
           animate="show"
           custom={0.1}
-          style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem", flexWrap: "wrap" }}
+          style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem", flexWrap: "wrap" }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
             <div className="avatar-stack">
@@ -167,7 +162,8 @@ export default function HeroSection() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "0.7rem",
-                  color: "rgba(255,255,255,0.62)",
+                  color: "var(--color-gold-dark)",
+                  fontWeight: 600,
                   letterSpacing: "0.02em",
                 }}
               >
@@ -175,18 +171,18 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
-          <div className="hero-social-divider" style={{ width: "1px", height: "2rem", backgroundColor: "rgba(255,255,255,0.25)" }} />
+          <div className="hero-social-divider" style={{ width: "1px", height: "2rem", backgroundColor: "rgba(197,160,89,0.3)" }} />
           <p
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "0.8125rem",
-              color: "rgba(255,255,255,0.78)",
-              fontWeight: 400,
+              color: "var(--color-espresso-soft)",
+              fontWeight: 500,
               margin: 0,
               maxWidth: "none",
             }}
           >
-            <strong style={{ color: "#fff", fontWeight: 600 }}>2,000+</strong>{" "}
+            <strong style={{ color: "var(--color-espresso)", fontWeight: 700 }}>2,000+</strong>{" "}
             clients trust Hasali across Kochi
           </p>
         </motion.div>
@@ -201,16 +197,16 @@ export default function HeroSection() {
               initial="hidden"
               animate="show"
               custom={0.15}
-              style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1.25rem" }}
+              style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1rem" }}
             >
               <span
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "0.7rem",
-                  fontWeight: 500,
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.5)",
+                  color: "var(--color-gold-dark)",
                 }}
               >
                 Now offering
@@ -233,11 +229,11 @@ export default function HeroSection() {
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "0.7rem",
-                      fontWeight: 600,
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      color: "var(--color-brass-light)",
+                      color: "#b8860b",
                       display: "inline-block",
                     }}
                   >
@@ -247,26 +243,46 @@ export default function HeroSection() {
               </span>
             </motion.div>
 
-            <motion.h1
+            {/* HASALI Header matching Screenshot flyer */}
+            <motion.div
               variants={fadeUp}
               initial="hidden"
               animate="show"
               custom={0.2}
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontWeight: 400,
-                fontSize: "clamp(2.15rem, 6.5vw, 6.5rem)",
-                letterSpacing: "-0.03em",
-                lineHeight: 1.0,
-                color: "#fff",
-                marginBottom: "1.25rem",
-                maxWidth: "14ch",
-                overflowWrap: "break-word",
-                wordBreak: "break-word",
-              }}
+              style={{ marginBottom: "1rem" }}
             >
-              Your Weekly Ritual of Beauty & Glow
-            </motion.h1>
+              <h1
+                className="text-gold-gradient"
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontWeight: 400,
+                  fontSize: "clamp(3.5rem, 9vw, 8.5rem)",
+                  letterSpacing: "0.02em",
+                  lineHeight: 0.95,
+                  margin: "0 0 0.5rem 0",
+                  overflowWrap: "break-word",
+                  wordBreak: "break-word",
+                }}
+              >
+                HASALI
+              </h1>
+              <div
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "clamp(0.75rem, 1.8vw, 1.125rem)",
+                  fontWeight: 600,
+                  letterSpacing: "0.26em",
+                  textTransform: "uppercase",
+                  color: "#9a7b38",
+                  marginBottom: "1rem",
+                }}
+              >
+                Cosmetology Clinic & Salon
+              </div>
+
+              {/* Decorative Flyer Diamond Rule */}
+              <div className="diamond-rule" style={{ maxWidth: "260px" }}><span /></div>
+            </motion.div>
 
             <motion.p
               variants={fadeUp}
@@ -275,14 +291,14 @@ export default function HeroSection() {
               custom={0.35}
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)",
+                fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)",
                 lineHeight: 1.65,
-                color: "rgba(255,255,255,0.72)",
-                maxWidth: "42ch",
-                marginBottom: "2.25rem",
+                color: "var(--color-espresso-soft)",
+                maxWidth: "46ch",
+                marginBottom: "2rem",
               }}
             >
-              Kochi's premier cosmetology clinic — where medical-grade skin science meets artisan beauty. ISO 9001:2015 certified.
+              Kochi's premier unisex cosmetology clinic — where medical-grade skin science meets artisan beauty. ISO 9001:2015 certified.
             </motion.p>
 
             <motion.div
@@ -303,7 +319,7 @@ export default function HeroSection() {
               </a>
               <a
                 href="/services"
-                className="btn-ghost-ivory"
+                className="btn-ghost"
                 style={{ fontSize: "0.875rem", padding: "0.875rem 2rem" }}
               >
                 Explore Services
@@ -311,7 +327,7 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: floating glassmorphic service card */}
+          {/* Right: floating luxury white-gold glass service card */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -321,15 +337,15 @@ export default function HeroSection() {
           >
             <div
               style={{
-                background: "rgba(255, 255, 255, 0.1)",
+                background: "rgba(255, 255, 255, 0.92)",
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
+                border: "1.5px solid rgba(197, 160, 89, 0.35)",
                 borderRadius: "20px",
-                padding: "1.5rem",
+                padding: "1.75rem",
                 width: "100%",
-                maxWidth: "320px",
-                boxShadow: "0 24px 48px rgba(0, 0, 0, 0.3)",
+                maxWidth: "340px",
+                boxShadow: "0 20px 48px rgba(197, 160, 89, 0.16)",
               }}
             >
               {/* Rotating service preview */}
@@ -337,11 +353,11 @@ export default function HeroSection() {
                 <span
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "0.65rem",
+                    fontSize: "0.68rem",
                     fontWeight: 600,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "var(--color-brass-light)",
+                    color: "var(--color-gold-dark)",
                     display: "block",
                     marginBottom: "0.5rem",
                   }}
@@ -359,7 +375,7 @@ export default function HeroSection() {
                       fontFamily: "var(--font-serif)",
                       fontSize: "1.375rem",
                       fontWeight: 400,
-                      color: "#fff",
+                      color: "var(--color-espresso)",
                       margin: 0,
                       lineHeight: 1.2,
                     }}
@@ -380,7 +396,7 @@ export default function HeroSection() {
                       width: activeService === i ? "1.5rem" : "0.4rem",
                       height: "0.4rem",
                       borderRadius: "999px",
-                      backgroundColor: activeService === i ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.3)",
+                      backgroundColor: activeService === i ? "var(--color-gold-dark)" : "rgba(197, 160, 89, 0.3)",
                       border: "none",
                       cursor: "pointer",
                       padding: 0,
@@ -391,20 +407,20 @@ export default function HeroSection() {
               </div>
 
               {/* Divider */}
-              <div style={{ height: "1px", backgroundColor: "rgba(255,255,255,0.15)", marginBottom: "1.25rem" }} />
+              <div style={{ height: "1px", backgroundColor: "rgba(197,160,89,0.25)", marginBottom: "1.25rem" }} />
 
               {/* Credentials */}
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.6)" }}>✦</span>
-                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "rgba(255,255,255,0.7)" }}>
+                  <span style={{ fontSize: "0.6rem", color: "var(--color-gold-dark)" }}>✦</span>
+                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.78rem", color: "var(--color-espresso)", fontWeight: 500 }}>
                     ISO 9001:2015 Certified
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.6)" }}>✦</span>
-                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "rgba(255,255,255,0.7)" }}>
-                    Business Excellence Award 2023
+                  <span style={{ fontSize: "0.6rem", color: "var(--color-gold-dark)" }}>✦</span>
+                  <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.78rem", color: "var(--color-espresso)", fontWeight: 500 }}>
+                    Kadavanthra & Kalamassery
                   </span>
                 </div>
               </div>

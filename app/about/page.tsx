@@ -37,17 +37,19 @@ export default function AboutPage() {
       {/* Hero */}
       <section
         style={{
-          paddingTop: "4.5rem",
-          backgroundColor: "var(--color-espresso)",
-          color: "var(--color-ivory)",
+          paddingTop: "calc(4.5rem + clamp(2rem, 4vw, 3.5rem))",
+          paddingBottom: "clamp(2rem, 4vw, 3.5rem)",
+          backgroundColor: "#faf7f2",
+          color: "var(--color-espresso)",
           overflow: "hidden",
+          borderBottom: "1px solid rgba(197, 160, 89, 0.25)",
         }}
       >
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "1fr",
-            minHeight: "70vh",
+            minHeight: "65vh",
           }}
           className="about-hero-grid"
         >
@@ -56,23 +58,23 @@ export default function AboutPage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "flex-end",
+              justifyContent: "center",
               padding: "clamp(3rem,6vw,6rem) var(--section-pad-x)",
             }}
           >
             <SectionReveal>
-              <span className="eyebrow" style={{ color: "var(--color-gold-light)" }}>
+              <span className="eyebrow" style={{ color: "var(--color-gold-dark)" }}>
                 Our Story
               </span>
               <div className="rule-gold" />
               <h1
                 style={{
-                  fontFamily: "var(--font-fraunces, Georgia, serif)",
+                  fontFamily: "var(--font-serif)",
                   fontWeight: 400,
-                  fontSize: "clamp(2.5rem, 6vw, 5rem)",
+                  fontSize: "clamp(2.5rem, 5.5vw, 4.75rem)",
                   letterSpacing: "-0.03em",
                   lineHeight: 1.05,
-                  color: "var(--color-ivory)",
+                  color: "var(--color-espresso)",
                   maxWidth: "18ch",
                   marginBottom: "1.25rem",
                 }}
@@ -83,9 +85,10 @@ export default function AboutPage() {
                 style={{
                   fontSize: "1.0625rem",
                   lineHeight: 1.75,
-                  color: "rgba(247,243,236,0.7)",
+                  color: "var(--color-espresso-soft)",
                   maxWidth: "44ch",
                   margin: 0,
+                  fontWeight: 500,
                 }}
               >
                 {BRAND.positioning}
@@ -97,19 +100,11 @@ export default function AboutPage() {
           <div style={{ position: "relative", overflow: "hidden", minHeight: "50vw" }} className="about-hero-img">
             <Image
               src="/images/pic6.jpg"
-              alt="Hasali cosmetology clinic reception — dark-wall backdrop with gold Hasali signage and pendant lights"
+              alt="Hasali cosmetology clinic reception"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               style={{ objectFit: "cover", objectPosition: "center" }}
               priority
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(to right, var(--color-espresso) 0%, transparent 30%)",
-              }}
-              className="about-vignette"
             />
           </div>
         </div>
@@ -117,24 +112,22 @@ export default function AboutPage() {
         <style>{`
           .about-hero-grid { grid-template-columns: 1fr; }
           .about-hero-img { min-height: 55vw; }
-          .about-vignette { display: none; }
           @media (min-width: 768px) {
             .about-hero-grid { grid-template-columns: 1fr 1fr; }
             .about-hero-img { min-height: unset; }
-            .about-vignette { display: block; }
           }
         `}</style>
       </section>
 
       {/* Founding Story */}
-      <section className="section-pad" style={{ backgroundColor: "var(--color-ivory)" }}>
+      <section className="section-pad" style={{ backgroundColor: "#fdfbf7" }}>
         <div className="container" style={{ maxWidth: "860px" }}>
           <SectionReveal>
-            <span className="eyebrow">Founded 2023</span>
+            <span className="eyebrow" style={{ color: "var(--color-gold-dark)" }}>Founded 2023</span>
             <div className="rule-gold" />
             <h2
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
+                fontFamily: "var(--font-serif)",
                 fontWeight: 400,
                 fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
                 letterSpacing: "-0.02em",
@@ -159,7 +152,7 @@ export default function AboutPage() {
       </section>
 
       {/* Credentials */}
-      <section style={{ backgroundColor: "var(--color-sage-pale)", paddingBlock: "3rem" }}>
+      <section style={{ backgroundColor: "#faf5ea", paddingBlock: "3.5rem", borderTop: "1px solid rgba(197, 160, 89, 0.2)", borderBottom: "1px solid rgba(197, 160, 89, 0.2)" }}>
         <div className="container">
           <div
             style={{
@@ -172,9 +165,11 @@ export default function AboutPage() {
               <SectionReveal key={c.id} delay={i * 0.1}>
                 <div
                   style={{
-                    border: "1px solid var(--color-sage-light)",
+                    border: "1.5px solid rgba(197, 160, 89, 0.35)",
+                    borderRadius: "14px",
                     padding: "2rem",
-                    backgroundColor: "var(--color-ivory)",
+                    backgroundColor: "#ffffff",
+                    boxShadow: "0 8px 24px rgba(197, 160, 89, 0.08)",
                     display: "flex",
                     gap: "1.25rem",
                     alignItems: "flex-start",
@@ -182,10 +177,11 @@ export default function AboutPage() {
                 >
                   <div
                     style={{
-                      width: "3px",
+                      width: "4px",
+                      borderRadius: "2px",
                       flexShrink: 0,
                       alignSelf: "stretch",
-                      backgroundColor: "var(--color-brass)",
+                      backgroundColor: "var(--color-gold-dark)",
                     }}
                   />
                   <div>
@@ -195,13 +191,13 @@ export default function AboutPage() {
                         fontWeight: 700,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: "var(--color-brass)",
+                        color: "var(--color-gold-dark)",
                         marginBottom: "0.4rem",
                       }}
                     >
                       {c.label}
                     </div>
-                    <div style={{ fontSize: "0.9375rem", lineHeight: 1.55, color: "var(--color-espresso-soft)" }}>
+                    <div style={{ fontSize: "0.9375rem", lineHeight: 1.55, color: "var(--color-espresso-soft)", fontWeight: 500 }}>
                       {c.description}
                     </div>
                   </div>
@@ -213,14 +209,14 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-pad" style={{ backgroundColor: "var(--color-ivory)" }}>
+      <section className="section-pad" style={{ backgroundColor: "#fdfbf7" }}>
         <div className="container">
           <SectionReveal>
-            <span className="eyebrow">What We Stand For</span>
+            <span className="eyebrow" style={{ color: "var(--color-gold-dark)" }}>What We Stand For</span>
             <div className="rule-gold" />
             <h2
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
+                fontFamily: "var(--font-serif)",
                 fontWeight: 400,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
                 letterSpacing: "-0.02em",
@@ -244,7 +240,7 @@ export default function AboutPage() {
                 <div>
                   <h3
                     style={{
-                      fontFamily: "var(--font-fraunces, Georgia, serif)",
+                      fontFamily: "var(--font-serif)",
                       fontSize: "1.25rem",
                       fontWeight: 400,
                       color: "var(--color-espresso)",
@@ -254,7 +250,7 @@ export default function AboutPage() {
                       gap: "0.75rem",
                     }}
                   >
-                    <span style={{ width: "1.5rem", height: "1px", backgroundColor: "var(--color-sage)", flexShrink: 0 }} />
+                    <span style={{ width: "1.5rem", height: "2px", backgroundColor: "#d4af37", flexShrink: 0 }} />
                     {v.label}
                   </h3>
                   <p style={{ fontSize: "0.9375rem", lineHeight: 1.75, color: "var(--color-espresso-soft)", margin: 0 }}>
@@ -288,28 +284,28 @@ export default function AboutPage() {
       {/* CTA */}
       <section
         className="section-pad"
-        style={{ backgroundColor: "var(--color-espresso)", textAlign: "center" }}
+        style={{ backgroundColor: "#faf5ea", textAlign: "center", borderTop: "1px solid rgba(197, 160, 89, 0.25)" }}
       >
         <div className="container" style={{ maxWidth: "600px" }}>
           <SectionReveal>
             <h2
               style={{
-                fontFamily: "var(--font-fraunces, Georgia, serif)",
+                fontFamily: "var(--font-serif)",
                 fontWeight: 400,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
                 letterSpacing: "-0.02em",
-                color: "var(--color-ivory)",
+                color: "var(--color-espresso)",
                 marginBottom: "1.5rem",
               }}
             >
               Come meet us in Kochi.
             </h2>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1rem" }}>
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-ghost-ivory">
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-gold">
                 <MessageCircle size={15} strokeWidth={1.5} />
                 Book on WhatsApp
               </a>
-              <Link href="/locations" className="btn-ghost-ivory">
+              <Link href="/locations" className="btn-ghost">
                 View Locations
               </Link>
             </div>

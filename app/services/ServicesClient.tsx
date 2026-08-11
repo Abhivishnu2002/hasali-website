@@ -170,14 +170,14 @@ export default function ServicesClient() {
                       rel="noopener noreferrer"
                       style={{
                         fontSize: "0.7rem",
-                        fontWeight: 500,
+                        fontWeight: 600,
                         letterSpacing: "0.1em",
                         textTransform: "uppercase",
-                        color: "var(--color-sage)",
+                        color: "var(--color-gold-dark)",
                         display: "inline-flex",
                         alignItems: "center",
                         gap: "0.4rem",
-                        borderBottom: "1px solid var(--color-sage-light)",
+                        borderBottom: "1.5px solid var(--color-gold-light)",
                         paddingBottom: "0.1rem",
                         minHeight: "44px",
                       }}
@@ -196,13 +196,13 @@ export default function ServicesClient() {
                   href={WA_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary"
+                  className="btn-gold"
                   style={{ fontSize: "0.75rem" }}
                 >
                   <MessageCircle size={14} strokeWidth={1.5} />
                   Book {cat.label} on WhatsApp
                 </a>
-                <span style={{ fontSize: "0.8rem", color: "var(--color-sage)", fontStyle: "italic" }}>
+                <span style={{ fontSize: "0.8rem", color: "var(--color-gold-dark)", fontStyle: "italic", fontWeight: 500 }}>
                   Consultation required · No price commitment
                 </span>
               </div>

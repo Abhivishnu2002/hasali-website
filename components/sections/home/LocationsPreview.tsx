@@ -265,7 +265,9 @@ export default function LocationsPreview() {
           >
             <div
               style={{
-                backgroundColor: "var(--color-dark-panel)",
+                backgroundColor: "#fdfaf2",
+                border: "1.5px solid rgba(197, 160, 89, 0.35)",
+                boxShadow: "0 10px 30px rgba(197, 160, 89, 0.12)",
                 borderRadius: "16px",
                 padding: "2rem",
                 display: "flex",
@@ -283,12 +285,12 @@ export default function LocationsPreview() {
                     justifyContent: "center",
                     width: "2rem",
                     height: "2rem",
-                    border: "1.5px solid rgba(255,255,255,0.2)",
+                    border: "1.5px solid #d4af37",
                     borderRadius: "6px",
                     fontFamily: "var(--font-sans)",
                     fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-gold-light)",
+                    fontWeight: 700,
+                    color: "var(--color-gold-dark)",
                     marginBottom: "1.25rem",
                   }}
                 >
@@ -299,7 +301,7 @@ export default function LocationsPreview() {
                     fontFamily: "var(--font-serif)",
                     fontWeight: 400,
                     fontSize: "clamp(1.1rem, 1.8vw, 1.5rem)",
-                    color: "#fff",
+                    color: "var(--color-espresso)",
                     letterSpacing: "-0.015em",
                     marginBottom: "0.75rem",
                     lineHeight: 1.2,
@@ -307,11 +309,11 @@ export default function LocationsPreview() {
                 >
                   {STEPS[3].title}
                 </h3>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", lineHeight: 1.65, color: "rgba(255,255,255,0.65)", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", lineHeight: 1.65, color: "var(--color-espresso-soft)", margin: 0 }}>
                   {STEPS[3].desc}
                 </p>
               </div>
-              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-ghost-ivory" style={{ alignSelf: "flex-start", fontSize: "0.8125rem" }}>
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ alignSelf: "flex-start", fontSize: "0.8125rem" }}>
                 Begin Your Journey →
               </a>
             </div>

@@ -47,8 +47,8 @@ export default function LoadingScreen() {
             position: "fixed",
             inset: 0,
             zIndex: 99999,
-            backgroundColor: "#0a0a0a",
-            color: "#ffffff",
+            backgroundColor: "#fdfbf7",
+            color: "var(--color-espresso)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -61,10 +61,10 @@ export default function LoadingScreen() {
           <div
             style={{
               position: "absolute",
-              width: "350px",
-              height: "350px",
+              width: "450px",
+              height: "450px",
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(197,160,89,0.18) 0%, rgba(10,10,10,0) 70%)",
+              background: "radial-gradient(circle, rgba(212,175,55,0.18) 0%, rgba(253,251,247,0) 70%)",
               pointerEvents: "none",
             }}
           />
@@ -82,12 +82,12 @@ export default function LoadingScreen() {
             }}
           >
             {/* Hasali Brand Logo */}
-            <div style={{ position: "relative", width: 140, height: 48 }}>
+            <div style={{ position: "relative", width: 160, height: 50 }}>
               <Image
-                src="/images/logo-light.png"
+                src="/images/logo.png"
                 alt="Hasali Cosmetology & Salon"
                 fill
-                sizes="140px"
+                sizes="160px"
                 style={{ objectFit: "contain" }}
                 priority
               />
@@ -96,16 +96,16 @@ export default function LoadingScreen() {
             {/* Subtitle / Tagline */}
             <div
               style={{
-                fontFamily: "var(--font-switzer), system-ui, sans-serif",
-                fontSize: "0.7rem",
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.75rem",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#c5a059",
-                fontWeight: 500,
+                color: "#9a7b38",
+                fontWeight: 600,
                 textAlign: "center",
               }}
             >
-              Cosmetology & Salon
+              Cosmetology Clinic & Salon
             </div>
 
             {/* Gold Progress Bar & Counter */}
@@ -123,9 +123,9 @@ export default function LoadingScreen() {
               <div
                 style={{
                   width: "100%",
-                  height: "2px",
-                  backgroundColor: "rgba(255, 255, 255, 0.12)",
-                  borderRadius: "2px",
+                  height: "3px",
+                  backgroundColor: "rgba(197, 160, 89, 0.2)",
+                  borderRadius: "3px",
                   overflow: "hidden",
                   position: "relative",
                 }}
@@ -135,7 +135,7 @@ export default function LoadingScreen() {
                   style={{
                     height: "100%",
                     width: `${progress}%`,
-                    background: "linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fbf5b7)",
+                    background: "linear-gradient(90deg, #bf953f, #d4af37, #aa771c)",
                     transition: "width 0.08s ease-out",
                     boxShadow: "0 0 10px rgba(197, 160, 89, 0.6)",
                   }}
@@ -149,12 +149,12 @@ export default function LoadingScreen() {
                   justifyContent: "space-between",
                   width: "100%",
                   fontSize: "0.75rem",
-                  fontFamily: "var(--font-switzer), monospace",
-                  color: "rgba(255, 255, 255, 0.5)",
+                  fontFamily: "var(--font-sans)",
+                  color: "#9a7b38",
                 }}
               >
-                <span>LOADING</span>
-                <span style={{ color: "#c5a059", fontWeight: 600 }}>{progress}%</span>
+                <span style={{ letterSpacing: "0.08em", fontWeight: 500 }}>HASALI</span>
+                <span style={{ color: "#d4af37", fontWeight: 700 }}>{progress}%</span>
               </div>
             </div>
           </motion.div>

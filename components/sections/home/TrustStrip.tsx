@@ -31,9 +31,9 @@ const PILLARS = [
   {
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="20" cy="14" r="6" stroke="white" strokeWidth="1.5" fill="none"/>
-        <path d="M20 20C14 20 8 24 7 32h26c-1-8-7-12-13-12z" stroke="white" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
-        <path d="M16 8c0-4 8-4 8 0" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+        <circle cx="20" cy="14" r="6" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
+        <path d="M20 20C14 20 8 24 7 32h26c-1-8-7-12-13-12z" stroke="#d4af37" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+        <path d="M16 8c0-4 8-4 8 0" stroke="#d4af37" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
       </svg>
     ),
     title: "Skin Science",
@@ -42,8 +42,8 @@ const PILLARS = [
   {
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M20 6s-8 6-8 14a8 8 0 0016 0C28 12 20 6 20 6z" stroke="white" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
-        <path d="M20 24v-8M17 19l3-3 3 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M20 6s-8 6-8 14a8 8 0 0016 0C28 12 20 6 20 6z" stroke="#d4af37" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+        <path d="M20 24v-8M17 19l3-3 3 3" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     title: "Holistic Beauty",
@@ -52,12 +52,12 @@ const PILLARS = [
   {
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="20" cy="20" r="10" stroke="white" strokeWidth="1.5" fill="none"/>
-        <path d="M20 14v6l4 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="20" cy="8" r="1.5" fill="white"/>
-        <circle cx="20" cy="32" r="1.5" fill="white"/>
-        <circle cx="8" cy="20" r="1.5" fill="white"/>
-        <circle cx="32" cy="20" r="1.5" fill="white"/>
+        <circle cx="20" cy="20" r="10" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
+        <path d="M20 14v6l4 2" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="20" cy="8" r="1.5" fill="#d4af37"/>
+        <circle cx="20" cy="32" r="1.5" fill="#d4af37"/>
+        <circle cx="8" cy="20" r="1.5" fill="#d4af37"/>
+        <circle cx="32" cy="20" r="1.5" fill="#d4af37"/>
       </svg>
     ),
     title: "Crafted Care",
@@ -66,12 +66,12 @@ const PILLARS = [
   {
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="10" y="18" width="6" height="6" rx="2" stroke="white" strokeWidth="1.5" fill="none"/>
-        <rect x="24" y="18" width="6" height="6" rx="2" stroke="white" strokeWidth="1.5" fill="none"/>
-        <path d="M16 21h8" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M20 14v4M20 26v4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="20" cy="10" r="3" stroke="white" strokeWidth="1.5" fill="none"/>
-        <circle cx="20" cy="30" r="3" stroke="white" strokeWidth="1.5" fill="none"/>
+        <rect x="10" y="18" width="6" height="6" rx="2" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
+        <rect x="24" y="18" width="6" height="6" rx="2" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
+        <path d="M16 21h8" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M20 14v4M20 26v4" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="20" cy="10" r="3" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
+        <circle cx="20" cy="30" r="3" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
       </svg>
     ),
     title: "Your Journey",
@@ -96,12 +96,12 @@ function StatCounter({
     <div style={{ textAlign: "center", padding: "0.5rem" }}>
       <div
         style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: "clamp(1.6rem, 5vw, 4rem)",
-          fontWeight: 300,
-          letterSpacing: "-0.04em",
+          fontFamily: "var(--font-serif)",
+          fontSize: "clamp(1.8rem, 5vw, 4rem)",
+          fontWeight: 400,
+          letterSpacing: "-0.03em",
           lineHeight: 1,
-          color: "var(--color-espresso)",
+          color: "var(--color-gold-dark)",
         }}
       >
         {shouldStart ? count : 0}
@@ -115,6 +115,7 @@ function StatCounter({
           marginTop: "0.5rem",
           letterSpacing: "0.02em",
           margin: "0.5rem 0 0",
+          fontWeight: 500,
         }}
       >
         {label}
@@ -128,7 +129,7 @@ export default function TrustStrip() {
   const inView = useInView(statsRef, { once: true, margin: "-80px" });
 
   return (
-    <section aria-label="About & Value Pillars" style={{ backgroundColor: "var(--color-ivory)", position: "relative" }}>
+    <section aria-label="About & Value Pillars" style={{ backgroundColor: "#fdfbf7", position: "relative" }}>
 
       {/* ── Animated Stats band ── */}
       <div
@@ -136,7 +137,7 @@ export default function TrustStrip() {
         className="container"
         style={{
           paddingBlock: "clamp(2.5rem, 5vw, 4rem)",
-          borderBottom: "1px solid rgba(35,31,28,0.08)",
+          borderBottom: "1px solid rgba(197, 160, 89, 0.2)",
         }}
       >
         <div className="trust-intro-grid">
@@ -146,7 +147,7 @@ export default function TrustStrip() {
               display: "flex",
               alignItems: "center",
               gap: "0",
-              borderRight: "1px solid rgba(0,0,0,0.08)",
+              borderRight: "1px solid rgba(197, 160, 89, 0.2)",
               paddingRight: "clamp(1rem, 3vw, 3rem)",
               width: "100%",
             }}
@@ -161,7 +162,7 @@ export default function TrustStrip() {
           </div>
 
           {/* Col 2: Description */}
-          <div style={{ paddingInline: "clamp(1.5rem, 3vw, 3rem)", borderRight: "1px solid rgba(0,0,0,0.08)" }}>
+          <div style={{ paddingInline: "clamp(1.5rem, 3vw, 3rem)", borderRight: "1px solid rgba(197, 160, 89, 0.2)" }}>
             <p
               style={{
                 fontFamily: "var(--font-sans)",
@@ -169,6 +170,7 @@ export default function TrustStrip() {
                 lineHeight: 1.65,
                 color: "var(--color-espresso-soft)",
                 marginBottom: "0.875rem",
+                fontWeight: 500,
               }}
             >
               At Hasali, we combine advanced clinical skin science with precision salon artistry to deliver luminous transformations.
@@ -178,7 +180,7 @@ export default function TrustStrip() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "0.875rem",
                 lineHeight: 1.65,
-                color: "rgba(26,23,20,0.6)",
+                color: "rgba(26,23,20,0.65)",
                 margin: 0,
               }}
             >
@@ -195,27 +197,15 @@ export default function TrustStrip() {
         </div>
       </div>
 
-      {/* ── Dark pillars band ── */}
+      {/* ── Pillars band ── */}
       <div
         style={{
           position: "relative",
           overflow: "hidden",
-          backgroundColor: "var(--color-dark-panel)",
+          backgroundColor: "#fcf9f2",
+          borderBottom: "1px solid rgba(197, 160, 89, 0.25)",
         }}
       >
-        {/* Background blurred image */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 0, opacity: 0.3 }}>
-          <Image
-            src="/images/pic5.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            style={{ objectFit: "cover", filter: "blur(2px)" }}
-            aria-hidden="true"
-          />
-        </div>
-
-
         <div
           className="container"
           style={{
@@ -234,7 +224,18 @@ export default function TrustStrip() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.65, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "1rem" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                gap: "1rem",
+                backgroundColor: "#ffffff",
+                padding: "2rem 1.5rem",
+                borderRadius: "16px",
+                border: "1px solid rgba(197, 160, 89, 0.25)",
+                boxShadow: "0 8px 24px rgba(197, 160, 89, 0.08)",
+              }}
             >
               <div>{pillar.icon}</div>
               <h3
@@ -242,7 +243,7 @@ export default function TrustStrip() {
                   fontFamily: "var(--font-serif)",
                   fontWeight: 400,
                   fontSize: "clamp(1.25rem, 2vw, 1.5rem)",
-                  color: "#fff",
+                  color: "var(--color-espresso)",
                   letterSpacing: "-0.01em",
                 }}
               >
@@ -253,7 +254,7 @@ export default function TrustStrip() {
                   fontFamily: "var(--font-sans)",
                   fontSize: "0.875rem",
                   lineHeight: 1.65,
-                  color: "rgba(255,255,255,0.65)",
+                  color: "var(--color-espresso-soft)",
                   maxWidth: "24ch",
                   margin: 0,
                 }}

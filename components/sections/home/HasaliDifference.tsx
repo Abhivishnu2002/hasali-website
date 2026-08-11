@@ -41,9 +41,9 @@ const PLANS = [
     id: "bridal",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="24" cy="16" r="7" stroke="white" strokeWidth="1.5" fill="none"/>
-        <path d="M14 38s2-10 10-10 10 10 10 10" stroke="white" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
-        <path d="M24 9l2 3h3l-2.5 2 1 3L24 15l-3.5 2 1-3L19 12h3z" stroke="white" strokeWidth="1.2" fill="white" fillOpacity="0.3"/>
+        <circle cx="24" cy="16" r="7" stroke="#d4af37" strokeWidth="1.5" fill="none"/>
+        <path d="M14 38s2-10 10-10 10 10 10 10" stroke="#d4af37" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+        <path d="M24 9l2 3h3l-2.5 2 1 3L24 15l-3.5 2 1-3L19 12h3z" stroke="#d4af37" strokeWidth="1.2" fill="#d4af37" fillOpacity="0.4"/>
       </svg>
     ),
     name: "Bridal Package",
@@ -69,7 +69,7 @@ export default function HasaliDifference() {
   return (
     <section
       aria-label="Therapy Pricing"
-      style={{ backgroundColor: "var(--color-cream)", paddingBlock: "var(--section-pad-y)" }}
+      style={{ backgroundColor: "var(--color-ivory-warm)", paddingBlock: "var(--section-pad-y)" }}
     >
       <div className="container">
         {/* Pill + heading */}
@@ -120,87 +120,38 @@ export default function HasaliDifference() {
               whileInView="show"
               viewport={{ once: true, margin: "-40px" }}
               custom={i}
-              className={`pricing-card${plan.dark ? " pricing-card-dark" : ""}`}
-              style={plan.dark ? {
-                background: "transparent",
-                padding: 0,
-                overflow: "hidden",
-                borderRadius: "12px",
-              } : {}}
+              className="pricing-card"
+              style={{
+                backgroundColor: "#ffffff",
+                border: "1.5px solid rgba(197, 160, 89, 0.35)",
+                boxShadow: "0 10px 30px rgba(197, 160, 89, 0.1)",
+                borderRadius: "16px",
+                padding: "2.25rem 2rem",
+              }}
             >
-              {plan.dark && plan.image ? (
-                <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", minHeight: "480px" }}>
-                  {/* Background image */}
-                  <Image
-                    src={plan.image}
-                    alt={plan.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "linear-gradient(to top, rgba(15,13,10,0.92) 50%, rgba(15,13,10,0.35) 100%)",
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: "relative",
-                      zIndex: 1,
-                      padding: "2.5rem 2rem",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "flex-end",
-                      height: "100%",
-                      minHeight: "480px",
-                    }}
-                  >
-                    <div style={{ color: "white", marginBottom: "0.75rem" }}>{plan.icon}</div>
-                    <div style={{ width: "2rem", height: "1px", backgroundColor: "rgba(255,255,255,0.35)", marginBottom: "1rem" }} />
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "0.5rem" }}>
-                      {plan.tagline}
-                    </p>
-                    <h3 style={{ fontFamily: "var(--font-serif)", fontWeight: 400, fontSize: "clamp(1.375rem, 2vw, 1.75rem)", color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>
-                      {plan.name}
-                    </h3>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem", marginBottom: "1.5rem" }}>
-                      <span style={{ fontFamily: "var(--font-serif)", fontSize: "1.75rem", fontWeight: 400, color: "#fff" }}>{plan.price}</span>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>{plan.priceNote}</span>
-                    </div>
-                    <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-ghost-ivory" style={{ fontSize: "0.78rem" }}>
-                      Book Now
-                    </a>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <div style={{ color: "var(--color-espresso-soft)", marginBottom: "1rem" }}>{plan.icon}</div>
-                  <div style={{ width: "2rem", height: "1px", backgroundColor: "rgba(35,31,28,0.15)", marginBottom: "1rem" }} />
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--color-sage)", marginBottom: "0.4rem" }}>
-                    {plan.tagline}
-                  </p>
-                  <h3 style={{ fontFamily: "var(--font-serif)", fontWeight: 400, fontSize: "clamp(1.375rem, 2vw, 1.75rem)", color: "var(--color-espresso)", letterSpacing: "-0.02em", marginBottom: "0.4rem" }}>
-                    {plan.name}
-                  </h3>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem", marginBottom: "1.25rem" }}>
-                    <span style={{ fontFamily: "var(--font-serif)", fontSize: "1.625rem", fontWeight: 400, color: "var(--color-espresso)" }}>{plan.price}</span>
-                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.8rem", color: "var(--color-espresso-soft)", opacity: 0.6 }}>{plan.priceNote}</span>
-                  </div>
-                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.75rem 0", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                    {plan.features.map((f) => (
-                      <li key={f} style={{ display: "flex", alignItems: "center", gap: "0.625rem", fontSize: "0.875rem", color: "var(--color-espresso-soft)" }}>
-                        <span style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "var(--color-sage)", flexShrink: 0 }} />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ fontSize: "0.78rem" }}>
-                    Book Now
-                  </a>
-                </>
-              )}
+              <div style={{ color: "var(--color-gold-dark)", marginBottom: "1rem" }}>{plan.icon}</div>
+              <div style={{ width: "2rem", height: "2px", background: "linear-gradient(90deg, #bf953f, #d4af37)", marginBottom: "1rem" }} />
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--color-gold-dark)", marginBottom: "0.4rem" }}>
+                {plan.tagline}
+              </p>
+              <h3 style={{ fontFamily: "var(--font-serif)", fontWeight: 400, fontSize: "clamp(1.375rem, 2vw, 1.75rem)", color: "var(--color-espresso)", letterSpacing: "-0.02em", marginBottom: "0.4rem" }}>
+                {plan.name}
+              </h3>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem", marginBottom: "1.25rem" }}>
+                <span style={{ fontFamily: "var(--font-serif)", fontSize: "1.75rem", fontWeight: 400, color: "var(--color-gold-dark)" }}>{plan.price}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.8rem", color: "var(--color-espresso-soft)", opacity: 0.7 }}>{plan.priceNote}</span>
+              </div>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.75rem 0", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                {plan.features.map((f) => (
+                  <li key={f} style={{ display: "flex", alignItems: "center", gap: "0.625rem", fontSize: "0.875rem", color: "var(--color-espresso-soft)", fontWeight: 500 }}>
+                    <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--color-gold-dark)", flexShrink: 0 }} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="btn-gold" style={{ fontSize: "0.78rem" }}>
+                Book Now
+              </a>
             </motion.div>
           ))}
         </div>

@@ -115,7 +115,7 @@ function SubAccordion({
                 {item.title}
               </span>
               {isOpen ? (
-                <Minus size={14} strokeWidth={2} style={{ flexShrink: 0, color: "var(--color-sage)" }} />
+                <Minus size={14} strokeWidth={2} style={{ flexShrink: 0, color: "var(--color-gold-dark)" }} />
               ) : (
                 <Plus size={14} strokeWidth={2} style={{ flexShrink: 0, color: "var(--color-espresso-soft)", opacity: 0.5 }} />
               )}

@@ -121,7 +121,7 @@ export default function ServicesOverview() {
                         width: "8px",
                         height: "8px",
                         borderRadius: "50%",
-                        backgroundColor: activeIdx === i ? "var(--color-sage)" : "rgba(35,31,28,0.2)",
+                        backgroundColor: activeIdx === i ? "var(--color-gold-dark)" : "rgba(197,160,89,0.3)",
                         flexShrink: 0,
                         transition: "background-color 0.25s ease",
                       }}

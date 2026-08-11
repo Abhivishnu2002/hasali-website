@@ -96,16 +96,16 @@ export default function QuantumPricingGrid() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
               style={{
-                backgroundColor: pkg.highlight ? "var(--color-dark-panel)" : "#fff",
-                color: pkg.highlight ? "#fff" : "var(--color-espresso)",
+                backgroundColor: pkg.highlight ? "#fdfaf2" : "#ffffff",
+                color: "var(--color-espresso)",
                 borderRadius: "20px",
                 padding: "2.5rem 2rem",
-                border: pkg.highlight ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(0,0,0,0.08)",
+                border: pkg.highlight ? "2px solid #d4af37" : "1px solid rgba(197, 160, 89, 0.25)",
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
                 overflow: "hidden",
-                boxShadow: pkg.highlight ? "0 20px 40px rgba(0,0,0,0.2)" : "0 10px 30px rgba(0,0,0,0.03)",
+                boxShadow: pkg.highlight ? "0 20px 48px rgba(197, 160, 89, 0.22)" : "0 10px 30px rgba(197, 160, 89, 0.08)",
               }}
             >
               {pkg.highlight && (
@@ -119,11 +119,12 @@ export default function QuantumPricingGrid() {
                     gap: "0.35rem",
                     padding: "0.35rem 0.75rem",
                     borderRadius: "999px",
-                    backgroundColor: "var(--color-gold)",
+                    background: "linear-gradient(135deg, #bf953f, #d4af37, #aa771c)",
                     fontSize: "0.7rem",
-                    fontWeight: 600,
+                    fontWeight: 700,
                     color: "#000",
                     letterSpacing: "0.05em",
+                    boxShadow: "0 4px 12px rgba(197, 160, 89, 0.3)",
                   }}
                 >
                   <Sparkles size={12} /> MOST POPULAR
@@ -136,7 +137,7 @@ export default function QuantumPricingGrid() {
                   fontWeight: 600,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  color: pkg.highlight ? "var(--color-gold-light)" : "var(--color-gold-dark)",
+                  color: "var(--color-gold-dark)",
                   marginBottom: "0.75rem",
                 }}
               >
@@ -147,8 +148,8 @@ export default function QuantumPricingGrid() {
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "1.75rem",
-                  fontWeight: 400,
-                  color: pkg.highlight ? "#fff" : "var(--color-espresso)",
+                  fontWeight: 500,
+                  color: "var(--color-espresso)",
                   margin: 0,
                   marginBottom: "1rem",
                 }}
@@ -157,14 +158,14 @@ export default function QuantumPricingGrid() {
               </h3>
 
               <div style={{ display: "flex", alignItems: "baseline", gap: "0.35rem", marginBottom: "1.75rem" }}>
-                <span style={{ fontSize: "0.9375rem", color: pkg.highlight ? "rgba(255,255,255,0.7)" : "var(--color-espresso-soft)" }}>from</span>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: "2.25rem", fontWeight: 600, color: pkg.highlight ? "#fff" : "var(--color-espresso)" }}>
+                <span style={{ fontSize: "0.9375rem", color: "var(--color-espresso-soft)" }}>from</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: "2.25rem", fontWeight: 700, color: "var(--color-gold-dark)" }}>
                   {pkg.price}
                 </span>
-                <span style={{ fontSize: "0.8125rem", color: pkg.highlight ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.5)" }}>{pkg.unit}</span>
+                <span style={{ fontSize: "0.8125rem", color: "var(--color-espresso-soft)", opacity: 0.7 }}>{pkg.unit}</span>
               </div>
 
-              <div style={{ height: "1px", backgroundColor: pkg.highlight ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)", marginBottom: "1.75rem" }} />
+              <div style={{ height: "1px", backgroundColor: "rgba(197, 160, 89, 0.25)", marginBottom: "1.75rem" }} />
 
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "2.5rem", flex: 1 }}>
                 {pkg.features.map((feat) => (
@@ -174,16 +175,16 @@ export default function QuantumPricingGrid() {
                         width: "1.25rem",
                         height: "1.25rem",
                         borderRadius: "50%",
-                        backgroundColor: pkg.highlight ? "rgba(212,175,55,0.2)" : "var(--color-gold-pale)",
+                        backgroundColor: "rgba(212, 175, 55, 0.2)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         flexShrink: 0,
                       }}
                     >
-                      <Check size={12} style={{ color: pkg.highlight ? "var(--color-gold-light)" : "var(--color-gold-dark)" }} />
+                      <Check size={12} style={{ color: "var(--color-gold-dark)" }} />
                     </div>
-                    <span style={{ color: pkg.highlight ? "rgba(255,255,255,0.85)" : "var(--color-espresso-soft)" }}>{feat}</span>
+                    <span style={{ color: "var(--color-espresso-soft)", fontWeight: 500 }}>{feat}</span>
                   </li>
                 ))}
               </ul>
@@ -192,7 +193,7 @@ export default function QuantumPricingGrid() {
                 href={WA_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={pkg.highlight ? "btn-gold" : "btn-primary"}
+                className="btn-gold"
                 style={{ width: "100%", justifyContent: "center" }}
               >
                 {pkg.ctaText}
